@@ -1,0 +1,410 @@
+/*Pasos*/
+.pasos{
+    width:100%;
+    height:30px;;
+    float:left;
+    background-image:url(../imagenes/pasofondo2.png);
+    margin-bottom: 1%;/*ajustado*/
+    margin:auto;
+    margin-left: 1%;/*ajustado*/
+    margin-bottom: 15px;
+}
+.pasos_izq{
+    width:20px;
+    height:30px;
+    background-image:url(../imagenes/pasoizq2.png);
+    background-repeat:no-repeat;
+    float:left;
+    background-color:#FFF;
+} 
+.pasos_der{
+    width:15px;
+    height:30px;
+    background-image:url(../imagenes/pasoder2.png);
+    background-repeat:no-repeat;
+    float:right;
+    background-color:#FFF;
+} 
+.paso_inactivo{
+    height:30px;
+    background-image:url(../imagenes/pasogrey2.png);
+    background-repeat:no-repeat;
+    background-position:center;
+    float:left;
+}
+.paso_activo{
+    height:30px;
+    background-image:url(../imagenes/pasogreen2.png);
+    background-repeat:no-repeat;
+    background-position:center;
+    float:left;
+}
+.paso_text{
+    margin-top: 10px;
+    padding-top: 5px;
+    text-align: center;
+    font-size: 11px;
+}
+.nro_paso{
+    font-family:"Arial Black", Gadget, sans-serif;
+    color:#FFF;
+    font-size:12px;
+    color:#FFF;
+    text-shadow:#666;
+    text-align:center;
+    padding-top:6px;
+}  
+.nro_activo{
+    font-family:"Arial Black", Gadget, sans-serif;
+    color:#FFF;
+    font-size:13px;
+    color:#FFF;
+    text-shadow:#666;
+    text-align:center;
+    padding-top:6px;
+}
+/*Pasos*/
+/*Botones*/
+.btn_table
+{
+	display:  table;
+	width:auto;
+	border-spacing:5px;/*cellspacing:poor IE support for  this*/
+	/* border-collapse:separate;*/
+}
+.btn_row
+{
+	display:table-row;
+	width:auto;
+}
+.btn_der{
+    background-image: url("../imagenes/btn_der.gif");
+    background-repeat: no-repeat;
+	float:left;
+	display:table-column;    	
+    text-align: center;
+	height:19px;
+	width:23px;
+}
+.btn_cent
+{
+    float:left;/*fix for  buggy browsers*/
+    display:table-column;
+    width:auto;
+}
+.btn_cent input {
+    background-image: url("../imagenes/btn_cen.gif");
+	border: medium none;
+	color: #FFFFFF;
+    font-size: 12px;
+    font-style: normal;
+	padding: 1px 0 1px 10px;
+	height:19px;
+    text-align: center;
+	text-decoration: none;
+	cursor:pointer;
+}
+.btn_cent input:disabled, .btn_cent input:hover:disabled{
+	text-shadow: 1px 1px 1px #CCCCCC;
+    cursor: default;
+	color: #595757;
+}
+.btn_iz{
+    background-image: url("../imagenes/btn_iz.gif");
+    float:left;
+	display:table-column;
+	background-repeat: no-repeat;
+	height:19px;
+	width:4px;
+}
+.btn_cent input:hover {
+    color: #7AB800;
+}
+.btn_margen{
+    float: left; 
+    width: auto; 
+    margin-right: 3px; 
+    margin-left: 3px;
+}
+/*Botones*/
+/*Etiquetas Formulario*/
+.panel_sin_bordes {
+	border: none ;
+	border-left-style: none;
+	border-right-style: none;
+	margin: 15px auto auto 1%;
+	width: 95%;
+	float: left;
+}
+
+.etiqueta_form {
+    color: #004E9B;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 5px;
+}
+.etiqueta_form_izq {
+    color: #004E9B;
+    float: left;
+    font-weight: bold;
+    padding-right: 15px;
+}
+.td_label{
+    width:35%;
+}
+
+.etiqueta_chkbx {
+    color: #666666;
+    font-weight: normal;
+    margin-right: 20px;
+}
+/*Etiqueta Formulario*/
+
+/*Espere un Momento*/
+.transparent {
+    width: 100%; /* Required for IE 5, 6, 7 */	
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";/* Theoretically for IE 8 & 9 (more valid) */	
+    filter: alpha(opacity=80);/* This works in IE 8 & 9 too ... but also 5, 6, 7  */
+    -moz-opacity:0.80;/* Older than Firefox 0.9 */
+    -khtml-opacity: 0.80;/* Safari 1.x (pre WebKit!) */
+    opacity: 0.80;/* Firefox 0.9+, Safari 2?, Chrome any? Opera 9+, IE 9+ */
+}
+
+#div_locker {
+    display: none;
+    position: fixed;/*absolute*/
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color:#DEDEDE !important;
+    z-index:1001;
+}
+
+#div_procesando {
+    position: absolute;
+    top: 40%  !important;
+    left: 40% !important;
+    display: none;
+    background-color:#fff;
+    /*opacity:0.9;*/
+    padding: 5px !important;
+    width: 200px !important;/*100%*/
+    height: auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc !important;
+    overflow: auto;
+}
+
+#div_procesando img {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+#div_procesando #blockScreenMessage {
+    font-size: 14px;
+    font-family: Arial;
+    color: #759804;/*#759804*/
+    font-weight: bold;
+}
+
+#div_procesando_mensajeria {
+    position: absolute;
+    top: 20%  !important;
+    left: 10%  !important;
+    display: none;
+    background-color:#fff;
+    /*opacity:0.9;*/
+    padding: 5px !important;
+    width: 100px !important;/*100%*/
+    height: auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc !important;
+    overflow: auto;
+}
+
+#div_procesando_mensajeria img {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+#div_procesando_mensajeria #blockScreenMessage {
+    font-size: 14px;
+    font-family: Arial;
+    color: #004E9B;/*#759804*/
+    font-weight: bold;
+}
+
+.transparent_mensajeria {
+    width: 100%; /* Required for IE 5, 6, 7 */	
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";/* Theoretically for IE 8 & 9 (more valid) */	
+    filter: alpha(opacity=60);/* This works in IE 8 & 9 too ... but also 5, 6, 7  */
+    -moz-opacity:0.60;/* Older than Firefox 0.9 */
+    -khtml-opacity: 0.60;/* Safari 1.x (pre WebKit!) */
+    opacity: 0.60;/* Firefox 0.9+, Safari 2?, Chrome any? Opera 9+, IE 9+ */
+}
+/*Espere un Momento*/
+
+/*Calendario*/
+#calendario {
+    border: 1px solid #DADADA;
+    color: #929292;
+    font-size: 15px;
+    height: 185px;
+    padding: 5px;
+    width: 220px;
+}
+#calendario .meses {
+    color: #7AB800;
+}
+#calendario .meses a {
+    color: #7AB800;
+    text-decoration: none;
+}
+#calendario .semana tr {
+    background-color: #7AB800;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+#calendario .dias td {
+    border: 1px solid #C4C2C2;
+    text-align: center;
+}
+#calendario .dias a {
+    color: inherit;
+    text-decoration: none;
+}
+#calendario td.inactivo {
+    background-color: #D6D6D6;
+}
+#calendario td.hoy {
+    background: #FFEBD8;
+    border: 1px solid #FF8F16;
+    color: #E17009;
+}
+
+#calendario td.seleccionado {
+    background-color: #C3E3F5;
+    border: 1px solid #368BB9;
+    color: #368BB9;
+}
+.ajuste_calendario {
+    top: 100px;
+    vertical-align: top;
+    width: 65px;
+    color: #666;
+    background: none !important;
+    border: 1px solid #7AB800 !important;
+}
+.fecha{
+    width:80px;
+}
+/*Calendario*/
+/*Listado*/
+.lista {
+    padding:5px;
+    background-repeat:no-repeat;
+    background-position:left center;
+    list-style:none !important;
+    font-weight:bold;
+    color:#666666;
+}
+.lista_gral {
+    color: #666666;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0 0 0 10px;
+}
+.lista_gral li {
+    background-image: url("../imagenes/bull_gral.gif");
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
+    padding-left: 10px;
+	text-align:left;
+}
+/*Listado*/
+.cargando{
+	position: fixed;
+	font-size: 11px;
+}
+.asterisco {
+    color: #FF0000;
+    font-weight: bold;
+    padding: 0 2px;
+}
+.icono{
+    width:25px;
+    height:25px;
+    float:left;
+    text-align:center;
+    padding-right:12px;
+    padding-bottom:5px;	
+}
+.nota {
+    color: #585858;
+    font-size: 10px;
+}
+.mensaje{
+	border: 1px solid #7AB800;
+	padding: 2% 2% 2% 2%;
+}
+
+.info, .info2 {
+    background-image: url("../imagenes/ico_info_verde.gif");
+    background-position: left top;
+    background-repeat: no-repeat;
+    display: block;
+}
+.info {
+    margin: 30px 0 20px 0;
+    padding-left: 32px;
+}
+.info2 {
+    margin-right: 15px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding-left: 32px;
+    height: 28px;
+    padding-top: 7px;
+}
+
+.areaInfo .etiquetaInfo {
+    color: #666666;
+    font-weight: bold;
+}
+
+.casoInfo {
+    background-color: #F9F9F9;
+    border: 1px solid #DDDDDC;
+    color: #666666;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2% 2% 2% 2%;
+    width: 90%;
+}
+.casoInfo p {
+    margin: 0 0 8px;
+    padding: 0;
+}
+.titulo_referencia{
+    color: #999999;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 15px;
+}
+.ui-widget-overlay {
+    position : absolute;
+    width : 100%;
+    height : 100%;
+    top : 0px;
+    left : 0px;
+    opacity: 0.1; 
+    filter: alpha(opacity=1); 
+    background-color: gray;
+}
