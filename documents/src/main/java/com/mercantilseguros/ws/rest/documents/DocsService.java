@@ -39,7 +39,7 @@ public class DocsService {
             SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
             SOAPConnection soapConnection = soapConnectionFactory.createConnection();
 
-            SOAPMessage soapResponse = soapConnection.call(createServicioRecaudosSOAPRequest(
+            SOAPMessage soapResponse = soapConnection.call(createConsultarDocumentosSOAPRequest(
             		funcionalidad, aplicacion, tpExpediente, cdExpediente, nuSolicitud, valorRaiz
             		), "http://slopr03123.mercantilseguros.com:17011/underlying/oracledb/rector/serviciorecaudos/ServicioRecaudos");
             
@@ -58,7 +58,7 @@ public class DocsService {
     	}
     }
 	
-	private SOAPMessage createServicioRecaudosSOAPRequest(
+	private SOAPMessage createConsultarDocumentosSOAPRequest(
 			String funcionalidad
 			, String aplicacion
 			, String tpExpediente
@@ -69,6 +69,8 @@ public class DocsService {
 	{
 		try
 		{
+			
+			
 	        MessageFactory messageFactory = MessageFactory.newInstance();
 	        SOAPMessage soapMessage = messageFactory.createMessage();
 	        SOAPPart soapPart = soapMessage.getSOAPPart();
@@ -80,6 +82,7 @@ public class DocsService {
 	
 	        // SOAP Body
 	        SOAPBody soapBody = envelope.getBody();
+	        
 	        SOAPElement consultarDocumentosSol = soapBody.addChildElement("consultarDocumentosSol", "ser");
 	        SOAPElement cabeceraSol = consultarDocumentosSol.addChildElement("cabeceraSol", "ser");
 	        SOAPElement piFuncionalidad = consultarDocumentosSol.addChildElement("piFuncionalidad", "ser");piFuncionalidad.addTextNode(funcionalidad);

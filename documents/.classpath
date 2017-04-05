@@ -23,7 +23,8 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0">
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/java-json.jar"/>
+	<classpathentry kind="con" path="oracle.eclipse.tools.weblogic.lib.system">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
@@ -33,6 +34,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/java-json.jar"/>
+	<classpathentry kind="lib" path="C:/Users/arein/Code/Java/Mercantil/15-037/documents/src/main/webapp/WEB-INF/lib/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/arein/Code/Java/Mercantil/15-037/documents/src/main/webapp/WEB-INF/lib/axis.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
