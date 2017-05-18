@@ -1,0 +1,150 @@
+body {
+    color: #666666;
+    font-family: Arial;
+    font-size: 12px;
+    margin: 0px;
+    padding: 0px;
+	width: 95%;
+}
+a:link {
+	color: #007AD8;
+	text-decoration: none;
+}
+a:visited {
+    color: #004E9B;
+	text-decoration: none;
+}
+a:hover {
+    color: #669900;
+	text-decoration: none;
+}
+h1 {
+    font-size: 17px;
+    color: #004E9B;
+    margin: 0;
+    padding: 0 0 10px 0;
+	text-align:right;
+	text-transform:uppercase;
+}
+h2 {
+    font-size: 16px;
+}
+h3 {
+	font-size:14px;
+}
+strong {
+	font-weight: bold;
+	color: #004E9B;
+	text-decoration: none;
+}
+select {
+    border: 1px solid #7AB800;
+    color: #666666;
+    padding: 2px;
+    margin: 0;
+    font-family: Arial;
+    font-size: 12px;        
+}
+input {
+    border: 1px solid #7AB800;
+    color: #666666;
+    padding: 3px;
+    margin: 0;
+    font-family: Arial;
+    font-size: 12px;
+    font-style: inherit;
+}
+textarea {
+    border: 1px solid #7AB800;
+    color: #666666;
+    padding: 3px;
+    margin: 0;
+    font-family: Arial;
+    font-size: 12px;
+    font-style: inherit;
+}
+input:focus, select:focus, textarea:focus{
+   border-style: solid;
+   border-spacing: 3px;
+   border:2px solid #BED600; 
+}
+table tr td {
+    padding-bottom: 2px;
+    padding-left: 0;
+}
+td, div {
+    font-family: Arial;
+    font-size: 12px;
+}
+.titulo_superior{
+    font-size: 17px;
+    color: #004E9B;
+    margin: 0;
+    padding: 0 0 15px 0;
+	text-transform:uppercase;
+}
+/*Textos*/
+.txt_izq{
+    text-align: left;
+}
+
+.txt_der{
+    text-align: right;
+}
+
+.txt_center {
+    text-align: center;
+}
+/*Textos*/
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.wait {
+    cursor: progress;
+}
+
+.hide {
+    display: none;
+}
+
+.puntero{
+	cursor:pointer;
+}
+.ayuda{
+	cursor:help;
+}
+.dato_compuesto{
+	white-space:nowrap;
+}
+.dato_imagen{
+	vertical-align: super;
+}
+
+.destacado {
+    color: #669900;
+    font-weight: bold;
+}
+.destacadoG {
+    color: #669900;
+	font-size:16px;
+    font-weight: bold;
+}
+.destacado_peq {
+    color:#789700;
+}
+#pie_pagina {
+    border-top: 1px solid #004E9B;
+    color: #004E9B;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    height: 20px;
+    padding: 5px;
+    text-align: left;
+}
+
+.tabla_ppal th a:link {
+    color: #ffffff;
+    text-decoration: none;
+}

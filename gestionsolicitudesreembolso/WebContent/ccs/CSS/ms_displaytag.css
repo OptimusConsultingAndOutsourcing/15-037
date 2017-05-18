@@ -1,0 +1,76 @@
+.tabla_display {
+    color: #000000;
+}
+.tabla_display th {
+	background-color: #0171AD;
+	border-right: 1px solid #FFFFFF;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	padding: 2px 5px;
+	text-align: left;
+}
+.tabla_display td {
+    border-bottom: 1px solid #DDDDDC;
+    border-right: 1px solid #DDDDDC;
+    padding: 2px 7px;
+}
+
+.tabla_display td  a {
+    line-height: 0px;
+}
+
+.tabla_display td:first-child {
+    border-left: 1px solid #DDDDDC;
+}
+.tabla_display tr.fila_0 {
+    background-color: #EAEAEA;
+}
+.tabla_display tr.fila_1 {
+    background-color: #FFFFFF;
+}
+.tabla_display th td, .tabla_display th td:first-child {
+    border: medium none;
+    padding: 2px;
+}
+.pagelinks {
+    font-size: 12px;
+}
+tr.odd {
+    background-color: #EAEAEA;
+}
+tr.even {
+    background-color: #FFFFFF;
+}
+
+.tabla_display th.sortable a {
+    background-image: url("../imagenes/flechitas.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    color: White;
+    display: block;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+    width: 100%;
+}
+table.table-print thead tr th, table.table-print tfoot tr th {
+    background-color: #FFFFFF;
+    border-right: 1px solid #CCCCCC;
+    color: #000000;
+    font-family: arial;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 7px;
+    text-align: left;
+}
+table.table-print tbody td {
+    border-right: 1px solid #CCCCCC;
+}
+.pagelinks img {
+    border-spacing: 50px;
+    position: relative;
+    top: 2px;
+}

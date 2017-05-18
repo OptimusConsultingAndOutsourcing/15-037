@@ -1,0 +1,21 @@
+{
+    "name": "inputfile",
+    "version": "0.1.0",
+    "title": "jQuery.inputfile",
+    "description": "jQuery input file replacement plugin.",
+    "keywords": ["file", "upload", "customize"],
+    "author": { 
+        "name": "Adrián Seijo",
+        "email": "kileras@gmail.com"
+    },
+    "licenses": [
+            {
+                "type": "AGPL-3.0",
+                "url": "http://opensource.org/licenses/AGPL-3.0"
+            }
+    ],
+    "dependencies": {
+        "jquery": ">=1.7"
+    },
+    "homepage": "https://github.com/kileras/jquery.inputfile.js"
+}

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="robots" content="noindex">
+		<title>Solicitud de Reembolso</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="ccs/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="ccs/loading-bar.css"/>
+		<link rel="stylesheet" type="text/css" href="ccs/style.css">
+		<link rel="stylesheet" type="text/css" href="ccs/alertas_21.css">
+		<link rel="stylesheet" type="text/css" href="ccs/ms_displaytag_21.css">
+		<link rel="stylesheet" type="text/css" href="ccs/ms_faces_21_sub_tabla.css">
+		<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1.css">
+		<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_estructura.css">
+		<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_formularios.css">
+		<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_tabla.css">
+		<style>
+			.cuerpo_app {
+				padding-left: 0px;
+			}
+
+			.btn_cent input {
+				padding: 0 0 0 10px;
+			}
+		</style>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.js"></script>
+		<script src="js/angular-resource.js"></script>
+		<script src="js/xml2json.min.js"></script>
+		<script src="js/angular-xml.min.js"></script>
+		<script src="js/loading-bar.js"></script>
+		<script>
+			//var API_HOST = "../autogestiongateway/";
+			var API_HOST = "http://slopr81.seguros.mercantilsf.com:8011/autogestiongateway/";
+			angular.module("AutogestionDigital", ['ngRoute', 'ngResource', 'xml', 'angular-loading-bar']).config(function(x2jsProvider, $httpProvider) {
+				$httpProvider.interceptors.push('xmlHttpInterceptor');
+				x2jsProvider.config = {
+					//escapeMode               : true|false - Escaping XML characters. Default is true from v1.1.0+
+					//attributePrefix          : "<string>" - Prefix for XML attributes in JSon model. Default is "_"
+					//arrayAccessForm          : "none"|"property" - The array access form (none|property). Use this property if you want X2JS generates an additional property <element>_asArray to access in array form for any XML element. Default is none from v1.1.0+
+					//emptyNodeForm            : "text"|"object" - Handling empty nodes (text|object) mode. When X2JS found empty node like <test></test> it will be transformed to test : '' for 'text' mode, or to Object for 'object' mode. Default is 'text'
+					//enableToStringFunc       : true|false - Enable/disable an auxiliary function in generated JSON objects to print text nodes with text/cdata. Default is true
+					//arrayAccessFormPaths     : [] - Array access paths. Use this option to configure paths to XML elements always in "array form". You can configure beforehand paths to all your array elements based on XSD or your knowledge. Every path could be a simple string (like 'parent.child1.child2'), a regex (like /.*\.child2/), or a custom function. Default is empty
+					//skipEmptyTextNodesForObj : true|false - Skip empty text tags for nodes with children. Default is true.
+					//stripWhitespaces         : true|false - Strip whitespaces (trimming text nodes). Default is true.
+					//datetimeAccessFormPaths  : [] - Datetime access paths. Use this option to configure paths to XML elements for "datetime form". You can configure beforehand paths to all your array elements based on XSD or your knowledge. Every path could be a simple string (like 'parent.child1.child2'), a regex (like /.*\.child2/), or a custom function. Default is empty
+				}
+			}).run(function($http) {
+				var AuthToken = $.cookie('AuthToken');
+				if (!AuthToken)
+				{
+					var req = new XMLHttpRequest();
+					req.open('GET', document.location, false);
+					req.send(null);
+					AuthToken = req.getAllResponseHeaders().split("\n").filter(function(header) {
+						return header.indexOf("AuthToken") > -1;
+					});
+					AuthToken = AuthToken[0] ? AuthToken[0].split(":")[1].trim() : null;
+				}
+				$http.defaults.headers.common['Authorization'] = AuthToken;
+			}).factory('SOAPRequestMessage', function(x2js) { return { fromTemplate: function(XMLDocument) { var SOAPRequestMessage = x2js.xml_str2json(XMLDocument); SOAPRequestMessage.toXMLString = function() { return x2js.json2xml_str(this); }; return SOAPRequestMessage; } };
+			}).factory('Resource', function($resource) { return $resource(API_HOST + "rest/soapresponse/get");
+			}).controller("BusquedaAsegurados", function($scope, Resource, SOAPRequestMessage) {
+				$.get("templates/listarBenefiariosSolicitud", function(template) {
+					$scope.soapRequestMessage = SOAPRequestMessage.fromTemplate(template);
+					var soapRequest = $scope.soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol;
+					var date = new Date();
+					date.setTime(date.getTime() - (date.getTimezoneOffset() * 60 * 1000));
+					soapRequest.cabeceraSol.fecha.__text = date.toISOString().split("T")[0];
+					soapRequest.cabeceraSol.hora.__text = date.toISOString().split("T")[1].split(".")[0];
+					soapRequest.cabeceraSol.funcionalidad.__text = getParameterByName('funcionalidad') || "SR";
+					soapRequest.cabeceraSol.aplicacion.__text = getParameterByName('aplicacion') || "PORTASEGUR";
+					soapRequest.piCdFuncionalidad.__text = getParameterByName('funcionalidad') || "SR";
+					soapRequest.piCdAplicacion.__text = getParameterByName('aplicacion') || "PORTASEGUR";
+					$scope.$apply();
+					$scope.buscarAsegurados = function() {
+						if ($scope.soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piNuCedula.__text && $scope.soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piCdNacionalidad.__text) {
+							$scope.soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piCdUsuario.__text = $scope.soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.cabeceraSol.usuario.__text = $scope.soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piCdNacionalidad.__text + $scope.soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piNuCedula.__text;
+							Resource.save($.param({
+								SOAPRequestMessage: $scope.soapRequestMessage.toXMLString(),
+								UddiServiceRegistryName: 'http://slopr03123.mercantilseguros.com:17011/underlying/oracledb/rector/serviciobeneficiarios/ServicioBeneficiarios'
+							}), function(response) {
+								$scope.resource = response.Envelope.Body.listarBeneficiariosSolicitudRes;
+								if (!$scope.resource.carcListaBenef) {
+									alert("No se encontraron beneficiarios correspondientes a los datos indicados");
+								}
+							}, function(response) {
+								$scope.resource = {};
+								switch (response.status) {
+								case 401:
+									alert("Acceso no autorizado.");
+									break;
+								case 404:
+									alert("Servicio no disponible.");
+									break;
+								case 500:
+									alert("Error en el servicio.");
+									break;
+								default:
+									alert("Error no controlado.");
+									break;
+								}
+								alert("Redireccionar...");
+							});
+						}
+					}
+				});
+			});
+
+			function getParameterByName(name, url) {
+				if (!url) {
+					url = window.location.href;
+				}
+				name = name.replace(/[\[\]]/g, "\\$&");
+				var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
+				  , results = regex.exec(url);
+				if (!results)
+					return null;
+				if (!results[2])
+					return '';
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+		</script>
+	</head>
+	<body style="padding-top:35px; margin-bottom:35px;">
+		<div id="contenido" ng-app="AutogestionDigital" ng-controller="BusquedaAsegurados">
+			<div id="colPpalUnica">
+				<h1>registro solicitud de reembolso</h1>
+				<p style="padding-left:20px;">Introduzca los datos que requiera para realizar la Consulta de Solicitudes</p>
+				<div class="modulo_app" id="fieldsetContent">
+					<div class="titulo_app txt_izq">
+						<label class="twhiteT">Criterios de Búsqueda</label>
+					</div>
+					<div class="cuerpo_app">
+						<table width="99%" align="center">
+							<tbody>
+								<tr>
+									<td>
+										<table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+											<tr>
+												<td>
+													<table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+														<tr>
+															<td width="242">
+																<table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+																	<tr>
+																		<td class="etiqueta_form" width="39%">
+																			<span class="asterisco">* </span>
+																			Cédula o Pasaporte:
+																		
+																		</td>
+																		<td width="8%" align="left">
+																			<select name="nacionalidad" id="nacionalidad" style="width:40px" class="combo-tiny" required ng-model="soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piCdNacionalidad.__text" ng-change="buscarAsegurados()">
+																				<option selected="selected" value="V">V-</option>
+																				<option value="E">E-</option>
+																			</select>
+																		</td>
+																		<td width="53%" align="left">
+																			<input id="BuscarCedPas" class="combo-lg" value="" ng-model="soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piNuCedula.__text" ng-blur="buscarAsegurados()">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="etiqueta_form" width="39%">Nombre y/o Apellido:</td>
+																		<td colspan="2" align="left">
+																			<input id="nombreApellido" class="combos">
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table width="99%" align="center" ng-show="resource.carcListaBenef.caroListaBenefArray.length > 0">
+							<tbody>
+								<tr>
+									<td>
+										<table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+											<tr>
+												<td>
+													<table id="tabla" cellspacing="0" class="tabla_ppal table-striped" width="95%" align="center" style="margin:20px;">
+														<tbody>
+															<tr>
+																<th width="25%" align="center">Titular / Beneficiario</th>
+																<th width="20%" align="center">Cédula / Rif</th>
+																<th width="15%" align="center">Fecha de Nacimiento</th>
+																<th width="20%" align="center">Sexo </th>
+																<th width="5%" align="center">Afectado</th>
+															</tr>
+															<tr ng-repeat="beneficiario in resource.carcListaBenef.caroListaBenefArray">
+																<td align="left">{{ beneficiario.calbNombreBen.__text }}</td>
+																<td align="left">{{ beneficiario.calbCdNacBen.__text }}-{{ beneficiario.calbNuCedBen.__text }}</td>
+																<td align="center">{{ beneficiario.calbFeNacBen.__text | date:'dd/MM/yyyy' }}</td>
+																<td align="center">{{ beneficiario.calbCdSexo.__text }}</td>
+																<td align="center">
+																	<input type="radio" name="radio" id="afectado" value="afectado">
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="z_izq2">
+				<p class="info2">
+					<span class="etiqueta_form">(</span>
+					<span class="asterisco">* </span>
+					<span class="etiqueta_form">)</span>
+					<span class="etiqueta_form">Datos Obligatorios</span>
+				</p>
+			</div>
+		</div>
+		<div>
+			<table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
+				<tbody>
+					<tr>
+						<td width="120px" align="right">
+							<div class="btn_row">
+								<div class="btn_iz" align="center"></div>
+								<div class="btn_cent">
+									<input type="submit" tabindex="14" value="Limpiar" id="limpiar" class="puntero">
+								</div>
+								<div class="btn_der"></div>
+							</div>
+						</td>
+						<td width="12px" align="right"></td>
+						<td width="120px" align="left">
+							<div class="btn_row">
+								<div class="btn_iz" align="center"></div>
+								<div class="btn_cent">
+									<input type="button" tabindex="14" value="Consultar" id="continuar" class="puntero">
+									<!-- onclick="location.href='Reembolso-ListadoAsegurado.html';" -->
+								</div>
+								<div class="btn_der"></div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

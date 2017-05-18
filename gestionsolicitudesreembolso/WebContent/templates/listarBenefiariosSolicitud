@@ -1,0 +1,41 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	</soap:Header>
+	<soapenv:Body>
+		<ser:listarBeneficiariosSolicitudSol xmlns:ser="http://xmlns.mercantilseguros.com/osb/ServicioBeneficiarios" xmlns:obj="http://xmlns.mercantilseguros.com/osb/ObjetosComunes">
+			<ser:cabeceraSol>
+				<obj:fecha></obj:fecha>
+				<obj:hora></obj:hora>
+				<!--Optional:-->
+				<obj:idSolicitud></obj:idSolicitud>
+				<!--Optional:-->
+				<obj:idCompensacion></obj:idCompensacion>
+				<!--Optional:-->
+				<obj:canal></obj:canal>
+				<!--Optional:-->
+				<obj:comunidad></obj:comunidad>
+				<!--Optional:-->
+				<obj:grupo></obj:grupo>
+				<!--Optional:-->
+				<obj:funcionalidad></obj:funcionalidad>
+				<obj:aplicacion></obj:aplicacion>
+				<obj:usuario></obj:usuario>
+				<obj:ip></obj:ip>
+				<!--Optional:-->
+				<obj:nombreEquipo></obj:nombreEquipo>
+			</ser:cabeceraSol>
+			<!--Optional:-->
+			<ser:piCdNacionalidad></ser:piCdNacionalidad>
+			<!--Optional:-->
+			<ser:piNuCedula></ser:piNuCedula>
+			<!--Optional:-->
+			<ser:piCdAsesor></ser:piCdAsesor>
+			<!--Optional:-->
+			<ser:piCdFuncionalidad></ser:piCdFuncionalidad>
+			<!--Optional:-->
+			<ser:piCdAplicacion></ser:piCdAplicacion>
+			<!--Optional:-->
+			<ser:piCdUsuario></ser:piCdUsuario>
+		</ser:listarBeneficiariosSolicitudSol>
+	</soapenv:Body>
+</soapenv:Envelope>
