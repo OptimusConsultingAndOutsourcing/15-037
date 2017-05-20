@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:obj="http://xmlns.mercantilseguros.com/osb/ObjetosComunes" xmlns:ser="http://xmlns.mercantilseguros.com/osb/ServicioRecaudos">
+   <SOAP-ENV:Header />
+   <SOAP-ENV:Body>
+      <ser:consultarDocumentosSol>
+         <ser:cabeceraSol>
+            <obj:fecha></obj:fecha>
+            <obj:hora></obj:hora>
+            <obj:funcionalidad>VISOR_DOC</obj:funcionalidad>
+            <obj:aplicacion>GEST_DOCU</obj:aplicacion>
+            <obj:usuario />
+            <obj:ip />
+         </ser:cabeceraSol>
+         <ser:piFuncionalidad>VISOR_DOC</ser:piFuncionalidad>
+         <ser:piAplicacion>GEST_DOCU</ser:piAplicacion>
+         <ser:piTpExpediente></ser:piTpExpediente>
+         <ser:piCdExpediente></ser:piCdExpediente>
+         <ser:piNuSolicitud></ser:piNuSolicitud>
+         <ser:piValorRaiz></ser:piValorRaiz>
+      </ser:consultarDocumentosSol>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

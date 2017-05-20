@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/Oracle WebLogic Server 11gR1 (10.3.5) JDK">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="oracle.eclipse.tools.weblogic.lib.system">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Oracle/Middleware_WL6/user_projects/domains/base_domain/lib/commons-ms.jar"/>
+	<classpathentry kind="lib" path="C:/Users/arein/Code/Java/Mercantil/autogestiondigital/documents/src/main/webapp/WEB-INF/lib/java-json.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

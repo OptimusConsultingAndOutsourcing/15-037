@@ -17,7 +17,7 @@ import com.mercantilseguros.commonsms.domain.Productor;
 import com.mercantilseguros.commonsms.domain.UsuarioAplicacion;
 import com.mercantilseguros.commonsms.util.CommonsApplication;
 
-public class PageResponseFilter implements Filter
+public class SecurityFilter implements Filter
 {
 	public void init(FilterConfig arg0) throws ServletException {}
 	
@@ -26,9 +26,7 @@ public class PageResponseFilter implements Filter
 		HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        
-        HttpSession session = request.getSession(false); // 
+        HttpSession session = request.getSession(false); //  
         
         if(session != null)
         {        
@@ -52,12 +50,14 @@ public class PageResponseFilter implements Filter
 					response.addCookie(new Cookie("CodProductor", String.valueOf(productor.getCodigo())));
 				}
 			}
-			chain.doFilter(req, resp);
         }
         else
         {
         	response.sendRedirect("../");
         }
+        
+        response.addHeader("Access-Control-Allow-Origin", "*");
+		chain.doFilter(req, resp);
 	}
 	
 	public void destroy() {}
