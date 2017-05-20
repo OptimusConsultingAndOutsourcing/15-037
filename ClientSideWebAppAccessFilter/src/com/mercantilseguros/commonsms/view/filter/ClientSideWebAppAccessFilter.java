@@ -1,4 +1,4 @@
-package com.mercantilseguros.autogestiondigital.autogestionreembolso.filters;
+package com.mercantilseguros.commonsms.view.filter;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import com.mercantilseguros.commonsms.domain.Productor;
 import com.mercantilseguros.commonsms.domain.UsuarioAplicacion;
 import com.mercantilseguros.commonsms.util.CommonsApplication;
 
-public class SecurityFilter implements Filter
+public class ClientSideWebAppAccessFilter implements Filter
 {
 	public void init(FilterConfig arg0) throws ServletException {}
 	

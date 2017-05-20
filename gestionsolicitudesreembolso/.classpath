@@ -130,5 +130,6 @@
 	<classpathentry kind="lib" path="C:/Oracle/Middleware_WL6/user_projects/domains/base_domain/lib/weblogic.jar"/>
 	<classpathentry kind="lib" path="C:/Oracle/Middleware_WL6/user_projects/domains/base_domain/lib/wllog4j.jar"/>
 	<classpathentry kind="lib" path="C:/Oracle/Middleware_WL6/user_projects/domains/base_domain/lib/xstream-1.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/arein/Code/Java/Mercantil/15-037/ClientSideWebAppAccessFilter/ClientSideWebAppAccessFilter.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

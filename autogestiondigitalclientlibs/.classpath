@@ -13,8 +13,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Oracle/Middleware_WL6/user_projects/domains/base_domain/lib/commons-ms.jar"/>
-	<classpathentry kind="lib" path="C:/Users/arein/Code/Java/Mercantil/autogestiondigital/documents/src/main/webapp/WEB-INF/lib/java-json.jar"/>
-	<classpathentry kind="lib" path="C:/Users/arein/Code/Java/Mercantil/15-037/ClientSideWebAppAccessFilter/ClientSideWebAppAccessFilter.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
