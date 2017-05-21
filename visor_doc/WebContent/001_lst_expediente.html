@@ -5,12 +5,12 @@
 		<meta name="robots" content="noindex">
 		<title>Visor de Documentos</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="ccs/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-		<link rel="stylesheet" href="ccs/style.css">
-		<link rel="stylesheet" href="ccs/ms_estilos_2.1.css">
-		<link rel="stylesheet" href="ccs/ms_estilos_2.1_estructura.css">
-		<link rel="stylesheet" href="ccs/ms_estilos_2.1_formularios.css">
-		<link rel="stylesheet" href="ccs/ms_estilos_2.1_tabla.css">
+		<link rel="stylesheet" href="../autogestiondigitalclientlibs/ccs/bootstrap.min.css" id="bootstrap-css">
+		<link rel="stylesheet" href="../autogestiondigitalclientlibs/ccs/style.css">
+		<link rel="stylesheet" href="../autogestiondigitalclientlibs/ccs/ms_estilos_2.1.css">
+		<link rel="stylesheet" href="../autogestiondigitalclientlibs/ccs/ms_estilos_2.1_estructura.css">
+		<link rel="stylesheet" href="../autogestiondigitalclientlibs/ccs/ms_estilos_2.1_formularios.css">
+		<link rel="stylesheet" href="../autogestiondigitalclientlibs/ccs/ms_estilos_2.1_tabla.css">
 		<style>
 			#DocCarousel * {
 				-webkit-box-sizing: border-box;
@@ -22,146 +22,21 @@
 				margin-right: 10px;
 			}
 		</style>
-		<!-- 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.cookie.js"></script>
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.js"></script>
-		<script src="js/angular-resource.js"></script>
-		<script src="js/xml2json.min.js"></script>
-		<script src="js/angular-xml.min.js"></script>
-		<script>
-			var API_HOST = "http://localhost:7001/visordocumentos/";
-			angular.module("Expediente", ['ngRoute', 'ngResource', 'xml'])
-			.config(function(x2jsProvider, $httpProvider) {
-				$httpProvider.interceptors.push('xmlHttpInterceptor');
-				x2jsProvider.config = {
-					// 			escapeMode               : true|false - Escaping XML characters. Default is true from v1.1.0+
-					// 			attributePrefix          : "<string>" - Prefix for XML attributes in JSon model. Default is "_"
-					// 			arrayAccessForm          : "none"|"property" - The array access form (none|property). Use this property if you want X2JS generates an additional property <element>_asArray to access in array form for any XML element. Default is none from v1.1.0+
-					// 			emptyNodeForm            : "text"|"object" - Handling empty nodes (text|object) mode. When X2JS found empty node like <test></test> it will be transformed to test : '' for 'text' mode, or to Object for 'object' mode. Default is 'text'
-					// 			enableToStringFunc       : true|false - Enable/disable an auxiliary function in generated JSON objects to print text nodes with text/cdata. Default is true
-					// 			arrayAccessFormPaths     : [] - Array access paths. Use this option to configure paths to XML elements always in "array form". You can configure beforehand paths to all your array elements based on XSD or your knowledge. Every path could be a simple string (like 'parent.child1.child2'), a regex (like /.*\.child2/), or a custom function. Default is empty
-					// 			skipEmptyTextNodesForObj : true|false - Skip empty text tags for nodes with children. Default is true.
-					// 			stripWhitespaces         : true|false - Strip whitespaces (trimming text nodes). Default is true.
-					// 			datetimeAccessFormPaths  : [] - Datetime access paths. Use this option to configure paths to XML elements for "datetime form". You can configure beforehand paths to all your array elements based on XSD or your knowledge. Every path could be a simple string (like 'parent.child1.child2'), a regex (like /.*\.child2/), or a custom function. Default is empty
-				};
-			}).run(function($http) {
-				// 			var req = new XMLHttpRequest();
-				// 			req.open('GET', document.location, false);
-				// 			req.send(null);
-				// 			var AuthToken = req.getAllResponseHeaders().split("\n").filter(function(header) {
-				// 				return header.indexOf("AuthToken") > -1;
-				// 			})[0].split(":")[1].trim();
-				// 			$http.defaults.headers.common['Authorization'] = AuthToken;
-				// 			//$.cookie('AuthToken');
-			}).factory('ConsultarDocumentosSOAPRequestMessage', function(x2js) {
-				return {
-					fromXMLDocument: function(XMLDocument){
-						var SOAPRequestMessage = x2js.xml_str2json(new XMLSerializer().serializeToString(XMLDocument));
-						SOAPRequestMessage.toXMLString = function() {
-							return x2js.json2xml_str(this);
-						};
-						return SOAPRequestMessage;
-					}, 
-				};
-			}).factory('ConsultarDocumentosResource', function($resource) {
-				return $resource(API_HOST + "webapi/docs", {}, {
-					'query': {
-						method: 'GET',
-						params: {
-							SOAPRequestMessage: '@SOAPRequestMessage'
-						}
-					}
-				});
-			}).controller("Visor", function($scope, ConsultarDocumentosResource, ConsultarDocumentosSOAPRequestMessage) {
-				$.get(API_HOST + "ConsultarDocumentosSOAPRequestMessageTemplate.xml", function(XMLDocument) {
-					var SOAPRequestMessage = ConsultarDocumentosSOAPRequestMessage.fromXMLDocument(XMLDocument);
-					var consultarDocumentosSol = SOAPRequestMessage.Envelope.Body.consultarDocumentosSol;
-					var date = new Date();
-					date.setTime(date.getTime() - (date.getTimezoneOffset() * 60 * 1000));
-					consultarDocumentosSol.cabeceraSol.fecha.__text = date.toISOString().split("T")[0];
-					consultarDocumentosSol.cabeceraSol.hora.__text = date.toISOString().split("T")[1].split(".")[0];
-					consultarDocumentosSol.piTpExpediente = 'SIN'; //getParameterByName('tpExpediente'),
-					consultarDocumentosSol.piCdExpediente = 'REEM'; //getParameterByName('cdExpediente'),
-					consultarDocumentosSol.piNuSolicitud = '1'; //getParameterByName('nuSol'),
-					consultarDocumentosSol.piValorRaiz = '32-340280904'; //getParameterByName('valorRaiz')
-					ConsultarDocumentosResource.query({ SOAPRequestMessage: SOAPRequestMessage.toXMLString() }, function(ConsultarDocumentosSOAPResponseMessage) {
-						if (ConsultarDocumentosSOAPResponseMessage.Envelope.Body.consultarDocumentosRes.poSalida == 0) {
-							var id = 0;
-							$scope.fileList = ConsultarDocumentosSOAPResponseMessage.Envelope.Body.consultarDocumentosRes.poListaConsulta.docoListaConsulta.map(function(file) {
-								file.doecNmArchivoFs = encodeURIComponent(file.doecNmArchivoFs);
-								file.id = id;
-								id++;
-								return file;
-							});
-							$scope.builtree();
-						}
-					}, function(response) {
-						switch (response.status) {
-						case 401:
-							alert("Acceso no autorizado.");
-							break;
-						case 404:
-							alert("Servicio no disponible.");
-							break;
-						case 500:
-							alert("Error en el servicio.");
-							break;
-						default:
-							alert("Error no controlado.");
-							break;
-						}
-						alert("Redireccionar...");
-					});
-				});
-				$scope.builtree = function() {
-					$scope.documents = [];
-					$.each($scope.fileList, function(index, doc) {
-						if ($.inArray(doc.docdDotdCdDocumento, $scope.documents) === -1) {
-							$scope.documents.push(doc.docdDotdCdDocumento);
-						}
-					});
-					$scope.documents = $scope.documents.map(function(docdDotdCdDocumento) {
-						return {
-							files: $scope.fileList.filter(function(doc) {
-								return doc.docdDotdCdDocumento == docdDotdCdDocumento;
-							})
-						};
-					});
-					$scope.sections = [];
-					$.each($scope.fileList, function(index, doc) {
-						if ($.inArray(doc.docdCdSeccion, $scope.sections) === -1) {
-							$scope.sections.push(doc.docdCdSeccion);
-						}
-					});
-					$scope.sections = $scope.sections.map(function(docdCdSeccion) {
-						return {
-							documents: $scope.documents.filter(function(doc) {
-								return doc.files[0].docdCdSeccion == docdCdSeccion;
-							})
-						};
-					});
-				}
-			});
-
-			function getParameterByName(name, url) {
-				if (!url) {
-					url = window.location.href;
-				}
-				name = name.replace(/[\[\]]/g, "\\$&");
-				var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
-				  , results = regex.exec(url);
-				if (!results)
-					return null;
-				if (!results[2])
-					return '';
-				return decodeURIComponent(results[2].replace(/\+/g, " "));
-			}
-		</script>
+		<script src="../autogestiondigitalclientlibs/js/jquery.min.js"></script>
+		<script src="../autogestiondigitalclientlibs/js/bootstrap.min.js"></script>
+		<script src="../autogestiondigitalclientlibs/js/jquery.cookie.js"></script>
+		<script src="../autogestiondigitalclientlibs/js/angular.min.js"></script>
+		<script src="../autogestiondigitalclientlibs/js/angular-route.js"></script>
+		<script src="../autogestiondigitalclientlibs/js/angular-resource.js"></script>
+		<script src="../autogestiondigitalclientlibs/js/xml2json.min.js"></script>
+		<script src="../autogestiondigitalclientlibs/js/angular-xml.min.js"></script>
+		<script src="../autogestiondigitalclientlibs/js/loading-bar.js"></script>
+		<script src="../autogestiondigitalclientlibs/js/jquery-confirm.js"></script>
+		<script src="../autogestiondigitalclientlibs/js/soapgateway-module.js"></script>
+		
+		<script src="js/001_lst_expediente.js"></script>
 	</head>
-	<body style="padding-top:35px;" ng-app="Expediente" ng-controller="Visor">
+	<body style="padding-top:35px;" ng-app="SOAPGateway" ng-controller="Visor">
 		<h1>Visor de Documentos</h1>
 		<div class="modulo_app">
 			<div class="titulo_app txt_izq">
