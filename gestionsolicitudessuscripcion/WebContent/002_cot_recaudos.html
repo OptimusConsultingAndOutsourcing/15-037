@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="robots" content="noindex">
+
+    <title>Registro de solicitud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="ccs/style.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_estructura.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_formularios.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_tabla.css">
+    <link rel="stylesheet" type="text/css" href="ccs/jquery-ui-1.8.20_2.1.css">
+    <link type="text/css" rel="stylesheet" href="ccs/jquery.inputfile.css" />
+     
+
+    <script type="text/javascript" language="javascript" src="javascript/jquery-1.7.2.min.js"></script>
+	<script type='text/javascript' language="javascript" src='javascript/jquery.ui-1.8.20.core.js'></script>
+    <script type='text/javascript' language="javascript" src='javascript/jquery.ui-1.8.20.widget.js'></script> 
+	<script type="text/javascript" language="javascript" src="javascript/jquery.ui-1.8.20.datepicker.js"></script>
+	<script type="text/javascript" language="javascript" src="javascript/jquery.ui-1.8.20.datepicker-es.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+	<script type="text/javascript" language="javascript">
+	
+		function autoformatdate(valor, id){
+		  if(valor.length==2)
+			 valor = valor + "/";
+		  if(valor.length==5)
+			 valor = valor + "/"; 
+			 
+		  $("#"+id).val(valor);   
+			 
+		}
+	
+	$(function() {
+		$("#fechaDesde" ).datepicker();
+	});
+	
+		
+	</script>
+    
+    <style>
+	
+	.cuerpo_app { padding-left:0px; }
+	.btn_cent input { padding: 0 0 0 10px; }
+	
+    </style>
+
+</head>
+<body style="padding-top:35px; margin-bottom:35px;">
+
+
+
+<div id="contenido">
+  <div id="colPpalUnica">
+  
+  <h1>Registro de solicitudes</h1>
+  
+    <div class="modulo_app" style="margin-top:25px;">
+	  <div class="titulo_app txt_izq">
+      <label class="twhiteT">Registro de Solicitud / Carga de Documentos</label></div>
+<div class="cuerpo_app">
+<table width="100%" align="center">
+<tbody>
+  <tr>
+  <td>							
+  <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+
+                                        
+  <tr><td colspan="8">&nbsp;</td></tr>
+  <tr>
+    <td colspan="8">
+  <table id="tabla" cellspacing="0" class="tabla_ppal" width="90%" align="center">
+				<tbody>
+					<tr>
+					  <th width="20%">Nro. de Solicitud</th>
+					  <th width="20%">Cédula / Rif</th>
+					  <th width="20%">Nombre del Solicitante</th>
+					  <th width="20%">Tipo de Solicitud</th>
+					  <th width="20%">Tipo de Modificación</th>
+					</tr>			
+					<tr class="fila_0">
+						<td width="20%">123456</td>
+						<td width="20%">V-22659478</td>
+						<td width="20%">Juan Pérez</td>
+						<td width="15%">Tipo de Solicitud</td>
+						<td width="20%">Tipo de Modificación</td>
+					</tr>
+				</tbody>
+			</table>
+  </td></tr>
+  <tr><td colspan="8">&nbsp;</td></tr>
+  <tr><td colspan="8" class="titulo_interno">
+  <label class="twhiteT">Sección Carga de Documento</label></td></tr>
+  <tr><td colspan="8">&nbsp;</td></tr>
+  <tr>
+    <td><table width="690" border="0" align="center" cellpadding="1" cellspacing="1">
+      <tr>
+        <td width="242">
+         <table width="643" border="0" align="center" cellpadding="1" cellspacing="1">
+         <tr>
+            <td width="17">&nbsp;</td>
+            <td class="etiqueta_form" width="30%"><span class="asterisco">*</span>  Documento 1:</td>
+            <td width="209" align="right"><input type="file"></td>
+            <td width="30" align="left"><input type="image" src="images/ico/attach.png" class="icon_btn"></td>
+            <td width="22" align="left"><input id="showID" type="image" src="images/ico/img_mas.png" class="icon_btn"></td>
+            <td width="21"><input type="image" src="images/ico/eliminar.gif" class="icon_btn"></td>
+            <td width="21"><input type="image" src="images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+            <td width="69" align="left"><input type="image" src="images/ico/alerta_peq.png" class="icon_btn"></td>
+            <td width="69" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src="images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+          </tr>
+          <tr style="display:none" id="newID">
+            <td width="17">&nbsp;</td>
+            <td class="etiqueta_form" width="30%"></td>
+            <td width="209" align="right"><input type="file"></td>
+            <td width="30" align="left"><input type="image" src="images/ico/attach.png" class="icon_btn"></td>
+            <td width="22" align="left"><input type="image" src="images/ico/img_mas.png" class="icon_btn"></td>
+            <td width="21"><input type="image" src="images/ico/eliminar.gif" class="icon_btn"></td>
+            <td width="21"><input type="image" src="images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+            <td width="139" colspan="2" align="left"><input type="image" src="images/ico/alerta_peq.png" class="icon_btn"></td>
+          </tr>
+         <tr>
+            <td width="17">&nbsp;</td>
+            <td class="etiqueta_form" width="30%">Documento 2:</td>
+            <td width="209" align="right"><input type="file"></td>
+            <td width="30" align="left"><input type="image" src="images/ico/attach.png" class="icon_btn"></td>
+            <td width="22" align="left"><input  id="showEdoCivil"type="image" src="images/ico/img_mas.png" class="icon_btn"></td>
+            <td width="21"><input type="image" src="images/ico/eliminar.gif" class="icon_btn"></td>
+            <td width="21"><input type="image" src="images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+            <td width="139" colspan="2" align="left"><input type="image" src="images/ico/alerta_peq.png" class="icon_btn"></td>
+          </tr>
+          <tr style="display:none" id="newEdoCivil">
+            <td width="17">&nbsp;</td>
+            <td class="etiqueta_form" width="30%"></td>
+            <td width="209" align="right"><input type="file"></td>
+            <td width="30" align="left"><input type="image" src="images/ico/attach.png" class="icon_btn"></td>
+            <td width="22" align="left"><input type="image" src="images/ico/img_mas.png" class="icon_btn"></td>
+            <td width="21"><input type="image" src="images/ico/eliminar.gif" class="icon_btn"></td>
+            <td width="21"><input type="image" src="images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+            <td width="139" colspan="2" align="left"><input type="image" src="images/ico/alerta_peq.png" class="icon_btn"></td>
+          </tr>
+         <tr>
+            <td width="17">&nbsp;</td>
+            <td width="30%">&nbsp;</td>
+            <td width="209" align="right">&nbsp;</td>
+            <td width="30">&nbsp;</td>
+            <td width="22">&nbsp;</td>
+            <td width="21">&nbsp;</td>
+            <td width="21">&nbsp;</td>
+            <td width="139" colspan="2" align="left">&nbsp;</td>
+            
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr><td colspan="8" class="titulo_interno">
+  <label class="twhiteT">Otra Sección Carga de Documento</label></td></tr>
+  <tr><td colspan="8">&nbsp;</td></tr>
+  <tr>
+    <td>
+  <table width="690" border="0" align="center" cellpadding="1" cellspacing="1"> 
+    <tr>
+    <td width="33">&nbsp;</td>
+    <td class="etiqueta_form" width="30%"><span class="asterisco">*</span> Solicitud:</td>
+    <td width="131" align="right"><input type="file"></td>
+    <td width="34" align="left"><input type="image" src="images/ico/attach.png" class="icon_btn"></td>
+    <td width="22" align="left"><input id="showSiniestro" type="image" src="images/ico/img_mas.png" class="icon_btn"></td>
+    <td width="22"><input type="image" src="images/ico/eliminar.gif" class="icon_btn"></td>
+    <td width="22"><input type="image" src="images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+    <td width="225" align="left"><input type="image" src="images/ico/alerta_peq.png" class="icon_btn"></td>
+    </tr>
+    <tr style="display:none" id="newSiniestro">
+    <td width="33">&nbsp;</td>
+    <td class="etiqueta_form" width="30%"></td>
+    <td width="131" align="right"><input type="file"></td>
+    <td width="34" align="left"><input type="image" src="images/ico/attach.png" class="icon_btn"></td>
+    <td width="22" align="left"><input type="image" src="images/ico/img_mas.png" class="icon_btn"></td>
+    <td width="22"><input type="image" src="images/ico/eliminar.gif" class="icon_btn"></td>
+    <td width="22"><input type="image" src="images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+    <td width="225" align="left"><input type="image" src="images/ico/alerta_peq.png" class="icon_btn"></td>
+    </tr>
+    <tr>
+    <td width="33">&nbsp;</td>
+    <td class="etiqueta_form" width="30%">Informe</td>
+    <td width="131" align="right"><input type="file"></td>
+    <td width="34" align="left"><input type="image" src="images/ico/attach.png" class="icon_btn"></td>
+    <td width="22" align="left"><input id="showInforme" type="image" src="images/ico/img_mas.png" class="icon_btn"></td>
+    <td width="22"><input type="image" src="images/ico/eliminar.gif" class="icon_btn"></td>
+    <td width="22"><input type="image" src="images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+     <td width="225" align="left"><input type="image" src="images/ico/alerta_peq.png" class="icon_btn"></td>
+    </tr>
+    <tr style="display:none" id="newInforme">
+    <td width="33">&nbsp;</td>
+    <td class="etiqueta_form" width="30%"></td>
+    <td width="131" align="right"><input type="file"></td>
+    <td width="34" align="left"><input type="image" src="images/ico/attach.png" class="icon_btn"></td>
+    <td width="22" align="left"><input type="image" src="images/ico/img_mas.png" class="icon_btn"></td>
+    <td width="22"><input type="image" src="images/ico/eliminar.gif" class="icon_btn"></td>
+    <td width="22"><input type="image" src="images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+    <td width="225" align="left"><input type="image" src="images/ico/alerta_peq.png" class="icon_btn"></td>
+    </tr>
+</table>
+</td>
+</tr>
+   
+   <tr><td colspan="8" class="titulo_interno">
+   <label class="twhiteT">Observaciones / Requisitos</label></td></tr>
+  
+  <tr><td colspan="8">&nbsp;</td></tr>
+  
+  <tr>
+    <td>
+     <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+      <tr>
+        <td width="242">
+        <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+          
+          <tr>
+            <td align="left" ><p>En este espacio Usted podrá escribir cualquier observación que considere necesaria, para realizar su gestión<br>
+</p>
+              </td>
+            </tr>
+          <tr>
+            <td align="left"><textarea rows="5"  id="comentarioSolicitud" style="width:600px;"></textarea></td>
+            </tr>
+        </table>
+        </td>
+       </tr>
+   </table>
+   </td>
+  </tr>
+   </table>
+   </td>
+   </tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+
+
+
+</div>
+<div class="z_izq2">
+	<p class="info2">
+	   <span class="etiqueta_form">(</span><span class="asterisco">* </span><span class="etiqueta_form"> )</span>
+       <span class="etiqueta_form"> Datos Obligatorios</span>
+	</p>
+</div>
+</div>
+
+
+
+<div>
+
+    <table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
+		<tbody>
+        <tr>
+		   <td width="120px" align="right">
+                <div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent">
+                    <input type="submit" tabindex="14" value="Regresar" id="regresar" class="puntero" onclick="location.href='Suscripcion-RegistroSolicitud.html';"></div>
+					<div class="btn_der"></div>
+				</div>
+             </td> 
+           <td width="120px" align="center">
+		  <div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent"><input type="submit" tabindex="14" value="Guardar" id="continuar" class="puntero" data-toggle="modal" data-target="#guardar"></div>
+					<div class="btn_der"></div>
+				</div>
+			</td> 
+            <td width="120px" align="left">
+				<div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent"><input type="submit" tabindex="14" value="Continuar" id="continuar" class="puntero" data-toggle="modal" data-target="#confirmacion"></div>
+					<div class="btn_der"></div>
+				</div>
+	         </td>     
+         </tr>
+         </tbody>
+     </table>
+</div>
+
+<!-- Modal Confirmacion -->
+<div class="modal fade" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="confirmacion" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="titulo_app txt_izq">
+        <label class="twhiteT">Confirmación</label> 
+      </div>
+      <div class="modal-body">
+        <div style="float:left; margin-right:10px;"><img src="images/ico/ico_info_verde.gif" width="23" height="23" alt="Info"> </div>
+        <div>Estimado usuario, al presionar la opción de Aceptar estará enviando la solicitud</div>
+      </div>
+      <div class="modal-footer">
+        <table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
+		<tbody>
+        <tr>
+		   <td width="120px" align="right">
+                <div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent">
+                    <input type="submit" tabindex="14" value="Cancelar" id="cancelar" class="puntero" data-dismiss="modal" ></div>
+					<div class="btn_der"></div>
+				</div>
+             </td> 
+             <td width="15px"></td> 
+            <td width="120px" align="left">
+				<div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent"><input type="submit" tabindex="14" value="Aceptar" id="aceptar" class="puntero"  onclick="location.href='Suscripcion-RegistroSolicitudRealizada.html';"></div>
+					<div class="btn_der"></div>
+				</div>
+	         </td>     
+         </tr>
+         </tbody>
+     </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Guardar -->
+<div class="modal fade" id="guardar" tabindex="-1" role="dialog" aria-labelledby="guardar" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="titulo_app txt_izq">
+        <label class="twhiteT">Confirmación</label> 
+      </div>
+      <div class="modal-body">
+        <div style="float:left; margin-right:10px; padding-bottom:30px;"><img src="images/ico/ico_info_verde.gif" width="23" height="23" alt="Info"> </div>
+        <div>Estimado usuario la información cargada será guardada y podrá ser retomada en otra oportunidad.
+		¿Desea continuar con esta operación?</div>
+      </div>
+      <div class="modal-footer">
+        <table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
+		<tbody>
+        <tr>
+		   <td width="120px" align="right">
+                <div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent">
+                    <input type="submit" tabindex="14" value="Cancelar" id="cancelar" class="puntero" data-dismiss="modal" ></div>
+					<div class="btn_der"></div>
+				</div>
+             </td> 
+             <td width="15px"></td> 
+            <td width="120px" align="left">
+				<div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent"><input type="submit" tabindex="14" value="Aceptar" id="aceptar" class="puntero"></div>
+					<div class="btn_der"></div>
+				</div>
+	         </td>     
+         </tr>
+         </tbody>
+     </table>
+      </div>
+    </div>
+  </div>
+</div>												
+
+
+
+<script>
+$(document).ready(function(){
+    $("#showID").click(function(){
+        $("#newID").show();
+    });
+	
+	$("#showEdoCivil").click(function(){
+        $("#newEdoCivil").show();
+    });
+	$("#showSiniestro").click(function(){
+        $("#newSiniestro").show();
+    });
+	
+	$("#showInforme").click(function(){
+        $("#newInforme").show();
+    });
+});
+</script>
+</body>
+</html>

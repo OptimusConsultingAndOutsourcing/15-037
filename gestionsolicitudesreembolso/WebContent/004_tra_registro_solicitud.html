@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="robots" content="noindex">
+
+    <title>Registro de solicitud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="ccs/style.css">
+    <link rel="stylesheet" type="text/css" href="ccs/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1.css"/>
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_estructura.css" />
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_formularios.css"/>
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_tabla.css" />
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_paginacion.css" />
+	<link rel="stylesheet" type="text/css" href="ccs/ms_faces_2.1_sub_tabla.css" />
+	<link rel="stylesheet" type="text/css" href="ccs/alertas_2.1.css"/> 
+    <link rel="stylesheet" type="text/css" href="ccs/ms_displaytag_2.1.css"/>
+    <link rel="stylesheet" type="text/css" href="ccs/jquery.autocomplete_2.1.css"/>
+    <link rel="stylesheet" type="text/css" href="ccs/jquery-ui-1.8.20_2.1.css"/> 
+       
+	
+	<script type="text/javascript" language="javascript" src="javascript/jquery-1.7.2.min.js"></script>
+	<script type='text/javascript' language="javascript" src='javascript/jquery.ui-1.8.20.core.js'></script>
+    <script type='text/javascript' language="javascript" src='javascript/jquery.ui-1.8.20.widget.js'></script> 
+	<script type="text/javascript" language="javascript" src="javascript/jquery.ui-1.8.20.datepicker.js"></script>
+	<script type="text/javascript" language="javascript" src="javascript/jquery.ui-1.8.20.datepicker-es.js"></script>
+	<script type="text/javascript" language="javascript" src="javascript/Date-3.4.js"></script>
+    
+    <style>
+	
+	.cuerpo_app { padding-left:0px; }
+	.btn_cent input { padding: 0 0 0 10px; }
+	
+    </style>
+
+</head>
+<body style="padding-top:35px; margin-bottom:35px;">
+
+
+
+<div id="contenido">
+  <div id="colPpalUnica">
+  
+  <h1>Registro solicitud de reembolso</h1>
+  
+	<div class="modulo_app" id="fieldsetContent">
+						<div class="titulo_app txt_izq">
+							<label class="twhiteT">Datos del Caso</label>
+						</div>
+<div class="cuerpo_app">
+<table width="100%" align="center">
+  <tbody>
+  <tr>
+  <td>							
+	
+  <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+                                      
+  <tr>
+    <td valign="top">
+    <table width="900" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+     
+      <tr>
+        <td width="242">
+        <table id="tabla" cellspacing="0" class="tabla_ppal" width="90%" align="center">
+				<tbody>
+					<tr>
+					  <th width="30%" align="center">Asegurado</th>
+					  <th width="20%" align="center">Cédula / Rif</th>
+					  <th width="20%" align="center">Fecha de Nacimiento</th>
+					  <th width="10%" align="center">Sexo</th>
+					  <th width="20%" align="center">Parentesco</th>
+					</tr>			
+					<tr class="fila_0">
+						<td width="20%">Marin Medida Yelitza Milena</td>
+						<td width="20%">V-22659478</td>
+						<td width="20%" align="center">16/05/1974</td>
+						<td width="15%">Femenino</td>
+						<td width="20%">Titular</td>
+					</tr>
+				</tbody>
+			</table>
+        <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+          <tr>
+         	 <td class="etiqueta_form" width="50%" height="30px"></td>
+         	 <td width="50%" align="left">
+          </tr>
+            <td class="etiqueta_form" width="50%"><span class="asterisco">*</span> Fecha:</td>
+            <td width="50%" align="left">
+            <input id="BuscarCedPas" class="combos" value="">
+            </td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Oficina de Atención:</td>
+            <td align="left">
+              <select name="poliza" id="poliza" style="width:30%;" class="combos" required>
+              <option selected="selected" value="">Seleccione...</option>
+              </select>
+             </td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Enfermedad:</td>
+            <td align="left">
+             <input id="enfermedad" class="combos" value="">
+            </td>
+          </tr>
+         <tr>
+            <td class="etiqueta_form"> País de ocurrencia:</td>
+            <td align="left">
+            <select name="PaisOcurrencia" id="PaisOcurrencia" class="combos" required>
+  				<optgroup label="Selecccione">
+  				  <option >Venezuela</option>
+ 			    </optgroup>
+  				<optgroup label="--------- Otras --------">
+    				<option>Afganistan</option>
+    				<option>Albania</option>
+                    <option>Andonia</option>
+                    <option>Andorra</option>
+ 				 </optgroup>
+		     </select>
+             </td>
+          </tr>
+         <tr>
+            <td height="33" class="etiqueta_form"><input type="radio" name="radio3" id="radio3" value="radio3"></td>
+            <td align="left">Reembolso por Consulta Médica Telefónica
+              <label for="radio3"></label></td>
+          </tr>
+         <tr>
+           <td class="etiqueta_form"><span class="asterisco">*</span> Información de Contacto Celular :</td>
+           <td align="left"><select name="telLocalCod" id="telLocalCod4" tabindex="2" class="combo-peq">
+             <option selected="selected" value="">0212</option>
+             </select>
+             <input id="telLocal4" value="" class="combo-med2"></td>
+         </tr>
+         <tr>
+           <td class="etiqueta_form">Correo electrónico:</td>
+           <td align="left"><input id="asegurados4" value="" class="combos"></td>
+         </tr>
+
+        </table></td>
+        </tr>
+       
+          
+        </table>
+        
+   
+    </table>
+    
+    </td>
+</tr>	
+
+<!-- Datos Adicionales de Cotizacion --> 
+  
+  
+  </table>
+  
+  </td>
+  </tr>
+  </tbody>
+  </table>
+</div>
+
+</div>
+
+</div>
+
+<div id="colPpalUnica">
+  
+	<div class="modulo_app" id="fieldsetContent">
+						<div class="titulo_app txt_izq">
+							<label class="twhiteT">Datos de la Factura</label>
+						</div>
+<div class="cuerpo_app">
+<table width="100%" align="center">
+  <tbody>
+  <tr>
+  <td>							
+	
+  <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+                                      
+  <tr>
+    <td>
+    <table width="900" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+       
+        <tr>
+        <td colspan="2">
+        <table width="900" border="0" align="left" cellpadding="3" cellspacing="3" style="padding-right:30px" >
+          <tr>
+            <td align="left" width="15%" valign="bottom" style="padding-left:5px;"><strong>C.I o Rif Proveedor</strong></td>
+            <td align="left" width="25%" valign="bottom" style="padding-left:5px;"><strong>Nombre Proveedor</strong> </td>
+            <td align="left" width="21%" valign="bottom" style="padding-left:5px;"><strong>Fecha Factura</strong></td>
+            <td align="left" width="20%" valign="bottom" style="padding-left:5px;"><strong>Concepto Factura</strong></td>
+            <td align="left" width="15%" valign="bottom" style="padding-left:5px;"><strong>Monto</strong></td>
+            <td align="right" width="2%" valign="bottom"></td>
+            <td align="left" width="2%" valign="bottom"></td>
+          </tr>
+          <tr>
+            <td align="left" valign="bottom" style="padding-left:2px;">
+            <input id="ID" value="" class="combo-adjust"></td>
+            <td align="left" valign="bottom" style="padding-left:2px;">
+            <input id="proveedor" value="" class="combo-adjust"></td>
+            <td align="left" valign="bottom" style="padding-left:2px;">
+            <input type="text" name="fechaFactura" id="fecha" style="width:83%; vertical-align:baseline" class="calendario dato_imagen hasDatepicker" size="10" onkeypress="autoformatdate(this.value, this.id)">
+            <img class="ui-datepicker-trigger" src="images/ico/icono-calendario.png" alt="Seleccione la Fecha" title="Seleccione la Fecha">
+            </td>
+            <td align="left" valign="middle" style="padding-left:2px;">
+            <select name="Concepto" id="Concepto" class="combo-adjust" required>
+  				<optgroup label="Selecccione">
+  				  <option >Concepto1</option>
+ 			    </optgroup>
+  				<optgroup label="--------- Otras --------">
+    				<option>Concepto2</option>
+    				<option>Concepto3</option>
+                    <option>Concepto4</option>
+                    <option>Concepto5</option>
+ 				 </optgroup>
+		     </select></td>
+            <td align="left" valign="bottom" style="padding-left:2px;">
+            <input id="Monto" value="" class="combo-adjust"></td>
+            <td align="right"><a class="ic_table" aria-hidden="true"><img src="images/anadir.jpg" width="24" height="24" alt="Añadir"></a></td>
+            <td align="left"></td>
+          </tr>
+          <tr>
+            <td align="left" valign="bottom" style="padding-left:2px;">
+            <input id="ID" class="combo-adjust" value="J-00134567-8"></td>
+            <td align="left" valign="top" style="padding-left:2px;">
+            <input id="proveedor"class="combo-adjust" value="Farmacias SAAS" ></td>
+            <td align="left" valign="bottom" style="padding-left:2px;">
+            <input id="fechaFactura"class="combo-adjust" value="25/03/2016" ></td>
+            <td align="left" valign="top" style="padding-left:2px;">
+            <input id="DescFactura"  class="combo-adjust"value=" Medicina"></td>
+            <td align="left" valign="bottom" style="padding-left:2px;">
+            <input id="Monto"class="combo-adjust" value="Bs. 34.567,87" ></td>
+            <td align="right"><a class="ic_table" aria-hidden="true"><img src="images/ico_editar.gif" width="12" height="24" alt="Editar"></a></td>
+            <td align="left"><a class="ic_table" aria-hidden="true"><img src="images/eliminar.gif" width="22" height="19" alt="Eliminar"></a></td>
+          </tr>
+          <tr>
+            <td align="left" valign="bottom" style="padding-left:2px;">
+            <input id="ID"class="combo-adjust" value="J-345786-3" ></td>
+            <td align="left" valign="top" style="padding-left:2px;">
+            <input id="proveedor"class="combo-adjust" value="Centro Terapéutico El Rosal" ></td>
+            <td align="left" valign="bottom" style="padding-left:2px;">
+            <input id="fechaFactura" class="combo-adjust" value="28/03/2016" ></td>
+            <td align="left" valign="top" style="padding-left:2px;">
+            <input id="DescFactura" class="combo-adjust"value="Tratamiento" ></td>
+            <td align="left" valign="bottom" style="padding-left:2px;">
+            <input id="Monto" class="combo-adjust" value="Bs. 16.953,56"></td>
+            <td align="right"><a class="ic_table" aria-hidden="true"><img src="images/ico_editar.gif" width="12" height="24" alt="Editar"></a></td>
+            <td align="left"><a class="ic_table" aria-hidden="true"><img src="images/eliminar.gif" width="22" height="19" alt="Eliminar"></a></td>
+          </tr>
+          <tr>
+            <td align="left" valign="bottom">&nbsp;</td>
+            <td align="left" valign="top"></td>
+            <td align="left" valign="bottom"></td>
+            <td align="right" valign="middle" style="padding-right:3px;"><strong>Monto Reclamado:</strong></td>
+            <td align="left" valign="top"><input id="MontoRecaudado" value="" class="combo-med"></td>
+          </tr>
+        </table>
+        
+        </td>
+        </tr>
+                
+        </table>
+        
+   
+    </table>
+    
+    </td>
+</tr>	
+
+<!-- Datos Adicionales de Cotizacion -->
+
+  <tr><td colspan="8"> </td></tr> 
+  
+  </table>
+  
+  </td>
+  </tr>
+  </tbody>
+  </table>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="z_izq2">
+	<p class="info2">
+	   <span class="etiqueta_form">(</span><span class="asterisco">* </span><span class="etiqueta_form"> )</span>
+       <span class="etiqueta_form"> Datos Obligatorios</span>
+	</p>
+</div>
+</div>
+
+
+
+<div id="botones">
+<p>&nbsp;</p>
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
+	  <tbody><tr>
+			
+			<td width="120px" align="right">
+                <div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent">
+                    <input type="submit" tabindex="14" value="Regresar" id="btnLimpiar" class="puntero" onClick="return limpiarFormSiniestros();"></div>
+					<div class="btn_der"></div>
+				</div>
+        </td> 
+             <td width="120px" align="center">
+		  <div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent"><input type="submit" tabindex="14" value="Guardar" id="continuar" class="puntero" data-toggle="modal" data-target="#guardar"></div>
+					<div class="btn_der"></div>
+			   </div>
+			</td> 
+            <td width="120px" align="left">
+				<div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent"><input type="submit" tabindex="14" value="Continuar" id="continuar" class="puntero" onclick="location.href='RegistroSolicitud-Recaudos.html';"></div>
+					<div class="btn_der"></div>
+				</div>
+	      </td> 
+           </tr></tbody>
+</table>
+</div>										
+
+<!-- Modal Agrega -->
+<div class="modal fade" id="agregar" tabindex="-1" role="dialog" aria-labelledby="agregar" aria-hidden="true">
+<script>
+$(document).ready(function(){
+    $("#showID").click(function(){
+        $("#newID").show();
+    });
+	
+	$("#showEdoCivil").click(function(){
+        $("#newEdoCivil").show();
+    });
+	$("#showSiniestro").click(function(){
+        $("#newSiniestro").show();
+    });
+	
+	$("#showInforme").click(function(){
+        $("#newInforme").show();
+    });
+});
+</script>
+</body>
+</html>

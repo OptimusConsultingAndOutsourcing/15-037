@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>cargadocumentos</display-name>
+	<welcome-file-list>
+		<welcome-file>cargaDocumentos01.html</welcome-file>
+	</welcome-file-list>
+	<!-- 
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:resources/spring/applicationContext.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>propertiesBeanName</param-name>
+		<param-value>applicationProperties</param-value>
+	</context-param>
+	<filter>
+		<filter-name>portalAccesoFilter</filter-name>
+		<filter-class>com.mercantilseguros.commonsms.view.filter.PortalAccesoFilter</filter-class>
+		<init-param>
+			<param-name>requestDispatcher</param-name>
+			<param-value>/error.html</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>portalAccesoFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  <filter>
+    <filter-name>clientSideWebAppAccessFilter</filter-name>
+    <filter-class>com.mercantilseguros.commonsms.view.filter.ClientSideWebAppAccessFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>clientSideWebAppAccessFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	 -->
+</web-app>
