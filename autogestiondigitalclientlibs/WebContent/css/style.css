@@ -615,7 +615,7 @@ border-radius: 10px !important;
 }
 .text-warning {
 	font-weight:bold;
-    color: #f5680b; 
+    color: #f5680b !important; 
 }
 /*Paginacion*/
 #pagination-flickr{
