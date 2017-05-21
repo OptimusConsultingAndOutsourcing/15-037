@@ -53,18 +53,36 @@ var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml',
 
 function getParameter(name, url)
 {
-    if (!url)
-    {
-        url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
-        , results = regex.exec(url);
-    if (!results)
-        return null;
-    if (!results[2])
-        return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	if(name == "fecha")
+	{
+		var date = new Date();
+        date.setTime(date.getTime() - (date.getTimezoneOffset() * 60 * 1000));
+        return date.toISOString().split("T")[0];
+	}
+	else
+	{
+		if(name == "hora")
+		{
+			var date = new Date();
+			date.setTime(date.getTime() - (date.getTimezoneOffset() * 60 * 1000));
+			return date.toISOString().split("T")[1].split(".")[0];
+		}
+		else
+		{
+			if (!url)
+			{
+				url = window.location.href;
+			}
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
+				, results = regex.exec(url);
+			if (!results)
+				return null;
+			if (!results[2])
+				return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+	}
 }
 
 function getServerVariable(name)
@@ -77,5 +95,27 @@ function getServerVariable(name)
         req.send();
         return req.getResponseHeader(name);
     }
+}
+
+function fillParameters(target)
+{
+	if(target instanceof Object)
+	{
+		for(var k in target)
+		{
+			if (k.substring(0, 1) != "_")
+			{
+				if (typeof target[k] == "string")
+				{
+					target[k] = getParameter(k) || target[k];
+				}
+				else
+				{
+					target[k].__text = getParameter(k) || target[k].__text;
+					fillParameters(target[k]);
+				}
+			}
+		}
+	}
 }
 

@@ -3,15 +3,7 @@ SOAPGateway.controller("BusquedaAsegurados", function ($scope, Gateway, SOAPRequ
     $.get("templates/listarBenefiariosSolicitud.xml", function (template)
     {
         $scope.soapRequestMessage = SOAPRequestMessage.fromTemplate(template);
-        var soapRequest = $scope.soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol;
-        var date = new Date();
-        date.setTime(date.getTime() - (date.getTimezoneOffset() * 60 * 1000));
-        soapRequest.cabeceraSol.fecha.__text = date.toISOString().split("T")[0];
-        soapRequest.cabeceraSol.hora.__text = date.toISOString().split("T")[1].split(".")[0];
-        soapRequest.cabeceraSol.funcionalidad.__text = getParameter('funcionalidad') || "SR";
-        soapRequest.cabeceraSol.aplicacion.__text = getParameter('aplicacion') || "PORTASEGUR";
-        soapRequest.piCdFuncionalidad.__text = getParameter('funcionalidad') || "SR";
-        soapRequest.piCdAplicacion.__text = getParameter('aplicacion') || "PORTASEGUR";
+        fillParameters($scope.soapRequestMessage);
         $scope.$apply();
         $scope.buscarAsegurados = function ()
         {

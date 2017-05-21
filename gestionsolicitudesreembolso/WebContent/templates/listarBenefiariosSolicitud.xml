@@ -17,8 +17,8 @@
 				<!--Optional:-->
 				<obj:grupo></obj:grupo>
 				<!--Optional:-->
-				<obj:funcionalidad></obj:funcionalidad>
-				<obj:aplicacion></obj:aplicacion>
+				<obj:funcionalidad>SR</obj:funcionalidad>
+				<obj:aplicacion>PORTASEGUR</obj:aplicacion>
 				<obj:usuario></obj:usuario>
 				<obj:ip></obj:ip>
 				<!--Optional:-->
@@ -31,9 +31,9 @@
 			<!--Optional:-->
 			<ser:piCdAsesor></ser:piCdAsesor>
 			<!--Optional:-->
-			<ser:piCdFuncionalidad></ser:piCdFuncionalidad>
+			<ser:piCdFuncionalidad>SR</ser:piCdFuncionalidad>
 			<!--Optional:-->
-			<ser:piCdAplicacion></ser:piCdAplicacion>
+			<ser:piCdAplicacion>PORTASEGUR</ser:piCdAplicacion>
 			<!--Optional:-->
 			<ser:piCdUsuario></ser:piCdUsuario>
 		</ser:listarBeneficiariosSolicitudSol>

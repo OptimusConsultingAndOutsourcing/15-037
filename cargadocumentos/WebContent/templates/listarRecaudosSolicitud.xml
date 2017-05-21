@@ -1,0 +1,47 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Header xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    </soap:Header>
+    <soapenv:Body>
+        <ser:listarRecaudosSolicitudSol xmlns:ser="http://xmlns.mercantilseguros.com/osb/ServicioRecaudos" xmlns:obj="http://xmlns.mercantilseguros.com/osb/ObjetosComunes">
+            <ser:cabeceraSol>
+                <obj:fecha>2008-09-28</obj:fecha>
+                <obj:hora>19:18:33</obj:hora>
+                <!--Optional:-->
+                <obj:idSolicitud/>
+                <!--Optional:-->
+                <obj:idCompensacion/>
+                <!--Optional:-->
+                <obj:canal/>
+                <!--Optional:-->
+                <obj:comunidad/>
+                <!--Optional:-->
+                <obj:grupo/>
+                <!--Optional:-->
+                <obj:funcionalidad/>
+                <obj:aplicacion/>
+                <obj:usuario/>
+                <obj:ip/>
+                <!--Optional:-->
+                <obj:nombreEquipo/>
+            </ser:cabeceraSol>
+            <!--Optional:-->
+            <ser:piFuncionalidad>CARGA_DOC</ser:piFuncionalidad>
+            <!--Optional:-->
+            <ser:piAplicacion>GEST_DOCU</ser:piAplicacion>
+            <!--Optional:-->
+            <ser:piUsuario/>
+            <!--Optional:-->
+            <ser:piProcesoNeg>21</ser:piProcesoNeg>
+            <!--Optional:-->
+            <ser:piNameAppLlama>PORTASESOR</ser:piNameAppLlama>
+            <!--Optional:-->
+            <ser:piNacionalidad>V</ser:piNacionalidad>
+            <!--Optional:-->
+            <ser:piCiRif>6403355</ser:piCiRif>
+            <!--Optional:-->
+            <ser:piNuSolicitud>11</ser:piNuSolicitud>
+            <!--Optional:-->
+            <ser:piValorRaiz>32-340000019</ser:piValorRaiz>
+        </ser:listarRecaudosSolicitudSol>
+    </soapenv:Body>
+</soapenv:Envelope>
