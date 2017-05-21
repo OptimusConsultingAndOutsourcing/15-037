@@ -3,5 +3,5 @@
 <beans>
     <import resource="classpath:resources/spring/applicationContext-CommonsSp.xml"/>
     <import resource="classpath:resources/spring/applicationContext-CommonsMs.xml"/>
-    <import resource="classpath:resources/spring/applicationContext-VisorDoc.xml"/>
+    <import resource="classpath:resources/spring/applicationContext-cargadocumentos.xml"/>
 </beans>

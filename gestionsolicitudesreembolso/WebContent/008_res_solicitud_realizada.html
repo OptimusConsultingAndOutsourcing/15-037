@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="robots" content="noindex">
+
+    <title>Reembolso - Registro de solicitud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="ccs/style.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_estructura.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_formularios.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_tabla.css">
+    <link rel="stylesheet" type="text/css" href="css/ms_estilos_2.1_paginacion.css" />
+	<link rel="stylesheet" type="text/css" href="css/ms_faces_2.1_sub_tabla.css" />
+	<link rel="stylesheet" type="text/css" href="css/alertas_2.1.css"/> 
+    <link rel="stylesheet" type="text/css" href="css/ms_displaytag_2.1.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete_2.1.css"/>
+    <link rel="stylesheet" type="text/css" href="ccs/jquery-ui-1.8.20_2.1.css">
+    <link type="text/css" rel="stylesheet" href="ccs/jquery.inputfile.css" />
+     
+
+    <script type="text/javascript" language="javascript" src="javascript/jquery-1.7.2.min.js"></script>
+	<script type='text/javascript' language="javascript" src='javascript/jquery.ui-1.8.20.core.js'></script>
+    <script type='text/javascript' language="javascript" src='javascript/jquery.ui-1.8.20.widget.js'></script> 
+	<script type="text/javascript" language="javascript" src="javascript/jquery.ui-1.8.20.datepicker.js"></script>
+	<script type="text/javascript" language="javascript" src="javascript/jquery.ui-1.8.20.datepicker-es.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+	<script type="text/javascript" language="javascript">
+	
+		function autoformatdate(valor, id){
+		  if(valor.length==2)
+			 valor = valor + "/";
+		  if(valor.length==5)
+			 valor = valor + "/"; 
+			 
+		  $("#"+id).val(valor);   
+			 
+		}
+	
+	$(function() {
+		$("#fechaDesde" ).datepicker();
+	});
+	
+		
+	</script>
+    
+    <style>
+	
+	.cuerpo_app { padding-left:0px; }
+	.btn_cent input { padding: 0 0 0 10px; }
+	
+    </style>
+
+</head>
+<body style="padding-top:35px; margin-bottom:35px;">
+
+
+
+<div id="contenido">
+  <div id="colPpalUnica">
+  
+  <h1>Registro solicitud de reembolso</h1>
+
+<div class="row" style="padding-left:20px; padding-right:20px;">
+
+<div style="display:inline; padding-left:40px; font-size:18px;"><strong>Trámite Número <span class="destacadoG">NNN-NNNNNNNN</span></strong></div>
+<div style="float:right"><img src="images/ico/ico_info_verde.gif" alt="info" style="padding-right:10px;"><strong>Transacción Realizada</strong></div>
+</div>
+
+    <div class="modulo_app" style="margin-top:25px;">
+	  <div class="titulo_app txt_izq"><label class="twhiteT">Datos de la Solicitud</label></div>
+<div class="cuerpo_app">
+<table width="99%" align="center">
+<tbody>
+  <tr>
+  <td>							
+  <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+
+                                        
+  <tr>
+     <td height="53" colspan="7" style="padding-left:20px;"><p><img src="images/notificacion_small.png" width="32" height="32">&nbsp;<strong>Caso enviado para nuestro análisis. Recuerde que el registro de la solicitud no garantiza la cobertura.</strong></p>
+       <p style="padding-left:38px;">A continuación un resumen de los datos de la solicitud generada:</p></td>
+  </tr>
+  <tr>
+    <td colspan="8">
+  <table id="tabla" cellspacing="0" class="tabla_ppal" width="90%" align="center">
+				<tbody>
+					<tr>
+					  <th width="15%" align="center">Cédula / Rif</th>
+					  <th width="20%" align="center">Nombre del Solicitante</th>
+					  <th width="25%" align="center">Parentesco</th>
+					  <th width="5%" align="center">Sexo</th>
+					  <th width="15%" align="center">Monto Reclamado</th>
+                      <th width="15%" align="center">Fecha de Ocurrencia</th>
+					</tr>			
+					<tr class="fila_0">
+						<td align="left">V-22659478</td>
+						<td align="left">Juan Pérez</td>
+						<td align="left">Titular</td>
+						<td align="center">Masculino</td>
+						<td align="right">35.908.654,00</td>
+                        <td align="center">21/03/2016</td>
+					</tr>
+				</tbody>
+			</table>
+  </td></tr>
+  <tr><td colspan="8">&nbsp;</td></tr>
+
+  <tr>
+    <td colspan="8">
+      <div class="casoInfo">
+        <p class="text-warning">Información Importante</p>
+        <ul>
+ 		   <li>Recuerde mantener los recaudos originales en caso de ser solicitados</li>
+	  	   <li>Si lo desea, verifique la recepción de la solicitud a través de la consulta en el portal</li>
+		</ul>
+        
+        </div></td>
+  </tr>
+ 
+  <tr><td colspan="8">&nbsp;</td></tr>
+  
+  <tr><td colspan="8">&nbsp;</td></tr>
+  
+   </table>
+   </td>
+   </tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+
+
+
+</div>
+
+</div>
+
+
+
+<div class="row">
+
+    <table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
+		<tbody>
+        <tr>
+		   <td width="120px" align="right">
+                
+             </td> 
+           <td width="120px" align="center" style="padding-top:15px">
+		  <div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent"><input type="submit" tabindex="14" value="Aceptar" id="aceptar" class="puntero"></div>
+					<div class="btn_der"></div>
+				</div>
+			</td> 
+            <td width="120px" align="left">
+				
+	         </td>     
+         </tr>
+         </tbody>
+     </table>
+</div>
+
+
+</body>
+</html>

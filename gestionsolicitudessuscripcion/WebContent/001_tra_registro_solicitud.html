@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="robots" content="noindex">
+
+    <title>Registro de solicitud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="ccs/style.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_estructura.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_formularios.css">
+	<link rel="stylesheet" type="text/css" href="ccs/ms_estilos_2.1_tabla.css">
+    <link rel="stylesheet" type="text/css" href="ccs/jquery-ui-1.8.20_2.1.css">
+    <link type="text/css" rel="stylesheet" href="ccs/jquery.inputfile.css" />
+     
+
+    <script type="text/javascript" language="javascript" src="javascript/jquery-1.7.2.min.js"></script>
+	<script type='text/javascript' language="javascript" src='javascript/jquery.ui-1.8.20.core.js'></script>
+    <script type='text/javascript' language="javascript" src='javascript/jquery.ui-1.8.20.widget.js'></script> 
+	<script type="text/javascript" language="javascript" src="javascript/jquery.ui-1.8.20.datepicker.js"></script>
+	<script type="text/javascript" language="javascript" src="javascript/jquery.ui-1.8.20.datepicker-es.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+	<script type="text/javascript" language="javascript">
+	
+		function autoformatdate(valor, id){
+		  if(valor.length==2)
+			 valor = valor + "/";
+		  if(valor.length==5)
+			 valor = valor + "/"; 
+			 
+		  $("#"+id).val(valor);   
+			 
+		}
+	
+	$(function() {
+		$("#fechaDesde" ).datepicker();
+	});
+	
+		
+	</script>
+    
+    <style>
+	
+	.cuerpo_app { padding-left:0px; }
+	.btn_cent input { padding: 0 0 0 10px; }
+	
+    </style>
+
+</head>
+<body style="padding-top:35px; margin-bottom:35px;">
+
+
+
+<div id="contenido">
+  <div id="colPpalUnica">
+  
+  <h1>Registro de solicitudes</h1>
+  
+	<div class="modulo_app" id="fieldsetContent">
+						<div class="titulo_app txt_izq">
+							<label class="twhiteT">Datos de la Solicitud</label>
+						</div>
+<div class="cuerpo_app">
+<table width="100%" align="center">
+  <tbody>
+  <tr>
+  <td>							
+	
+  <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+                                      
+  <tr>
+    <td>
+    <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+     
+      <tr>
+        <td width="242">
+        <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+          <tr>
+            <td class="etiqueta_form" width="30%"><span class="asterisco">*</span> Línea de Negocios:</td>
+            <td width="30%" align="left">
+              <select name="lineaNegocio" id="lineaNegocio" style="width:30%;" class="combos" required>
+                <option selected="selected" value="">Seleccione...</option>
+               </select>
+              </td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Tipo de Póliza:</td>
+            <td align="left">
+              <select name="poliza" id="poliza" style="width:30%;" class="combos" required>
+              <option selected="selected" value="">Seleccione...</option>
+              </select>
+             </td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Ramo:</td>
+            <td align="left">
+            <select name="ramo" id="ramo" style="width:30%;" class="combos" required>
+              <option selected="selected" value="">Seleccione...</option>
+              </select>
+            </td>
+          </tr>
+         <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Producto:</td>
+            <td align="left">
+            <select name="producto" id="producto" style="width:30%;" class="combos" required>
+              <option selected="selected" value="">Seleccione...</option>
+             </select>
+             </td>
+          </tr>
+         <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Tipo de Solicitud:</td>
+            <td align="left">
+            <select name="tipoSolicitud" id="tipoSolicitud" style="width:30%;" class="combos" required>
+              <option selected="selected" value="">Seleccione...</option>
+            </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Movimiento:</td>
+            <td align="left">
+            <select name="movimiento" id="movimiento" style="width:30%;" class="combos" required>
+              <option selected="selected" value="">Seleccione...</option>
+            </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Sucursal:</td>
+            <td align="left">
+            <select name="sucursal" id="sucursal" style="width:30%;" class="combos" required>
+              <option selected="selected" value="">Seleccione...</option>
+            </select>
+            </td>
+          </tr>
+         <tr>
+            <td class="etiqueta_form">Negocio Referido:</td>
+            <td align="left">
+            <input type="radio" name="negocioReferido" value="si" checked> Si&nbsp;
+  			<input type="radio" name="negocioReferido" value="no"> No
+            </td>
+          </tr>
+         <tr>
+            <td class="etiqueta_form">Número de Referimiento:</td>
+            <td align="left"><input type="number" id="referimiento" class="combos" tabindex="2" value=""></td>
+          </tr>
+          
+        </table>
+        </td>
+      </tr>
+   
+    </table>
+    
+    </td>
+</tr>	
+
+<!-- Datos Adicionales de Cotizacion -->
+
+  <tr><td colspan="8" class="titulo_interno">
+  <label class="twhiteT" style="text-align:left">Datos Adicionales Cotización</label></td></tr>  
+  <tr><td colspan="8">&nbsp;</td></tr>
+  
+  <tr>
+    <td>
+     <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+      <tr>
+        <td width="242">
+        <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+          
+          <tr>
+            <td class="etiqueta_form">¿Es una licitación?:</td>
+            <td align="left">
+            <input type="radio" name="licitacion" value="si" checked>
+            Si 
+            <input type="radio" name="lIcitacion" value="no"> 
+            No
+            </td>
+          </tr>
+          <tr>
+            <td width="30%" class="etiqueta_form"> Índole:</td>
+            <td width="30%" align="left">
+             <select name="indole" id="indole" style="width:30%;" class="combos">
+              <option selected="selected" value="">Seleccione...</option>
+             </select>&nbsp;&nbsp;<img id="help" border="none" class="puntero" src="images/ayuda.gif" title="Información">
+            </td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form">Cantidad de Asegurados:</td>
+            <td align="left"><input type="number" id="asegurados" value="" class="combos"></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="etiqueta_form">&nbsp;</td>
+          </tr>
+        
+        </table>
+        </td>
+       </tr>
+   </table>
+   </td>
+  </tr>
+  
+<!-- Datos Adicionales del Solicitante -->
+  
+  <tr><td colspan="8" class="titulo_interno">
+  <label class="twhiteT" style="text-align:left">Datos del Solicitante</label></td></tr>
+  
+  <tr><td colspan="8">&nbsp;</td></tr>
+  
+  <tr>
+    <td>
+     <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+      <tr>
+        <td width="242">
+        <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+          
+          <tr>
+            <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Cédula o Rif:</td>
+            <td width="30%" align="left">
+              <select name="id" id="id" class="combo-peq">
+                <option selected="selected" value="">Seleccione...</option>
+                </select>
+               <input id="id"  value="" class="combo-med2" required></td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Nombre:</td>
+            <td align="left"><input type="text" id="nombre" value="" class="combos" required></td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Correo Electrónico 1:</td>
+            <td align="left"><input type="email" id="correo1" value="" class="combos" required></td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form">Correo Electrónico 2:</td>
+            <td align="left"><input type="mail" id="correo2"  value="" class="combos"></td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form">Teléfono Local:</td>
+            <td align="left">
+             <select name="telLocalCod" id="telLocalCod" tabindex="2" class="combo-peq">
+                <option selected="selected" value="">0212</option>
+              </select>
+              <input id="telLocal" value="" class="combo-med2">
+            </td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form">Teléfono Celular:</td>
+            <td align="left">
+             <select name="telCelCod" id="telCelCod" tabindex="2" class="combo-peq">
+                <option selected="selected" value="" >0412</option>
+              </select>
+             <input id="telCel2"value="" class="combo-med2"></td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form">¿Tomador diferente al cliente (Titular)?:</td>
+            <td align="left">
+            <input type="radio" name="titular" value="si" checked>
+            Si 
+            <input type="radio" name="titular" value="no"> 
+            No
+            </td>
+          </tr>
+        </table>
+        </td>
+       </tr>
+   </table>
+   </td>
+  </tr>
+  
+<!-- Datos Adicionales de la Persona a Contactar -->  
+  
+  <tr><td colspan="8" class="titulo_interno">
+  <label class="twhiteT" style="text-align:left">Datos de la Persona a Contactar</label></td></tr>
+  
+  <tr><td colspan="8">&nbsp;</td></tr>
+  
+  <tr>
+    <td>
+     <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+      <tr>
+        <td width="242">
+        <table width="90%" border="0" align="center" cellspacing="6" y cellpadding="1">
+          
+          <tr>
+            <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Persona a Contactar:</td>
+            <td width="30%" align="left"><input type="text" id="nombreContacto" value="" class="combos"required></td>
+          </tr>
+          <tr>
+            <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Correo Electrónico 1:</td>
+            <td width="30%" align="left"><input type="email" id="correo1Contacto" value="" class="combos" required></td>
+          </tr>
+          <tr>
+            <td width="30%" class="etiqueta_form">Correo Electrónico 2:</td>
+            <td width="30%" align="left"><input type="email" id="correo2Contanto"  value="" class="combos"></td>
+          </tr>
+          <tr>
+            <td width="30%" class="etiqueta_form">Teléfono Local:</td>
+            <td width="30%" align="left">
+             <select name="telLocal" id="telLocal" tabindex="2" class="combo-peq">
+                <option selected="selected" value="">0212</option>
+              </select>
+              <input id="telLocal" value="" class="combo-med2">
+            </td>
+          </tr>
+          <tr>
+            <td width="30%" class="etiqueta_form">Teléfono Celular:</td>
+            <td width="30%" align="left">
+             <select name="telCel" id="telCel" tabindex="2" class="combo-peq">
+                <option selected="selected" value="" >0412</option>
+              </select>
+              <input id="telCel"value="" class="combo-med2">
+            </td>
+          </tr>
+          
+        </table>
+        </td>
+       </tr>
+   </table>
+   </td>
+  </tr>
+  
+<!-- Datos Adicionales del Solicitante -->
+  
+  <tr><td colspan="8" class="titulo_interno"><label class="twhiteT" style="text-align:left">Datos del Tomador</label></td></tr>
+  
+  <tr><td colspan="8">&nbsp;</td></tr>
+  
+  <tr>
+    <td>
+     <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+      <tr>
+        <td width="242">
+        <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+          
+          <tr>
+            <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Cédula o Rif:</td>
+            <td width="30%" align="left">
+              <select name="idTomador" id="idTomador" class="combo-peq">
+                <option selected="selected" value="">Seleccione...</option>
+                </select>
+               <input id="idTomador"  value="" class="combo-med2" required></td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Nombre:</td>
+            <td align="left"><input type="text" id="nombreTomador" value="" class="combos" required></td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form"><span class="asterisco">*</span> Correo Electrónico 1:</td>
+            <td align="left"><input type="email" id="correo1Tomador" value="" class="combos" required></td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form">Correo Electrónico 2:</td>
+            <td align="left"><input type="email" id="correo2Tomador"  value="" class="combos"></td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form">Teléfono Local:</td>
+            <td align="left">
+             <select name="telLocalCod" id="telLocalCod" tabindex="2" class="combo-peq">
+                <option selected="selected" value="">0212</option>
+              </select>
+              <input type="number" id="telLocal" value="" class="combo-med2">
+            </td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form">Teléfono Celular:</td>
+            <td align="left">
+             <select name="telCelCod" id="telCelCod" tabindex="2" class="combo-peq">
+                <option selected="selected" value="" >0412</option>
+              </select>
+             <input type="number" id="telCel"value="" class="combo-med2">
+            </td>
+          </tr>
+          <tr>
+            <td class="etiqueta_form">¿Tomador diferente al cliente (Titular)?:</td>
+            <td align="left">
+            <input type="radio" name="titular" value="si" checked>
+            Si 
+            <input type="radio" name="titular" value="no"> 
+            No
+            </td>
+          </tr>
+        </table>
+        </td>
+       </tr>
+   </table>
+   </td>
+  </tr>  
+  
+  
+  </table>
+  
+  </td>
+  </tr>
+  </tbody>
+  </table>
+</div>
+
+</div>
+
+</div>
+<div class="z_izq2">
+	<p class="info2">
+	   <span class="etiqueta_form">(</span><span class="asterisco">* </span><span class="etiqueta_form"> )</span>
+       <span class="etiqueta_form"> Datos Obligatorios</span>
+	</p>
+</div>
+</div>
+
+
+
+<div id="botones">
+    <table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
+		<tbody><tr>
+			
+			<td width="120px" align="right">
+                <div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent">
+                    <input type="submit" tabindex="14" value="Limpiar" id="btnLimpiar" class="puntero" onClick="return limpiarFormSiniestros();"></div>
+					<div class="btn_der"></div>
+				</div>
+             </td> 
+             <td width="120px" align="center">
+		  <div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent"><input type="submit" tabindex="14" value="Guardar" id="continuar" class="puntero" data-toggle="modal" data-target="#guardar"></div>
+					<div class="btn_der"></div>
+				</div>
+			</td> 
+            <td width="120px" align="left">
+				<div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent"><input type="submit" tabindex="14" value="Continuar" id="continuar" class="puntero" onclick="location.href='Suscripcion-RecaudosSolicitud.html';"></div>
+					<div class="btn_der"></div>
+				</div>
+	      </td> 
+           </tr></tbody>
+     </table>
+<div>										
+
+<!-- Modal Guardar -->
+<div class="modal fade" id="guardar" tabindex="-1" role="dialog" aria-labelledby="guardar" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="titulo_app txt_izq">
+        <label class="twhiteT">Confirmación</label> 
+      </div>
+      <div class="modal-body">
+        <div style="float:left; margin-right:10px; padding-bottom:30px;"><img src="images/ico/ico_info_verde.gif" width="23" height="23" alt="Info"> </div>
+        <div>Estimado usuario la información cargada será guardada y podrá ser retomada en otra oportunidad.
+		¿Desea continuar con esta operación?</div>
+      </div>
+      <div class="modal-footer">
+        <table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
+		<tbody>
+        <tr>
+		   <td width="120px" align="right">
+                <div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent">
+                    <input type="submit" tabindex="14" value="Cancelar" id="cancelar" class="puntero" data-dismiss="modal" ></div>
+					<div class="btn_der"></div>
+				</div>
+             </td> 
+             <td width="15px"></td> 
+            <td width="120px" align="left">
+				<div class="btn_row">
+					<div class="btn_iz" align="center"></div>
+					<div class="btn_cent"><input type="submit" tabindex="14" value="Aceptar" id="aceptar" class="puntero"></div>
+					<div class="btn_der"></div>
+				</div>
+	         </td>     
+         </tr>
+         </tbody>
+     </table>
+      </div>
+    </div>
+  </div>
+</div>			
+
+<script>
+$(document).ready(function(){
+    $("#showID").click(function(){
+        $("#newID").show();
+    });
+	
+	$("#showEdoCivil").click(function(){
+        $("#newEdoCivil").show();
+    });
+	$("#showSiniestro").click(function(){
+        $("#newSiniestro").show();
+    });
+	
+	$("#showInforme").click(function(){
+        $("#newInforme").show();
+    });
+});
+</script>
+</body>
+</html>

@@ -3,5 +3,5 @@
 <beans>
     <import resource="classpath:resources/spring/applicationContext-CommonsSp.xml"/>
     <import resource="classpath:resources/spring/applicationContext-CommonsMs.xml"/>
-    <import resource="classpath:resources/spring/applicationContext-AutogestionReembolso.xml"/>
+    <import resource="classpath:resources/spring/applicationContext-gestionsolicitudesreembolso.xml"/>
 </beans>
