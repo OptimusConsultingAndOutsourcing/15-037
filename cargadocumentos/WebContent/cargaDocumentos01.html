@@ -9,8 +9,8 @@
 
     <title>Carga de Documentos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../autogestiondigitalclientlibs/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../autogestiondigitalclientlibs/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../autogestiondigitalclientlibs/WebContent/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../autogestiondigitalclientlibs/WebContentcss/bootstrap.min.css">
 
     <script src="../autogestiondigitalclientlibs/js/jquery.min.js"></script>
     <script src="../autogestiondigitalclientlibs/js/bootstrap.min.js"></script>
@@ -35,10 +35,7 @@
 </head>
 
 <body style="padding-top:35px;" ng-app="SOAPGateway" ng-controller="Carga">
-
-
-
-    <div id="contenido">
+  <div id="contenido">
         <div id="colPpalUnica">
 
             <h1>Carga de Documentos</h1>
@@ -46,198 +43,205 @@
             <div class="modulo_app">
                 <div class="titulo_app txt_izq"><label class="twhiteT">Carga de Documentos</label></div>
                 <div class="cuerpo_app">
-                    <table width="100%" align="center">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+                  <table width="100%" align="center">
+                   <tbody>
+                     <tr>
+                      <td>
+<!--------------------- Recaudos Seccion 1 -->                      
+                       <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+                        <!-- Titulo Recaudos Seccion 1 -->
+						<tr><td colspan="8">&nbsp;</td></tr>
+                        <tr><td colspan="8" class="titulo_seccion">Recaudos Médicos</td></tr>
+                        <tr><td colspan="8">&nbsp;</td></tr>
+                        <tr><td>
+                          <table width="690" border="0" align="center" cellpadding="1" cellspacing="1">
+                          <!-- Recaudo1 Seccion 1 -->
+                           <tr>
+                            <td width="5">&nbsp;</td>
+                            <td width="243" align="right" class="etiqueta_form">(<span class="asterisco">*</span>) Cédula Titular:</td>
+                            <td width="251" align="right"><input type="file" required></td>
+                            <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                            <td width="22" align="left"><input id="showID" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                            <td width="17" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                            <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                          </tr>
+                          <!-- Recaudo1.1 Seccion 1 -->
+                          <tr style="display:none" id="newID">
+                            <td width="5">&nbsp;</td>
+                            <td width="243" align="right" class="etiqueta_form"></td>
+                            <td width="251" align="right"><input type="file"></td>
+                            <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                            <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                            <td colspan="2" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                            <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                          </tr>
+                          <!-- Recaudo2 Seccion 1 -->
+                          <tr>
+                            <td width="5">&nbsp;</td>
+                            <td width="243" align="right" class="etiqueta_form">Cédula Beneficiario:</td>
+                            <td width="251" align="right"><input type="file"></td>
+                            <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                            <td width="22" align="left"><input id="showEdoCivil" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                            <td colspan="2" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                            <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                           </tr>
+                          <!-- Recaudo2.1 Seccion 1 -->
+                           <tr style="display:none" id="newEdoCivil">
+                            <td width="5">&nbsp;</td>
+                            <td width="243" align="right" class="etiqueta_form"></td>
+                            <td width="251" align="right"><input type="file"></td>
+                            <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                            <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                            <td colspan="2" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                            <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                           </tr>
+                          <tr>
+                            <td colspan="9">&nbsp;</td>
+                          </tr>
+                           </table>
+                        </td></tr>
+					   </table>
+                       
+<!--------------------- Recaudos Seccion 2 -->    
+                       <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+                        <!-- Título Recaudos Seccion 2 -->
+                        <tr><td colspan="8">&nbsp;</td></tr>
+						<tr><td colspan="8" class="titulo_seccion">Recaudos Médicos</td></tr>
+                        <tr><td colspan="8">&nbsp;</td></tr>
+                        <tr><td>
+                           <table width="690" border="0" align="center" cellpadding="1" cellspacing="1">
+                              <!-- Recaudos1 Seccion 2 -->
+                             <tr>
+                              <td width="9">&nbsp;</td>
+                              <td width="244" align="right" class="etiqueta_form">(<span class="asterisco">*</span>) Informe Médico:</td>
+                              <td width="237" align="right"><input type="file" required></td>
+                              <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                              <td width="22" align="left"><input id="showInforme" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                              <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                              <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                              <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                              <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                             </tr>
+                              <!-- Recaudos1.1 Seccion 2 -->
+                             <tr style="display:none" id="newInforme">
+                               <td width="9">&nbsp;</td>
+                               <td width="244" align="right" class="etiqueta_form"></td>
+                               <td width="237" align="right"><input type="file"></td>
+                               <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                               <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                               <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                               <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                               <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                               <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                             </tr>
+                              <!-- Recaudos2 Seccion 2 -->
+                             <tr>
+                               <td width="9">&nbsp;</td>
+                               <td width="244" align="right" class="etiqueta_form">Récipes e Indicaciones:</td>
+                               <td width="237" align="right"><input type="file"></td>
+                               <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                               <td width="22" align="left"><input id="showRecipe" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                               <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                               <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                               <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                               <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                              </tr>
+                              <!-- Recaudos2.1 Seccion 2 -->
+                              <tr style="display:none" id="newRecipe">
+                               <td width="9">&nbsp;</td>
+                               <td width="244" align="right" class="etiqueta_form"></td>
+                               <td width="237" align="right"><input type="file"></td>
+                               <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                               <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                               <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                               <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                               <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                               <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                              </tr>
+                              <!-- Recaudos3 Seccion 2 -->
+                              <tr>
+                               <td width="9">&nbsp;</td>
+                               <td width="244" align="right" class="etiqueta_form">Resultado de Estudios:</td>
+                               <td width="237" align="right"><input type="file"></td>
+                               <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                               <td width="22" align="left"><input id="showResultados" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                               <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                               <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                               <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                               <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                              </tr>
+                              <!-- Recaudos3.1 Seccion 2 -->
+                              <tr style="display:none" id="newResultados">
+                               <td width="9">&nbsp;</td>
+                               <td class="etiqueta_form" width="244"></td>
+                               <td width="237" align="right"><input type="file"></td>
+                               <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                               <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                               <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                               <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                               <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                               <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                              </tr>
+                              <tr>
+                                <td colspan="9">&nbsp;</td>
+                              </tr>
+                           </table>
+                          </td></tr>
+                         </table>
 
-
-                                        <!-- Recaudos Seccion 1 -->
-
-
-                                        <tr>
-                                            <td colspan="8">&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="8" class="titulo_seccion">Recaudos Médicos</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="8">&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <table width="690" border="0" align="center" cellpadding="1" cellspacing="1">
-                                                    <tr>
-                                                        <td width="5">&nbsp;</td>
-                                                        <td width="243" align="right" class="etiqueta_form">(<span class="asterisco">*</span>) Cédula Titular:</td>
-                                                        <td width="251" align="right"><input type="file" required></td>
-                                                        <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                                        <td width="22" align="left"><input id="showID" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td width="17" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                        <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src="../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
-                                                    </tr>
-                                                    <tr style="display:none" id="newID">
-                                                        <td width="5">&nbsp;</td>
-                                                        <td width="243" align="right" class="etiqueta_form"></td>
-                                                        <td width="251" align="right"><input type="file"></td>
-                                                        <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                                        <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td colspan="2" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="5">&nbsp;</td>
-                                                        <td width="243" align="right" class="etiqueta_form">Cédula Beneficiario:</td>
-                                                        <td width="251" align="right"><input type="file"></td>
-                                                        <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                                        <td width="22" align="left"><input id="showEdoCivil" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td colspan="2" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                    </tr>
-                                                    <tr style="display:none" id="newEdoCivil">
-                                                        <td width="5">&nbsp;</td>
-                                                        <td width="243" align="right" class="etiqueta_form"></td>
-                                                        <td width="251" align="right"><input type="file"></td>
-                                                        <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                                        <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td colspan="2" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="9">&nbsp;</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-
-                                        <!-- Recaudos Seccion 2 -->
-
-                                        <tr>
-                                            <td colspan="8" class="titulo_seccion">Recaudos Médicos</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="8">&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <table width="690" border="0" align="center" cellpadding="1" cellspacing="1">
-                                                    <tr>
-                                                        <td width="9">&nbsp;</td>
-                                                        <td width="244" align="right" class="etiqueta_form">(<span class="asterisco">*</span>) Informe Médico:</td>
-                                                        <td width="237" align="right"><input type="file" required></td>
-                                                        <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                                        <td width="22" align="left"><input id="showInforme" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                    </tr>
-                                                    <tr style="display:none" id="newInforme">
-                                                        <td width="9">&nbsp;</td>
-                                                        <td width="244" align="right" class="etiqueta_form"></td>
-                                                        <td width="237" align="right"><input type="file"></td>
-                                                        <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                                        <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="9">&nbsp;</td>
-                                                        <td width="244" align="right" class="etiqueta_form">Récipes e Indicaciones:</td>
-                                                        <td width="237" align="right"><input type="file"></td>
-                                                        <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                                        <td width="22" align="left"><input id="showRecipe" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                    </tr>
-                                                    <tr style="display:none" id="newRecipe">
-                                                        <td width="9">&nbsp;</td>
-                                                        <td width="244" align="right" class="etiqueta_form"></td>
-                                                        <td width="237" align="right"><input type="file"></td>
-                                                        <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                                        <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                    </tr>
-                                                    <td width="9">&nbsp;</td>
-                                                    <td width="244" align="right" class="etiqueta_form">Resultado de Estudios:</td>
-                                                    <td width="237" align="right"><input type="file"></td>
-                                                    <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                                    <td width="22" align="left"><input id="showResultados" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                    <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                                    <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                    <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                        </tr>
-                                        <tr style="display:none" id="newResultados">
-                                            <td width="9">&nbsp;</td>
-                                            <td class="etiqueta_form" width="244"></td>
-                                            <td width="237" align="right"><input type="file"></td>
-                                            <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                            <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                            <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="9">&nbsp;</td>
-                                        </tr>
-                                        </table>
-                                        </td>
-                            </tr>
-
-                            <!-- Recaudos Seccion 3 -->
-
-                            <tr>
-                                <td colspan="8" class="titulo_seccion">Recaudos Facturas</td>
-                            </tr>
-                            <tr>
-                                <td colspan="8">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table width="690" border="0" align="center" cellpadding="1" cellspacing="1">
-                                        <tr>
-                                            <td width="9">&nbsp;</td>
-                                            <td class="etiqueta_form" width="244"> Factura:</td>
-                                            <td width="237" align="right"><input type="file"></td>
-                                            <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                            <td width="22" align="left"><input id="showFactura" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                            <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                        </tr>
-                                        <tr style="display:none" id="newFactura">
-                                            <td width="9">&nbsp;</td>
-                                            <td class="etiqueta_form" width="244"></td>
-                                            <td width="237" align="right"><input type="file"></td>
-                                            <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
-                                            <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
-                                            <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                            <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="9">&nbsp;</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-
-                            </table>
-                            </td>
-                            </tr>
-                        </tbody>
-                    </table>
+<!--------------------- Recaudos Seccion 3 --> 
+						 <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">  
+                          <!-- Título Recaudos Seccion 3 -->
+                          <tr><td colspan="8">&nbsp;</td></tr>
+						  <tr><td colspan="8" class="titulo_seccion">Recaudos Facturas</td></tr>
+                          <tr><td colspan="8">&nbsp;</td></tr>
+                          <tr><td>
+                             <table width="690" border="0" align="center" cellpadding="1" cellspacing="1">
+                               <!-- Recaudos1 Seccion 3 -->
+                               <tr>
+                                <td width="9">&nbsp;</td>
+                                <td class="etiqueta_form" width="244"> Factura:</td>
+                                <td width="237" align="right"><input type="file"></td>
+                                <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                                <td width="22" align="left"><input id="showFactura" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                                <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                                <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                                <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                                <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                               </tr>
+                               <!-- Recaudos.11 Seccion 3 -->
+                               <tr style="display:none" id="newFactura">
+                                 <td width="9">&nbsp;</td>
+                                 <td class="etiqueta_form" width="244"></td>
+                                 <td width="237" align="right"><input type="file"></td>
+                                 <td width="14" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn"></td>
+                                 <td width="22" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                                 <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn"></td>
+                                 <td width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                                 <td width="99" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                                 <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src			"../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                               </tr>
+                               <tr>
+                                 <td colspan="9">&nbsp;</td>
+                               </tr>
+                              </table>
+                           </td></tr>
+						 </table>
+                         
+                            
+                      </td>
+                     </tr>
+                    </tbody>
+                   </table>
                 </div>
-
             </div>
         </div>
         <div class="z_izq2">
