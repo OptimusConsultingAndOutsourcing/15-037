@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
+
 import com.mercantilseguros.commonsms.domain.Productor;
 import com.mercantilseguros.commonsms.domain.UsuarioAplicacion;
 import com.mercantilseguros.commonsms.util.CommonsApplication;
@@ -37,18 +39,8 @@ public class ClientSideWebAppAccessFilter implements Filter
 			
 			if(usuario != null)
 			{
-		        response.addHeader("CodAplicacion", usuario.getCodAplicacion());
-				response.addCookie(new Cookie("CodAplicacion", usuario.getCodAplicacion()));
-				
-		        response.addHeader("CodUsuario", usuario.getCodUsuario());
-				response.addCookie(new Cookie("CodUsuario", usuario.getCodUsuario()));
-		
-				Productor productor = (Productor)usuario.getDatosUsuario();
-				if(productor != null)
-				{
-			        response.addHeader("CodProductor", String.valueOf(productor.getCodigo()));
-					response.addCookie(new Cookie("CodProductor", String.valueOf(productor.getCodigo())));
-				}
+		        response.addHeader("usuario", new JSONObject(usuario).toString());
+				response.addCookie(new Cookie("usuario", new JSONObject(usuario).toString()));
 			}
         }
         else

@@ -7,7 +7,7 @@
 	<welcome-file-list>
 		<welcome-file>001_lst_expediente.html</welcome-file>
 	</welcome-file-list>
-	<!-- 
+	<!-- --> 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:resources/spring/applicationContext.xml</param-value>
@@ -40,8 +40,8 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	 -->
-
+	 
+ 
 	<servlet>
 		<servlet-name>Doc</servlet-name>
 		<servlet-class>com.mercantilseguros.autogestiondigital.visordoc.DocServlet</servlet-class>

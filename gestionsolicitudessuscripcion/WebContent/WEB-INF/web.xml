@@ -7,7 +7,7 @@
 	<welcome-file-list>
 		<welcome-file>001_tra_registro_solicitud.html</welcome-file>
 	</welcome-file-list>
-	<!-- 
+	<!-- -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:resources/spring/applicationContext.xml</param-value>
@@ -40,5 +40,5 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	 -->
+	 
 </web-app>

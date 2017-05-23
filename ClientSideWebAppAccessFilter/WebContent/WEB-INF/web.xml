@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	id="WebApp_ID" version="2.5">
-	<display-name>cargadocumentos</display-name>
-	<welcome-file-list>
-		<welcome-file>cargaDocumentos01.html</welcome-file>
-	</welcome-file-list>
-	<!--  -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>ClientSideWebAppAccessFilter</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+	<!-- -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:resources/spring/applicationContext.xml</param-value>
@@ -40,14 +42,4 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-	<servlet>
-		<servlet-name>upload</servlet-name>
-		<servlet-class>com.mercantilseguros.autogestiondigital.cargadocumentos.UploadServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>upload</servlet-name>
-		<url-pattern>/upload</url-pattern>
-	</servlet-mapping>
 </web-app>

@@ -1,0 +1,45 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Header xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    </soap:Header>
+    <soapenv:Body>
+        <ser:validarUploadSol xmlns:ser="http://xmlns.mercantilseguros.com/osb/ServicioRecaudos" xmlns:obj="http://xmlns.mercantilseguros.com/osb/ObjetosComunes">
+            <ser:cabeceraSol>
+                <obj:fecha>2008-09-28</obj:fecha>
+                <obj:hora>19:18:33</obj:hora>
+                <!--Optional:-->
+                <obj:idSolicitud/>
+                <!--Optional:-->
+                <obj:idCompensacion/>
+                <!--Optional:-->
+                <obj:canal/>
+                <!--Optional:-->
+                <obj:comunidad/>
+                <!--Optional:-->
+                <obj:grupo/>
+                <!--Optional:-->
+                <obj:funcionalidad/>
+                <obj:aplicacion/>
+                <obj:usuario/>
+                <obj:ip/>
+                <!--Optional:-->
+                <obj:nombreEquipo/>
+            </ser:cabeceraSol>
+            <!--Optional:-->
+            <ser:piFuncionalidad>CARGA_DOC</ser:piFuncionalidad>
+            <!--Optional:-->
+            <ser:piAplicacion>GEST_DOCU</ser:piAplicacion>
+            <!--Optional:-->
+            <ser:piUsuario/>
+            <!--Optional:-->
+            <ser:piTpExpediente>POL</ser:piTpExpediente>
+            <!--Optional:-->
+            <ser:piCdExpediente>COTIZ</ser:piCdExpediente>
+            <!--Optional:-->
+            <ser:piCdExtension>PDF</ser:piCdExtension>
+            <!--Optional:-->
+            <ser:piNuSize>1000000</ser:piNuSize>
+            <!--Optional:-->
+            <ser:piCdDocumento>5</ser:piCdDocumento>
+        </ser:validarUploadSol>
+    </soapenv:Body>
+</soapenv:Envelope>
