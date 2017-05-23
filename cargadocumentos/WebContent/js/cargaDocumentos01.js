@@ -89,29 +89,30 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
         });
     }
 
-    $scope.uploadFile = function (inputFileId)
+    $scope.upload = function (fileInputId)
     {
-        //alert(inputFileId);
-        $scope.upload(document.getElementById(inputFileId).files[0], event.target)
         event.preventDefault();
-    }
 
-    $scope.upload = function (file, form)
-    {
+        var file = document.getElementById(fileInputId).files[0];
         var xhr = new XMLHttpRequest();
         if (xhr.upload && (file.type == "image/jpeg" || file.type == "image/gif" || file.type == "application/pdf")
             && file.size <= 10485760 /* 10 MB */)
         {
-            xhr.open("POST", form.action, true);
-            xhr.setRequestHeader("X_FILENAME", file.name);
-            xhr.onreadystatechange = function ()
+            xhr.open("POST", event.target.action, false);
+            xhr.onreadystatechange = function (oEvent)
             {
-                if (oXHR.status === 200)
+                // turn off LOADING SCREEN
+                if (xhr.status !== 200)
                 {
-                    console.log(oXHR.responseText)
+                    alert("No se pudo cargar el archivo, por favor intente de nuevo");
+                    console.log(xhr.responseText)
                 }
             }
-            xhr.send(file);
+            var formData = new FormData();
+            formData.append("poDeRuta", $scope.poDeRuta);
+            formData.append("thefile", file);
+            // turn on LOADING SCREEN
+            xhr.send(formData);
         }
         else
         {

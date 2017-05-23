@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../autogestiondigitalclientlibs/css/style.css">
     <link rel="stylesheet" type="text/css" href="../autogestiondigitalclientlibs/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../autogestiondigitalclientlibs/css/loading-bar.css">
 
     <script src="../autogestiondigitalclientlibs/js/jquery.min.js"></script>
     <script src="../autogestiondigitalclientlibs/js/bootstrap.min.js"></script>
@@ -67,7 +68,7 @@
                                                         <td width="5">&nbsp;</td>
                                                         <td width="243" align="right" class="etiqueta_form"><span ng-show="doc.files[0].docdInObligatorio.__text == 1">(<span class="asterisco">*</span>)</span> {{ doc.files[0].dotdDeDocumento.__text }}:</td>
                                                         <td width="270" align="right">
-                                                            <form id="form{{ doc.files[0].docdCdSeccion.__text + $index }}" name="{{ doc.files[0].doecNuDocid.__text }}" action="upload" method="POST" enctype="multipart/form-data" ng-submit="uploadFile('file' + doc.files[0].docdCdSeccion.__text + $index, this)">
+                                                            <form id="form{{ doc.files[0].docdCdSeccion.__text + $index }}" name="{{ doc.files[0].doecNuDocid.__text }}" action="upload" method="POST" enctype="multipart/form-data" ng-submit="upload('file' + doc.files[0].docdCdSeccion.__text + $index)">
                                                                 <input id="file{{ doc.files[0].docdCdSeccion.__text + $index }}" type="file" required>
                                                                 <!--</td><td width="14" align="left">-->
                                                                 <input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn">

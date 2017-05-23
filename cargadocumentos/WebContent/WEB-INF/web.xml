@@ -26,7 +26,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>portalAccesoFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.html</url-pattern>
 	</filter-mapping>
   <filter>
     <filter-name>clientSideWebAppAccessFilter</filter-name>
@@ -34,7 +34,7 @@
   </filter>
   <filter-mapping>
     <filter-name>clientSideWebAppAccessFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>*.html</url-pattern>
   </filter-mapping>
 	
 	<listener>
