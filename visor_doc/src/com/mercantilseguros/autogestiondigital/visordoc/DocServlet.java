@@ -23,12 +23,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
+import com.mercantilseguros.uddi.UddiServiceLookup;
+
 public class DocServlet extends HttpServlet{
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws IOException
 	{
-		String DOC_NOT_FOUND = request.getRequestURL().toString() + "/../images/Docs/DOC_NOT_FOUND.jpg";
+		String DOC_NOT_FOUND = request.getRequestURL().toString() + "/../http://localhost:8094/images/Docs/DOC_NOT_FOUND.jpg";
 		String URL = DOC_NOT_FOUND;
 		try
 		{
@@ -88,6 +90,7 @@ public class DocServlet extends HttpServlet{
     		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
             SOAPConnection soapConnection = soapConnectionFactory.createConnection();
 
+            //UddiServiceLookup uddi = new UddiServiceLookup(UddiServiceRegistryName);
             SOAPMessage soapResponse = soapConnection.call(createBuscarDocumentoSOAPRequest(id), "http://10.0.151.92:16200/BuscarDocumento/BuscarDocumentoService");
             
             ByteArrayOutputStream out = new ByteArrayOutputStream();

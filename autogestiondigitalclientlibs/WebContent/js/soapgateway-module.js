@@ -15,10 +15,12 @@ var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml',
 		//stripWhitespaces         : true|false - Strip whitespaces (trimming text nodes). Default is true.
 		//datetimeAccessFormPaths  : [] - Datetime access paths. Use this option to configure paths to XML elements for "datetime form". You can configure beforehand paths to all your array elements based on XSD or your knowledge. Every path could be a simple string (like 'parent.child1.child2'), a regex (like /.*\.child2/), or a custom function. Default is empty
 	}
-}).run(function ($http)
+}).run(function ($rootScope, $http)
 {
 	$.cookie.json = true;
 	usuario = getServerVariable("usuario");
+	$rootScope.pms = getParameter('pms');
+	$rootScope.aux = getParameter('aux');
 	$http.defaults.headers.common['Authorization'] = getServerVariable('AuthToken');
 }).directive('loading', ['$http', function ($http)
 {
@@ -53,6 +55,7 @@ var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml',
 			{
 				return x2js.json2xml_str(this);
 			};
+			fillParameters(SOAPRequestMessage);
 			return SOAPRequestMessage;
 		}
 	};

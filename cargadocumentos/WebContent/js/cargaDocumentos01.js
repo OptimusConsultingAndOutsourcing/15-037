@@ -1,48 +1,48 @@
 SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
 {
-    $.get("templates/validarUpload.xml", function (template)
+    $.get("templates/validarUpload.xml", function (validarUploadTemplate)
     {
-        $scope.soapRequestMessage = SOAPRequestMessage.fromTemplate(template);
-        fillParameters($scope.soapRequestMessage);
         Gateway.post($.param({
-            SOAPRequestMessage: $scope.soapRequestMessage.toXMLString(),
+            SOAPRequestMessage: SOAPRequestMessage.fromTemplate(validarUploadTemplate).toXMLString(),
             UddiServiceRegistryName: "ServicioRecaudos"
         })
             , function (response)
             {
                 $scope.poDeRuta = response.Envelope.Body.validarUploadRes.poDeRuta.__text;
-            }
-            , function (response)
-            {
-                console.log(response.data);
-                window.location.replace("error.html");
-            });
-    });
 
-    $.get("templates/listarRecaudosSolicitud.xml", function (template)
-    {
-        $scope.soapRequestMessage = SOAPRequestMessage.fromTemplate(template);
-        fillParameters($scope.soapRequestMessage);
-        Gateway.post($.param({
-            SOAPRequestMessage: $scope.soapRequestMessage.toXMLString(),
-            UddiServiceRegistryName: "ServicioRecaudos"
-        })
-            , function (response)
-            {
-                if ((response.Envelope.Body.listarRecaudosSolicitudRes.poSalida)
-                    && (response.Envelope.Body.listarRecaudosSolicitudRes.poSalida.__text == "0")
-                    && (response.Envelope.Body.listarRecaudosSolicitudRes.poListaConsulta.docoListaConsulta))
+                $.get("templates/actualizarRecaudo.xml", function (actualizarRecaudoTemplate)
                 {
-                    var id = 0;
-                    $scope.fileList = response.Envelope.Body.listarRecaudosSolicitudRes.poListaConsulta.docoListaConsulta.map(function (file)
+                    $.get("templates/listarRecaudosSolicitud.xml", function (listarRecaudosSolicitudTemplate)
                     {
-                        file.doecNmArchivoFs = encodeURIComponent(file.doecNmArchivoFs);
-                        file.id = id;
-                        id++;
-                        return file;
+                        Gateway.post($.param({ 
+                            SOAPRequestMessage: SOAPRequestMessage.fromTemplate(listarRecaudosSolicitudTemplate).toXMLString(),
+                            UddiServiceRegistryName: "ServicioRecaudos"
+                        })
+                            , function (response)
+                            {
+                                if ((response.Envelope.Body.listarRecaudosSolicitudRes.poSalida)
+                                    && (response.Envelope.Body.listarRecaudosSolicitudRes.poSalida.__text == "0")
+                                    && (response.Envelope.Body.listarRecaudosSolicitudRes.poListaConsulta.docoListaConsulta))
+                                {
+                                    var id = 0;
+                                    $scope.fileList = response.Envelope.Body.listarRecaudosSolicitudRes.poListaConsulta.docoListaConsulta.map(function (file)
+                                    {
+                                        file.doecNmArchivoFs = encodeURIComponent(file.doecNmArchivoFs);
+                                        file.id = id;
+                                        file.actualizarRecaudoRequestMessage = SOAPRequestMessage.fromTemplate(actualizarRecaudoTemplate);
+                                        id++;
+                                        return file;
+                                    });
+                                    $scope.builtree();
+                                }
+                            }
+                            , function (response)
+                            {
+                                console.log(response.data);
+                                window.location.replace("error.html");
+                            });
                     });
-                    $scope.builtree();
-                }
+                });
             }
             , function (response)
             {
@@ -51,6 +51,7 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
             });
     });
 
+    
     $scope.builtree = function ()
     {
         $scope.documents = [];
@@ -89,7 +90,7 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
         });
     }
 
-    $scope.upload = function (fileInputId)
+    $scope.upload = function (fileInputId, doc)
     {
         event.preventDefault();
 
@@ -98,14 +99,20 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
         if (xhr.upload && (file.type == "image/jpeg" || file.type == "image/gif" || file.type == "application/pdf")
             && file.size <= 10485760 /* 10 MB */)
         {
+            doc.fileName = $scope.poDeRuta + file.name;
             xhr.open("POST", event.target.action, false);
             xhr.onreadystatechange = function (oEvent)
             {
                 // turn off LOADING SCREEN
-                if (xhr.status !== 200)
+                if (xhr.status >= 400)
                 {
                     alert("No se pudo cargar el archivo, por favor intente de nuevo");
                     console.log(xhr.responseText)
+                }
+                else
+                {
+                    //file
+                    doc.loaded = true;
                 }
             }
             var formData = new FormData();
@@ -120,6 +127,27 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
         }
     }
 
+    $scope.deleteFile = function (formInputId, doc)
+    {
+        doc.files[0].actualizarRecaudoRequestMessage.Envelope.Body.actualizarRecaudoSol.piNuExpediente.__text = doc.files[0].doedNuExpediente.__text;
+        doc.files[0].actualizarRecaudoRequestMessage.Envelope.Body.actualizarRecaudoSol.piCdDocumento.__text = doc.files[0].docdDotdCdDocumento.__text;
+        doc.files[0].actualizarRecaudoRequestMessage.Envelope.Body.actualizarRecaudoSol.piNuConsecutivo.__text = doc.files[0].doecNuConsecutivo.__text;
+
+        Gateway.post($.param({
+            SOAPRequestMessage: doc.files[0].actualizarRecaudoRequestMessage.toXMLString(),
+            UddiServiceRegistryName: "ServicioRecaudos"
+        })
+            , function (response)
+            {
+                document.getElementById(formInputId).reset();
+                doc.loaded = false;
+            }
+            , function (response)
+            {
+                alert("No se pudo eliminar el documento, por favor intente de nuevo.");
+                console.log(response.data);
+            });
+    }
 
 });
 

@@ -3,7 +3,6 @@ SOAPGateway.controller("Visor", function ($scope, Gateway, SOAPRequestMessage)
     $.get("templates/ConsultarDocumentosSOAPRequestMessageTemplate.xml", function (template)
     {
         $scope.soapRequestMessage = SOAPRequestMessage.fromTemplate(template);
-        fillParameters($scope.soapRequestMessage);
         Gateway.post($.param({
                     SOAPRequestMessage: $scope.soapRequestMessage.toXMLString(),
                     UddiServiceRegistryName: "ServicioRecaudos"
@@ -35,9 +34,9 @@ SOAPGateway.controller("Visor", function ($scope, Gateway, SOAPRequestMessage)
         $scope.documents = [];
         $.each($scope.fileList, function (index, doc)
         {
-            if ($.inArray(doc.docdDotdCdDocumento, $scope.documents) === -1)
+            if ($.inArray(doc.docdDotdCdDocumento.__text, $scope.documents) === -1)
             {
-                $scope.documents.push(doc.docdDotdCdDocumento);
+                $scope.documents.push(doc.docdDotdCdDocumento.__text);
             }
         });
         $scope.documents = $scope.documents.map(function (docdDotdCdDocumento)
@@ -45,16 +44,16 @@ SOAPGateway.controller("Visor", function ($scope, Gateway, SOAPRequestMessage)
             return {
                 files: $scope.fileList.filter(function (doc)
                 {
-                    return doc.docdDotdCdDocumento == docdDotdCdDocumento;
+                    return doc.docdDotdCdDocumento.__text == docdDotdCdDocumento;
                 })
             };
         });
         $scope.sections = [];
         $.each($scope.fileList, function (index, doc)
         {
-            if ($.inArray(doc.docdCdSeccion, $scope.sections) === -1)
+            if ($.inArray(doc.docdCdSeccion.__text, $scope.sections) === -1)
             {
-                $scope.sections.push(doc.docdCdSeccion);
+                $scope.sections.push(doc.docdCdSeccion.__text);
             }
         });
         $scope.sections = $scope.sections.map(function (docdCdSeccion)
@@ -62,7 +61,7 @@ SOAPGateway.controller("Visor", function ($scope, Gateway, SOAPRequestMessage)
             return {
                 documents: $scope.documents.filter(function (doc)
                 {
-                    return doc.files[0].docdCdSeccion == docdCdSeccion;
+                    return doc.files[0].docdCdSeccion.__text == docdCdSeccion;
                 })
             };
         });

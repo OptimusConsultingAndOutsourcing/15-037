@@ -55,7 +55,7 @@
                                             <td colspan="8">&nbsp;</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="8" class="titulo_seccion">{{ section.documents[0].files[0].docdCdSeccion.__text }}</td>
+                                            <td colspan="8" class="titulo_seccion">{{ section.documents[0].files[0].docoDeTituloSeccion.__text }}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="8">&nbsp;</td>
@@ -68,17 +68,19 @@
                                                         <td width="5">&nbsp;</td>
                                                         <td width="243" align="right" class="etiqueta_form"><span ng-show="doc.files[0].docdInObligatorio.__text == 1">(<span class="asterisco">*</span>)</span> {{ doc.files[0].dotdDeDocumento.__text }}:</td>
                                                         <td width="270" align="right">
-                                                            <form id="form{{ doc.files[0].docdCdSeccion.__text + $index }}" name="{{ doc.files[0].doecNuDocid.__text }}" action="upload" method="POST" enctype="multipart/form-data" ng-submit="upload('file' + doc.files[0].docdCdSeccion.__text + $index)">
-                                                                <input id="file{{ doc.files[0].docdCdSeccion.__text + $index }}" type="file" required>
-                                                                <!--</td><td width="14" align="left">-->
-                                                                <input type="image" src="http://localhost:8094/images/ico/attach.png" class="icon_btn">
+                                                            <form id="form{{ doc.files[0].docdCdSeccion.__text + $index }}" name="{{ doc.files[0].doecNuDocid.__text }}" action="upload" method="POST" enctype="multipart/form-data" ng-submit="upload('file' + doc.files[0].docdCdSeccion.__text + $index, doc)">
+                                                                <input id="file{{ doc.files[0].docdCdSeccion.__text + $index }}" type="file" required style="float: left;">
+                                                                <!--</td>
+                                                            <td width="14" align="left">
+                                                                -->
+                                                                <input type="image" src="http://localhost:8094/images/ico/attach.png" class="icon_btn" style="float: left;">
                                                             </form>
                                                         </td>
-                                                        <td width="22" align="left"><input id="showID" type="image" src="http://localhost:8094/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="http://localhost:8094/images/ico/eliminar.gif" class="icon_btn"></td>
-                                                        <td width="20"><input type="image" src="http://localhost:8094/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td width="17" align="left"><input type="image" src="http://localhost:8094/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                        <td width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src="http://localhost:8094/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                                                        <td ng-show="doc.loaded" width="22" align="left"><input id="showID" type="image" src="http://localhost:8094/images/ico/img_mas.png" class="icon_btn"></td>
+                                                        <td ng-show="doc.loaded" width="20"><input type="image" src="http://localhost:8094/images/ico/eliminar.gif" class="icon_btn" ng-click="deleteFile('form' + doc.files[0].docdCdSeccion.__text + $index, doc)"></td>
+                                                        <td ng-show="doc.loaded" width="20"><a href="../visor_doc/Doc?file={{ doc.fileName }}&pms={{ pms }}&aux={{ aux }}"  target="_blank"><img src="http://localhost:8094/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                                                        <td ng-show="doc.loaded" width="17" align="left"><input type="image" src="http://localhost:8094/images/ico/alerta_peq.png" class="icon_btn"></td>
+                                                        <td ng-show="doc.loaded" width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src="http://localhost:8094/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="9">&nbsp;</td>
@@ -140,6 +142,7 @@
             });
         });
     </script>
+	<div id="loadingScreen" style="position: fixed; top:0; left:0; height: 100%; width: 100%; background-color: white; opacity: 0.5;" loading></div>
 
 </body>
 
