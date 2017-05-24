@@ -105,8 +105,8 @@ public class UploadServlet extends HttpServlet
 			}
 			else
 			{
-				response.setStatus(500);
-				writer.println("Something wrong moving to the fileSystem!");
+				response.setStatus(202);
+				writer.println("File uploaded but there was something wrong moving it to the fileSystem!");
 			}
 			// logger.debug("[{}] Upload has been done successfully! ", methodName);
 		} 

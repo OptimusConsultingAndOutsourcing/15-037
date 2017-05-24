@@ -3,7 +3,6 @@ SOAPGateway.controller("BusquedaAsegurados", function ($scope, Gateway, SOAPRequ
     $.get("templates/listarBenefiariosSolicitud.xml", function (template)
     {
         $scope.soapRequestMessage = SOAPRequestMessage.fromTemplate(template);
-        fillParameters($scope.soapRequestMessage);
         $scope.$apply();
         $scope.buscarAsegurados = function ()
         {

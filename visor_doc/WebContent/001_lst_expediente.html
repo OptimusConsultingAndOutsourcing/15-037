@@ -1,87 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="robots" content="noindex">
-		<title>Visor de Documentos</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css"  href="http://localhost:8094/css/style.css">
-        <link rel="stylesheet" type="text/css"  href="http://localhost:8094/css/bootstrap.min.css">
 
-		<style>
-			#DocCarousel * {
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
-			}
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="robots" content="noindex">
+	<title>Visor de Documentos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="http://localhost:8094/css/style.css">
+	<link rel="stylesheet" type="text/css" href="http://localhost:8094/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="http://localhost:8094/css/loading-bar.css">
 
-			.row {
-				margin-right: 10px;
-			}
-		</style>
-		<script src="http://localhost:8094/js/jquery.min.js"></script>
-		<script src="http://localhost:8094/js/bootstrap.min.js"></script>
-		<script src="http://localhost:8094/js/jquery.cookie.js"></script>
-		<script src="http://localhost:8094/js/angular.min.js"></script>
-		<script src="http://localhost:8094/js/angular-route.js"></script>
-		<script src="http://localhost:8094/js/angular-resource.js"></script>
-		<script src="http://localhost:8094/js/xml2json.min.js"></script>
-		<script src="http://localhost:8094/js/angular-xml.min.js"></script>
-		<script src="http://localhost:8094/js/loading-bar.js"></script>
-		<script src="http://localhost:8094/js/jquery-confirm.js"></script>
-		<script src="http://localhost:8094/js/soapgateway-module.js"></script>
-		
-		<script src="js/001_lst_expediente.js"></script>
-	</head>
-	<body style="padding-top:35px;" ng-app="SOAPGateway" ng-controller="Visor">
-		<h1>Visor de Documentos</h1>
-		<div class="modulo_app">
-			<div class="titulo_app txt_izq">
-				<label class="twhiteT">Visor de Documentos</label>
-			</div>
-			<div class="cuerpo_app">
-				<div class="container">
-					<div>
-						<div class="row" id="DocCarousel">
-							<div class="col-sm-6" id="panelDocName">
-								<!-- Menu de documentos -->
-								<ol class="tree nav">
-									<li ng-repeat="section in sections">
-										<label for="menu-{{ section.documents[0].files[0].docdCdSeccion }}">
-											<strong>{{ section.documents[0].files[0].docoDeTituloSeccion }}</strong>
+	<style>
+		#DocCarousel * {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		.row {
+			margin-right: 10px;
+		}
+	</style>
+	<script src="http://localhost:8094/js/jquery.min.js"></script>
+	<script src="http://localhost:8094/js/bootstrap.min.js"></script>
+	<script src="http://localhost:8094/js/jquery.cookie.js"></script>
+	<script src="http://localhost:8094/js/angular.min.js"></script>
+	<script src="http://localhost:8094/js/angular-route.js"></script>
+	<script src="http://localhost:8094/js/angular-resource.js"></script>
+	<script src="http://localhost:8094/js/xml2json.min.js"></script>
+	<script src="http://localhost:8094/js/angular-xml.min.js"></script>
+	<script src="http://localhost:8094/js/loading-bar.js"></script>
+	<script src="http://localhost:8094/js/jquery-confirm.js"></script>
+	<script src="http://localhost:8094/js/soapgateway-module.js"></script>
+
+	<script src="js/001_lst_expediente.js"></script>
+</head>
+
+<body style="padding-top:35px;" ng-app="SOAPGateway" ng-controller="Visor">
+	<h1>Visor de Documentos</h1>
+	<div class="modulo_app">
+		<div class="titulo_app txt_izq">
+			<label class="twhiteT">Visor de Documentos</label>
+		</div>
+		<div class="cuerpo_app">
+			<div class="container">
+				<div>
+					<div class="row" id="DocCarousel">
+						<div class="col-sm-6" id="panelDocName">
+							<!-- Menu de documentos -->
+							<ol class="tree nav">
+								<li ng-repeat="section in sections">
+									<label for="menu-{{ section.documents[0].files[0].docdCdSeccion.__text }}">
+											<strong>{{ section.documents[0].files[0].docoDeTituloSeccion.__text }}</strong>
 										</label>
-										<input type="checkbox" ng-checked="{{ $index == 0 }}" id="menu-{{ section.documents[0].files[0].docdCdSeccion }}"/>
-										<ol>
-											<li ng-class="{file: doc.files.length == 1}" ng-repeat="doc in section.documents">
-												<a ng-if="doc.files.length == 1" class="nombreDoc" title="{{ doc.files[0].docdToolTip }}" id="carousel-selector-{{ doc.files[0].id }}">{{ doc.files[0].dotdDeDocumento }}</a>
-												<div ng-if="doc.files.length > 1">
-													<label title="{{ doc.files[0].docdToolTip }}" for="menu-{{ doc.files[0].docdCdSeccion + doc.files[0].docdDotdCdDocumento }}">{{ doc.files[0].dotdDeDocumento }}</label>
-													<input type="checkbox" id="menu-{{ doc.files[0].docdCdSeccion + doc.files[0].docdDotdCdDocumento }}"/>
-													<ol>
-														<li class="file" ng-repeat="file in doc.files">
-															<a class="nombreDoc" title="{{ file.docdToolTip }}" id="carousel-selector-{{ doc.id }}">{{ file.dotdDeDocumento }} {{ file.doecNuConsecutivo }}</a>
-														</li>
-													</ol>
-												</div>
-											</li>
-										</ol>
-									</li>
-								</ol>
-							</div>
-							<!-- Visor de documentos -->
-							<div class="col-sm-6" id="panelDocDetail">
-								<div class="col-xs-12" id="slider">
-									<div class="row">
-										<div class="col-sm-12" id="carousel-bounding-box">
-											<div class="carousel slide" id="myCarousel">
-												<!-- Carrusel de Documentos -->
-												<div class="carousel-inner">
-													<div ng-repeat="file in fileList" class="item base-image" ng-class="{ 'active': $index == 0 }" data-slide-number="{{ $index }}">
-														<span>{{ file.dotdDeDocumento }}</span>
-														<br>
-														<embed ng-attr-src="{{ 'Doc?id=' + file.doecNuDocid + '&file=' + file.doecNmArchivoFs }}" width="100%" height="370px"/>
-														<!-- img src="{{ file.url }}" -->
-													</div>
+									<input type="checkbox" ng-checked="{{ $index == 0 }}" id="menu-{{ section.documents[0].files[0].docdCdSeccion.__text }}" />
+									<ol>
+										<li ng-class="{file: doc.files.length == 1}" ng-repeat="doc in section.documents">
+											<a ng-if="doc.files.length == 1" class="nombreDoc" title="{{ doc.files[0].docdToolTip.__text }}" id="carousel-selector-{{ doc.files[0].id }}">{{ doc.files[0].dotdDeDocumento.__text }}</a>
+											<div ng-if="doc.files.length > 1">
+												<label title="{{ doc.files[0].docdToolTip.__text }}" for="menu-{{ doc.files[0].docdCdSeccion.__text + doc.files[0].docdDotdCdDocumento.__text }}">{{ doc.files[0].dotdDeDocumento.__text }}</label>
+												<input type="checkbox" id="menu-{{ doc.files[0].docdCdSeccion + doc.files[0].docdDotdCdDocumento.__text }}" />
+												<ol>
+													<li class="file" ng-repeat="file in doc.files">
+														<a class="nombreDoc" title="{{ file.docdToolTip.__text }}" id="carousel-selector-{{ doc.id }}">{{ file.dotdDeDocumento.__text }} {{ file.doecNuConsecutivo.__text }}</a>
+													</li>
+												</ol>
+											</div>
+										</li>
+									</ol>
+								</li>
+							</ol>
+						</div>
+						<!-- Visor de documentos -->
+						<div class="col-sm-6" id="panelDocDetail">
+							<div class="col-xs-12" id="slider">
+								<div class="row">
+									<div class="col-sm-12" id="carousel-bounding-box">
+										<div class="carousel slide" id="myCarousel">
+											<!-- Carrusel de Documentos -->
+											<div class="carousel-inner">
+												<div ng-repeat="file in fileList" class="item base-image" ng-class="{ 'active': $index == 0 }" data-slide-number="{{ $index }}">
+													<span>{{ file.dotdDeDocumento.__text }}</span>
+													<br>
+													<embed ng-attr-src="{{ 'Doc?id=' + file.doecNuDocid.__text + '&file=' + file.doecNmArchivoFs.__text + '&pms=' + getParameter(pms) + '&aux=' + getParameter(aux) }}" width="100%" height="370px" />
+													<!-- img src="{{ file.url }}" -->
 												</div>
 											</div>
 										</div>
@@ -92,49 +94,57 @@
 					</div>
 				</div>
 			</div>
-			<div class="barraIndicadores" style="text-align:center">
-				<!-- Indicadores de Navegacion -->
-				<!--div class="contenedorInterno"-->
-				<div class="paginacion">
-					<ul id="pagination-flickr">
-						<li data-target="#myCarousel" data-slide="prev" class="previous-off">«Anterior</li>
-						<li data-target="#myCarousel" ng-repeat="file in fileList" data-slide-to="{{ $index }}" ng-class="{ 'active': $index == 0 }">
-							<a>
+		</div>
+		<div class="barraIndicadores" style="text-align:center">
+			<!-- Indicadores de Navegacion -->
+			<!--div class="contenedorInterno"-->
+			<div class="paginacion">
+				<ul id="pagination-flickr">
+					<li data-target="#myCarousel" data-slide="prev" class="previous-off">«Anterior</li>
+					<li data-target="#myCarousel" ng-repeat="file in fileList" data-slide-to="{{ $index }}" ng-class="{ 'active': $index == 0 }">
+						<a>
 								<div ng-class="{ 'inactive': $index > 0 }">{{ $index + 1 }}</div>
 							</a>
-						</li>
-						<li data-target="#myCarousel" data-slide="next" class="next-off">
-							<a href="#">Siguiente»</a>
-						</li>
-					</ul>
-				</div>
-				<!--/div-->
+					</li>
+					<li data-target="#myCarousel" data-slide="next" class="next-off">
+						<a href="#">Siguiente»</a>
+					</li>
+				</ul>
 			</div>
+			<!--/div-->
 		</div>
-		<script>
-			jQuery(document).ready(function($) {
+	</div>
+	<script>
+		jQuery(document).ready(function ($)
+		{
 
-				$('#myCarousel').carousel({
-					interval: false
-				});
-
-				//Handles the carousel thumbnails
-				$('[id^=carousel-selector-]').click(function() {
-					var id_selector = $(this).attr("id");
-					try {
-						var id = /-(\d+)$/.exec(id_selector)[1];
-						console.log(id_selector, id);
-						jQuery('#myCarousel').carousel(parseInt(id));
-					} catch (e) {
-						console.log('Regex failed!', e);
-					}
-				});
-				// When the carousel slides, auto update the text
-				$('#myCarousel').on('slid.bs.carousel', function(e) {
-					var id = $('.item.active').data('slide-number');
-					$('#carousel-text').html($('#slide-content-' + id).html());
-				});
+			$('#myCarousel').carousel({
+				interval: false
 			});
-		</script>
-	</body>
+
+			//Handles the carousel thumbnails
+			$('[id^=carousel-selector-]').click(function ()
+			{
+				var id_selector = $(this).attr("id");
+				try
+				{
+					var id = /-(\d+)$/.exec(id_selector)[1];
+					console.log(id_selector, id);
+					jQuery('#myCarousel').carousel(parseInt(id));
+				} catch (e)
+				{
+					console.log('Regex failed!', e);
+				}
+			});
+			// When the carousel slides, auto update the text
+			$('#myCarousel').on('slid.bs.carousel', function (e)
+			{
+				var id = $('.item.active').data('slide-number');
+				$('#carousel-text').html($('#slide-content-' + id).html());
+			});
+		});
+	</script>
+	<div id="loadingScreen" style="position: fixed; top:0; left:0; height: 100%; width: 100%; background-color: white; opacity: 0.5;" loading></div>
+</body>
+
 </html>
