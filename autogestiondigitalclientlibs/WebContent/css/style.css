@@ -1647,3 +1647,53 @@ input {
 .tabla_ppal td:first-child, .tabla_sub td:first-child {
     border-left: 1px solid #DDDDDC;
 }
+/* confirm Box */
+.jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box {
+    text-align: center;
+	border-radius: 10px;
+}
+.jconfirm .jconfirm-box div.jconfirm-title-c {
+    font-size: 14px;
+    color: white;
+	height: 30px;
+	padding-top: 5px;
+	background: #3F558C;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3F558C), color-stop(100%,#4C70A7));
+    background: -webkit-linear-gradient(top, #3F558C 0%, #4C70A7 100%);
+    background: -moz-linear-gradient(#3F558C, #4C70A7);
+    background: -ms-linear-gradient(top, #3F558C, #4C70A7);
+    background: -o-linear-gradient(top, #3F558C, #4C70A7);
+    background: linear-gradient(to bottom, #3F558C, #4C70A7);
+    -pie-background: linear-gradient(#3F558C, #4C70A7);
+    behavior: url(PIE.htc);
+}
+.jconfirm .jconfirm-box {
+    padding: 0;
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane {
+    margin-top: 35px;
+	padding-bottom: 30px;
+	background-repeat: no-repeat;
+	background-image: url(../images/ico/ico_info_verde.gif);
+	background-position: left top;
+	width: 480px;
+	height:auto;
+}
+div#jconfirm-box14822 {
+    color: #666;
+	text-align: left;
+    padding-left: 40px;
+}
+.jconfirm.jconfirm-white .jconfirm-box .jconfirm-buttons button.btn-default, .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button.btn-default {
+    box-shadow: none;
+    color: #333;
+    background-image: url(../images/btn_notificacion.gif);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-style: normal;
+    padding: 0 20px 0 0;
+    height: 19px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    width: 70px;
