@@ -69,10 +69,7 @@
                                                         <td width="243" align="right" class="etiqueta_form"><span ng-show="doc.files[0].docdInObligatorio.__text == 1">(<span class="asterisco">*</span>)</span> {{ doc.files[0].dotdDeDocumento.__text }}:</td>
                                                         <td width="270" align="right">
                                                             <form id="form{{ doc.files[0].docdCdSeccion.__text + $index }}" name="{{ doc.files[0].doecNuDocid.__text }}" action="upload" method="POST" enctype="multipart/form-data" ng-submit="upload('file' + doc.files[0].docdCdSeccion.__text + $index, doc)">
-                                                                <input id="file{{ doc.files[0].docdCdSeccion.__text + $index }}" type="file" required style="float: left;">
-                                                                <!--</td>
-                                                            <td width="14" align="left">
-                                                                -->
+                                                                <input id="file{{ doc.files[0].docdCdSeccion.__text + $index }}" type="file" required style="float: left;" >
                                                                 <input type="image" src="http://localhost:8094/images/ico/attach.png" class="icon_btn" style="float: left;">
                                                             </form>
                                                         </td>
