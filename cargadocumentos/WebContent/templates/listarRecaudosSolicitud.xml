@@ -4,8 +4,8 @@
     <soapenv:Body>
         <ser:listarRecaudosSolicitudSol xmlns:ser="http://xmlns.mercantilseguros.com/osb/ServicioRecaudos" xmlns:obj="http://xmlns.mercantilseguros.com/osb/ObjetosComunes">
             <ser:cabeceraSol>
-                <obj:fecha>2008-09-28</obj:fecha>
-                <obj:hora>19:18:33</obj:hora>
+                <obj:fecha></obj:fecha>
+                <obj:hora></obj:hora>
                 <!--Optional:-->
                 <obj:idSolicitud/>
                 <!--Optional:-->
@@ -31,17 +31,17 @@
             <!--Optional:-->
             <ser:piUsuario/>
             <!--Optional:-->
-            <ser:piProcesoNeg>21</ser:piProcesoNeg>
+            <ser:piProcesoNeg></ser:piProcesoNeg>
             <!--Optional:-->
-            <ser:piNameAppLlama>PORTASESOR</ser:piNameAppLlama>
+            <ser:piNameAppLlama></ser:piNameAppLlama>
             <!--Optional:-->
-            <ser:piNacionalidad>V</ser:piNacionalidad>
+            <ser:piNacionalidad></ser:piNacionalidad>
             <!--Optional:-->
-            <ser:piCiRif>6403355</ser:piCiRif>
+            <ser:piCiRif></ser:piCiRif>
             <!--Optional:-->
-            <ser:piNuSolicitud>11</ser:piNuSolicitud>
+            <ser:piNuSolicitud></ser:piNuSolicitud>
             <!--Optional:-->
-            <ser:piValorRaiz>32-340000019</ser:piValorRaiz>
+            <ser:piValorRaiz></ser:piValorRaiz>
         </ser:listarRecaudosSolicitudSol>
     </soapenv:Body>
 </soapenv:Envelope>

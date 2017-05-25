@@ -4,8 +4,8 @@
     <soapenv:Body>
         <ser:validarUploadSol xmlns:ser="http://xmlns.mercantilseguros.com/osb/ServicioRecaudos" xmlns:obj="http://xmlns.mercantilseguros.com/osb/ObjetosComunes">
             <ser:cabeceraSol>
-                <obj:fecha>2008-09-28</obj:fecha>
-                <obj:hora>19:18:33</obj:hora>
+                <obj:fecha></obj:fecha>
+                <obj:hora></obj:hora>
                 <!--Optional:-->
                 <obj:idSolicitud/>
                 <!--Optional:-->
@@ -31,15 +31,15 @@
             <!--Optional:-->
             <ser:piUsuario/>
             <!--Optional:-->
-            <ser:piTpExpediente>POL</ser:piTpExpediente>
+            <ser:piTpExpediente></ser:piTpExpediente>
             <!--Optional:-->
-            <ser:piCdExpediente>COTIZ</ser:piCdExpediente>
+            <ser:piCdExpediente></ser:piCdExpediente>
             <!--Optional:-->
-            <ser:piCdExtension>PDF</ser:piCdExtension>
+            <ser:piCdExtension></ser:piCdExtension>
             <!--Optional:-->
-            <ser:piNuSize>1000000</ser:piNuSize>
+            <ser:piNuSize></ser:piNuSize>
             <!--Optional:-->
-            <ser:piCdDocumento>5</ser:piCdDocumento>
+            <ser:piCdDocumento></ser:piCdDocumento>
         </ser:validarUploadSol>
     </soapenv:Body>
 </soapenv:Envelope>
