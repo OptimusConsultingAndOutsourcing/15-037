@@ -1696,4 +1696,14 @@ div#jconfirm-box14822 {
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    width: 70px;
+    width: 70px;	
+}
+#loadingScreen {
+    position: fixed;
+	top:0;
+	left:0;
+	height: 100%;
+	width: 100%;
+	background-color: #a3a3a3;
+	opacity: 0.5;" 
+}
