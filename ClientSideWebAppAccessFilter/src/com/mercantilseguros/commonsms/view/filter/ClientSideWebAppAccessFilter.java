@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
-import com.mercantilseguros.commonsms.domain.Productor;
 import com.mercantilseguros.commonsms.domain.UsuarioAplicacion;
 import com.mercantilseguros.commonsms.util.CommonsApplication;
 
@@ -34,6 +33,9 @@ public class ClientSideWebAppAccessFilter implements Filter
         {        
 	        response.addHeader("AuthToken", session.getId());
 			response.addCookie(new Cookie("AuthToken", session.getId()));
+			
+	        response.addHeader("contextoGlobal", new JSONObject(CommonsApplication.getContextoGlobal()).toString());
+			response.addCookie(new Cookie("contextoGlobal", new JSONObject(CommonsApplication.getContextoGlobal()).toString()));
 	        
 			UsuarioAplicacion usuario = (UsuarioAplicacion)session.getAttribute(CommonsApplication.USUARIO_APP);
 			

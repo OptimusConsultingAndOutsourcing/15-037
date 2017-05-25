@@ -27,7 +27,7 @@ jQuery(function($){
             // +/-number for offset from today, null for today
         appendText: '', // Display text following the input box, e.g. showing the format
         buttonText: 'Seleccione la Fecha', // Text for trigger button
-        buttonImage: 'http://localhost:8094/images/ico/icono-calendario.png', // URL for trigger button image
+        buttonImage: '../autogestiondigitalclientlibs/images/ico/icono-calendario.png', // URL for trigger button image
         buttonImageOnly: true, // True if the image appears alone, false if it appears on a button
         hideIfNoPrevNext: false, // True to hide next/previous month links
             // if not applicable, false to just disable them

@@ -30,7 +30,7 @@ public class DocServlet extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws IOException
 	{
-		String DOC_NOT_FOUND = request.getRequestURL().toString() + "/../http://localhost:8094/images/Docs/DOC_NOT_FOUND.jpg";
+		String DOC_NOT_FOUND = request.getRequestURL().toString() + "/../../autogestiondigitalclientlibs/images/Docs/DOC_NOT_FOUND.jpg";
 		String URL = DOC_NOT_FOUND;
 		try
 		{
