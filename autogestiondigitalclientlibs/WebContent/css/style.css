@@ -1651,6 +1651,7 @@ input {
 .jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box {
     text-align: center;
 	border-radius: 10px;
+	border: 1px solid #999;
 }
 .jconfirm .jconfirm-box div.jconfirm-title-c {
     font-size: 14px;
