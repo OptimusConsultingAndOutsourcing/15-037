@@ -1,6 +1,6 @@
 //var API_HOST = "../soapgateway/";
-var API_HOST = "http://slopr81.seguros.mercantilsf.com:8011/soapgateway/";
-//var API_HOST = "../soapgateway/";
+//var API_HOST = "http://slopr81.seguros.mercantilsf.com:8011/soapgateway/";
+var API_HOST = "../soapgateway/";
 var usuario;
 var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml', 'angular-loading-bar']).config(function (x2jsProvider, $httpProvider)
 {

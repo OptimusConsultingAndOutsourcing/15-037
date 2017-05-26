@@ -101,17 +101,20 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
             , function (response)
             {
                 var validarUploadRes = response.Envelope.Body.validarUploadRes;
-                if (validarUploadRes.cabeceraRes && !validarUploadRes.cabeceraRes.estatusError)
+                if (validarUploadRes.cabeceraRes && !validarUploadRes.cabeceraRes.estatusError 
+                    && validarUploadRes.poCdSalida && validarUploadRes.poCdSalida.__text == 0)
                 {
-                    var poDeRuta = response.Envelope.Body.validarUploadRes.poDeRuta.__text;
-
                     var xhr = new XMLHttpRequest();
                     if (xhr.upload
                         //&& (file.type == "image/jpeg" || file.type == "image/gif" || file.type == "application/pdf")
                         //&& file.size <= 10485760 
                     )
                     {
-                        doc.fileName = poDeRuta + file.name;
+                        var poDeRuta = validarUploadRes.poDeRuta.__text;
+                        doc.files[0].piNmArchivoOriginal = file.name;
+                        doc.files[0].piDeFilesystem = validarUploadRes.poDeNameFs.__text;
+                        doc.files[0].filePath = poDeRuta + doc.files[0].piDeFilesystem;
+
                         xhr.open("POST", form.action, false);
                         xhr.onreadystatechange = function (oEvent)
                         {
@@ -123,8 +126,9 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
                             }
                             else
                             {
-                                //file
-                                doc.loaded = true;
+                                $scope.actualizarRecaudo(doc, "PUBLICAR", function(){
+                                    doc.files[0].loaded = true;
+                                });
                             }
                         }
                         var formData = new FormData();
@@ -152,9 +156,24 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
 
     $scope.deleteFile = function (formInputId, doc)
     {
-        $scope.actualizarRecaudoRequestMessage.Envelope.Body.actualizarRecaudoSol.piNuExpediente.__text = doc.files[0].doedNuExpediente.__text;
-        $scope.actualizarRecaudoRequestMessage.Envelope.Body.actualizarRecaudoSol.piCdDocumento.__text = doc.files[0].docdDotdCdDocumento.__text;
-        $scope.actualizarRecaudoRequestMessage.Envelope.Body.actualizarRecaudoSol.piNuConsecutivo.__text = doc.files[0].doecNuConsecutivo.__text;
+        $scope.actualizarRecaudo(doc, "ELIMINAR", function(){
+            document.getElementById(formInputId).reset();
+            doc.files[0].loaded = false;
+        });
+    }
+
+    $scope.actualizarRecaudo = function (doc, piTipoModi, callback)
+    {
+        var actualizarRecaudoSol = $scope.actualizarRecaudoRequestMessage.Envelope.Body.actualizarRecaudoSol;
+        actualizarRecaudoSol.piCdExpediente.__text = doc.files[0].dopnDoteCdExpediente.__text;
+        actualizarRecaudoSol.piTpExpediente.__text = doc.files[0].dopnDoteCdTpExpediente.__text;
+        actualizarRecaudoSol.piNuExpediente.__text = doc.files[0].doedNuExpediente.__text;
+        actualizarRecaudoSol.piCdDocumento.__text = doc.files[0].docdDotdCdDocumento.__text;
+        actualizarRecaudoSol.piNuConsecutivo.__text = doc.files[0].doecNuConsecutivo.__text;
+        actualizarRecaudoSol.piNmArchivoOriginal.__text = doc.files[0].piNmArchivoOriginal;
+        actualizarRecaudoSol.piDeFilesystem.__text = doc.files[0].piDeFilesystem;
+        actualizarRecaudoSol.piFeRegistro.__text = new Date().toISOString().split("T")[0];
+        actualizarRecaudoSol.piTipoModi.__text = piTipoModi;
 
         Gateway.post($.param({
             SOAPRequestMessage: $scope.actualizarRecaudoRequestMessage.toXMLString(),
@@ -162,12 +181,19 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
         })
             , function (response)
             {
-                document.getElementById(formInputId).reset();
-                doc.loaded = false;
+                if(response.Envelope.Body.actualizarRecaudoRes.poCdSalida.__text == 0)
+                {
+                    callback();
+                }
+                else
+                {
+                    alert("Servicio no disponible, por favor intente de nuevo.");
+                    console.log(response.cabeceraRes.estatusFinal.__text);
+                }
             }
-            , function (response)
+            , function (response) 
             {
-                alert("No se pudo eliminar el documento, por favor intente de nuevo.");
+                alert("Servicio no disponible, por favor intente de nuevo.");
                 console.log(response.data);
             });
     }

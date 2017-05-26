@@ -4,8 +4,8 @@
     <soapenv:Body>
         <ser:actualizarRecaudoSol xmlns:ser="http://xmlns.mercantilseguros.com/osb/ServicioRecaudos" xmlns:obj="http://xmlns.mercantilseguros.com/osb/ObjetosComunes">
             <ser:cabeceraSol>
-                <obj:fecha>2008-09-28</obj:fecha>
-                <obj:hora>19:18:33</obj:hora>
+                <obj:fecha></obj:fecha>
+                <obj:hora></obj:hora>
                 <!--Optional:-->
                 <obj:idSolicitud/>
                 <!--Optional:-->
@@ -18,24 +18,24 @@
                 <obj:grupo/>
                 <!--Optional:-->
                 <obj:funcionalidad/>
-                <obj:aplicacion>PORTASESOR</obj:aplicacion>
-                <obj:usuario>V99999999</obj:usuario>
+                <obj:aplicacion></obj:aplicacion>
+                <obj:usuario></obj:usuario>
                 <obj:ip/>
                 <!--Optional:-->
                 <obj:nombreEquipo/>
             </ser:cabeceraSol>
             <!--Optional:-->
-            <ser:piFuncionalidad/>
+            <ser:piFuncionalidad>CARGA_DOC</ser:piFuncionalidad>
             <!--Optional:-->
-            <ser:piAplicacion/>
+            <ser:piAplicacion>GEST_DOCU</ser:piAplicacion>
             <!--Optional:-->
             <ser:piUsuario/>
             <!--Optional:-->
             <ser:piNuSolicitud/>
             <!--Optional:-->
-            <ser:piCdExpediente>REEM</ser:piCdExpediente>
+            <ser:piCdExpediente></ser:piCdExpediente>
             <!--Optional:-->
-            <ser:piTpExpediente>SIN</ser:piTpExpediente>
+            <ser:piTpExpediente></ser:piTpExpediente>
             <!--Optional:-->
             <ser:piNuExpediente></ser:piNuExpediente>
             <!--Optional:-->
@@ -61,7 +61,7 @@
             <!--Optional:-->
             <ser:piFeStatus></ser:piFeStatus>
             <!--Optional:-->
-            <ser:piTipoModi>PUBLICAR</ser:piTipoModi>
+            <ser:piTipoModi></ser:piTipoModi>
         </ser:actualizarRecaudoSol>
     </soapenv:Body>
 </soapenv:Envelope>

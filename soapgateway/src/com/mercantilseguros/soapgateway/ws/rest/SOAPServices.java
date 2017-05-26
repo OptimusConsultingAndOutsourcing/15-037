@@ -34,9 +34,15 @@ public class SOAPServices extends javax.ws.rs.core.Application	 {
 	@Produces({ MediaType.TEXT_XML })
 	public Response post(@FormParam("SOAPRequestMessage") String SOAPRequestMessage, @FormParam("UddiServiceRegistryName") String UddiServiceRegistryName) {
     	try 
-    	{    
+    	{   
+    		// Encoding the SOAPRequestMessage to UTF-8
+    		SOAPRequestMessage = new String(SOAPRequestMessage.getBytes(), "UTF-8");
+    		
+    		// Uncomment to MOCK UP Response
     		//Response.ok("ASDASDASD").build();
+    		
     		//logger.debug("Sign in autogestiondigital");
+    		
     		// GET & LOG SOAPRequestMessage
     		MimeHeaders header = new MimeHeaders();		
     		header.addHeader("Content-Type", "text/xml");
@@ -47,10 +53,12 @@ public class SOAPServices extends javax.ws.rs.core.Application	 {
 	        
 	        // SOAP Connection
 	        //CommonsApplication.setContextoGlobal(ApplicationFactory.createInstanceGlobalContext("C:\\Users\\arein\\Temp\\Configuracion.properties_desarrollo"));
+	        System.out.println("*** UddiServiceLookup -> UddiClient.buscarServicio -> findServices -> " + UddiServiceRegistryName);
 			UddiServiceLookup uddi = new UddiServiceLookup(UddiServiceRegistryName);
+			System.out.println("*** call: " + uddi.getEndpointUrl());
 			SOAPMessage soapResponse = SOAPConnectionFactory.newInstance().createConnection().call(soapRequestMessage, uddi.getEndpointUrl());
             
-            // GET & SEND Response
+            // GET, Encoding & SEND Response
 	        ByteArrayOutputStream out = new ByteArrayOutputStream();
             soapResponse.writeTo(out);
             return Response.ok(new String(out.toByteArray(), "UTF-8")).build();

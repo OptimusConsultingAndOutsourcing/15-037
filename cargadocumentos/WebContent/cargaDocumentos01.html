@@ -73,11 +73,11 @@
                                                                 <input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn" style="float: left;">
                                                             </form>
                                                         </td>
-                                                        <td ng-show="doc.loaded" width="22" align="left"><input id="showID" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td ng-show="doc.loaded" width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn" ng-click="deleteFile('form' + doc.files[0].docdCdSeccion.__text + $index, doc)"></td>
-                                                        <td ng-show="doc.loaded" width="20"><a href="../visor_doc/Doc?file={{ doc.fileName }}&pms={{ pms }}&aux={{ aux }}"  target="_blank"><img src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td ng-show="doc.loaded" width="17" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                        <td ng-show="doc.loaded" width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src="../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                                                        <td ng-show="doc.files[0].loaded" width="22" align="left"><input id="showID" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
+                                                        <td ng-show="doc.files[0].loaded" width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn" ng-click="deleteFile('form' + doc.files[0].docdCdSeccion.__text + $index, doc)"></td>
+                                                        <td ng-show="doc.files[0].loaded" width="20"><a href="../visor_doc/Doc?file={{ doc.files[0].filePath }}&pms={{ pms }}&aux={{ aux }}"  target="_blank"><img src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                                                        <td ng-show="doc.files[0].loaded" width="17" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                                                        <td ng-show="doc.files[0].loaded" width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src="../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="9">&nbsp;</td>
