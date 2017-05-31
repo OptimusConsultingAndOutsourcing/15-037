@@ -19,9 +19,17 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
 
+import com.mercantilseguros.commonsms.domain.GlobalContext;
+import com.mercantilseguros.commonsms.factory.ApplicationFactory;
+import com.mercantilseguros.commonsms.util.CommonsApplication;
+
+import org.apache.log4j.Logger;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.context.ApplicationContext;
+
 public class UploadServlet extends HttpServlet
 {
-
 	private static final long serialVersionUID = 1L;
 
 	// location to store file uploaded
@@ -35,79 +43,116 @@ public class UploadServlet extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		PrintWriter writer = response.getWriter();
+		Logger logger;
 		
-		String methodName = "doPost";
-
-		// logger.debug("[{}] call", methodName);
+		try
+		{
+			logger = ApplicationFactory.createInstanceLogger(UploadServlet.class.getName(), "DEBUG");
+		} 
+		catch (Exception e)
+		{
+			writer.println("The logger is not working");
+			writer.flush();
+			logger = Logger.getLogger(this.getClass());
+		}
 
 		// checks if the request actually contains upload file
 		if (!ServletFileUpload.isMultipartContent(request))
 		{
 			response.setStatus(500);
-			writer.println("Request does not contain upload data");
-			// logger.debug("[{}] Request does not contain upload data", methodName);
+			writer.println(this.getClass().getName() + ": Request does not contain upload data");
 			writer.flush();
+			logger.debug(this.getClass().getName() + ": Request does not contain upload data");
 			return;
 		}
 
 		// configures upload settings
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(MEMORY_THRESHOLD);
-		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
-		// logger.debug("[{}] factory= {} ", methodName, factory);
+		String tempDir = System.getProperty("java.io.tmpdir");
+		factory.setRepository(new File(tempDir));
+		logger.debug(this.getClass().getName() + ": DiskFileItemFactory -> java.io.tmpdir -> " + tempDir);
 
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		upload.setFileSizeMax(MAX_FILE_SIZE);
 		upload.setSizeMax(MAX_REQUEST_SIZE);
-		// logger.debug("[{}] upload= {} ", methodName, upload);
+		logger.debug(this.getClass().getName() + ": " +
+				" MEMORY_THRESHOLD -> " + MEMORY_THRESHOLD + 
+				" MAX_FILE_SIZE -> " + MAX_FILE_SIZE + 
+				" MAX_REQUEST_SIZE -> " + MAX_REQUEST_SIZE );
 
 		// constructs the directory path to store upload file
-		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+		//String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
 		
 		// creates the directory if it does not exist
-		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists())
-		{
-			uploadDir.mkdir();
-			// logger.debug("[{}] upload directory = {} ", methodName, uploadDir.mkdir());
-		}
+//		File uploadDir = new File(uploadPath);
+//		if (!uploadDir.exists())
+//		{
+//			uploadDir.mkdir();
+//			logger.debug("[{}] upload directory = {} ", methodName, uploadDir.mkdir());
+//		}
 		try
 		{
 			// parses the request's content to extract file data
 			List formItems = upload.parseRequest(request);
 			Iterator iter = formItems.iterator();
-			String fileSystem = null;
-			File storeFile = null;
+			String fileDirectory = null;
 			String fileName = null;
+			FileItem fileItem = null;
 
+			logger.debug(this.getClass().getName() + ": READING FIELDS.");
 			// iterates over form's fields
 			while (iter.hasNext())
 			{
 				FileItem item = (FileItem) iter.next();
 				if (!item.isFormField())
 				{
-					fileName = new File(item.getName()).getName();
-					String filePath = uploadPath + File.separator + fileName;
-					storeFile = new File(filePath);
-
-					// saves the file on disk
-					item.write(storeFile);
+					fileItem = item;
 				}
-				else if(item.getFieldName().equals("poDeRuta"))
+				else if(item.getFieldName().equals("fileDirectory"))
 				{
-					fileSystem = item.getString();
+					fileDirectory = item.getString();
+				}
+				else if(item.getFieldName().equals("fileName"))
+				{
+					fileName = item.getString();
 				}
 			}
-			
-			if(storeFile.renameTo(new File(fileSystem + fileName)))
+
+			File uploadDir = new File(fileDirectory);
+			if (!uploadDir.exists())
 			{
-				writer.println("Upload has been done successfully!");
+				uploadDir.mkdir();
+				logger.debug(this.getClass().getName() + ": BUILDING: " + fileDirectory);
 			}
-			else
+			String filePath = fileDirectory + fileName;
+
+			logger.debug(this.getClass().getName() + ": WRITTING FILE TO: " + filePath);
+			try
 			{
-				response.setStatus(202);
+				//String fileName = new File(item.getName()).getName();
+				//String filePath = uploadPath + File.separator + fileName;
+				File storeFile = new File(filePath);
+	
+				// Saves the file on disk
+				fileItem.write(storeFile);
+			}
+			catch(Exception ex)
+			{
+				//response.setStatus(202);
+				response.sendError(202, ex.getMessage());
 				writer.println("File uploaded but there was something wrong moving it to the fileSystem!");
-			}
+			} 
+			
+//			if(storeFile.renameTo(new File(filePath)))
+//			{
+//				writer.println("Upload has been done successfully!");
+//			}
+//			else
+//			{
+//				response.setStatus(202);
+//				writer.println("File uploaded but there was something wrong moving it to the fileSystem!");
+//			}
 			// logger.debug("[{}] Upload has been done successfully! ", methodName);
 		} 
 		catch (Exception ex)

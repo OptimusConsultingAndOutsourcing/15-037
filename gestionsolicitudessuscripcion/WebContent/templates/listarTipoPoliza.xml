@@ -1,0 +1,37 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Header xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  </soap:Header>
+  <soapenv:Body>
+    <ser:listarRefCodesSol xmlns:ser="http://xmlns.mercantilseguros.com/osb/ServicioUtilities/" xmlns:obj="http://xmlns.mercantilseguros.com/osb/ObjetosComunes">
+      <ser:cabeceraSol>
+        <obj:fecha></obj:fecha>
+        <obj:hora></obj:hora>
+        <!--Optional:-->
+        <obj:idSolicitud/>
+        <!--Optional:-->
+        <obj:idCompensacion/>
+        <!--Optional:-->
+        <obj:canal/>
+        <!--Optional:-->
+        <obj:comunidad/>
+        <!--Optional:-->
+        <obj:grupo/>
+        <!--Optional:-->
+        <obj:funcionalidad/>
+        <obj:aplicacion/>
+        <obj:usuario/>
+        <obj:ip/>
+        <!--Optional:-->
+        <obj:nombreEquipo/>
+      </ser:cabeceraSol>
+      <!--Optional:-->
+      <ser:dominio>CART_POLIZAS.CAPO_TP_POLIZA</ser:dominio>
+      <!--Optional:-->
+      <ser:type/>
+      <!--Optional:-->
+      <ser:highValue/>
+      <!--Optional:-->
+      <ser:lowValue/>
+    </ser:listarRefCodesSol>
+  </soapenv:Body>
+</soapenv:Envelope>

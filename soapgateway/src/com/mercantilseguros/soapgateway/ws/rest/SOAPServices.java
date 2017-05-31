@@ -35,6 +35,8 @@ public class SOAPServices extends javax.ws.rs.core.Application	 {
 	public Response post(@FormParam("SOAPRequestMessage") String SOAPRequestMessage, @FormParam("UddiServiceRegistryName") String UddiServiceRegistryName) {
     	try 
     	{   
+    		//return Response.serverError().type("text/plain").entity("asdasdasd").build();
+    		
     		// Encoding the SOAPRequestMessage to UTF-8
     		SOAPRequestMessage = new String(SOAPRequestMessage.getBytes(), "UTF-8");
     		

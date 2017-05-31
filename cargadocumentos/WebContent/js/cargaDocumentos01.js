@@ -16,12 +16,12 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
                 })
                     , function (response)
                     {
-                        if ((response.Envelope.Body.listarRecaudosSolicitudRes.poSalida)
-                            && (response.Envelope.Body.listarRecaudosSolicitudRes.poSalida.__text == "0")
-                            && (response.Envelope.Body.listarRecaudosSolicitudRes.poListaConsulta.docoListaConsulta))
+                        if ((response.poSalida)
+                            && (response.poSalida.__text == "0")
+                            && (response.poListaConsulta.docoListaConsulta))
                         {
                             var id = 0;
-                            $scope.fileList = response.Envelope.Body.listarRecaudosSolicitudRes.poListaConsulta.docoListaConsulta.map(function (file)
+                            $scope.fileList = response.poListaConsulta.docoListaConsulta.map(function (file)
                             {
                                 file.doecNmArchivoFs = encodeURIComponent(file.doecNmArchivoFs);
                                 file.id = id;
@@ -30,11 +30,6 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
                             });
                             $scope.builtree();
                         }
-                    }
-                    , function (response)
-                    {
-                        console.log(response.data);
-                        window.location.replace("error.html");
                     });
             });
         });
@@ -100,7 +95,7 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
         })
             , function (response)
             {
-                var validarUploadRes = response.Envelope.Body.validarUploadRes;
+                var validarUploadRes = response;
                 if (validarUploadRes.cabeceraRes && !validarUploadRes.cabeceraRes.estatusError 
                     && validarUploadRes.poCdSalida && validarUploadRes.poCdSalida.__text == 0)
                 {
@@ -132,7 +127,8 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
                             }
                         }
                         var formData = new FormData();
-                        formData.append("poDeRuta", poDeRuta);
+                        formData.append("fileDirectory", poDeRuta);
+                        formData.append("fileName", doc.files[0].piDeFilesystem);
                         formData.append("thefile", file);
                         alert("turn on LOADING SCREEN");
                         xhr.send(formData);
@@ -181,7 +177,7 @@ SOAPGateway.controller("Carga", function ($scope, Gateway, SOAPRequestMessage)
         })
             , function (response)
             {
-                if(response.Envelope.Body.actualizarRecaudoRes.poCdSalida.__text == 0)
+                if(response.poCdSalida.__text == 0)
                 {
                     callback();
                 }

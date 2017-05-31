@@ -15,7 +15,7 @@ SOAPGateway.controller("BusquedaAsegurados", function ($scope, Gateway, SOAPRequ
                 }),
                     function (response)
                     {
-                        $scope.listaBeneficiarios = response.Envelope.Body.listarBeneficiariosSolicitudRes;
+                        $scope.listaBeneficiarios = response;
                         if (!$scope.listaBeneficiarios.carcListaBenef)
                         {
                             $.alert({
@@ -27,11 +27,6 @@ SOAPGateway.controller("BusquedaAsegurados", function ($scope, Gateway, SOAPRequ
                         {
                             $scope.listaBeneficiarios = $scope.listaBeneficiarios.carcListaBenef.caroListaBenefArray;
                         }
-                    },
-                    function (response)
-                    {
-                        console.log(response.data);
-                        window.location.replace("error.html");
                     });
             }
         }
@@ -44,12 +39,7 @@ SOAPGateway.controller("BusquedaAsegurados", function ($scope, Gateway, SOAPRequ
         }),
             function (response)
             {
-                $scope.nacionalidades = response.Envelope.Body.listarRefCodesRes.valorRetorno.cgRefCodes;
-            },
-            function (response)
-            {
-                console.log(response.data);
-                window.location.replace("error.html");
+                $scope.nacionalidades = response.valorRetorno.cgRefCodes;
             });
     });
 });

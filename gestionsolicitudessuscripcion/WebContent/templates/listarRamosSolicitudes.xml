@@ -1,0 +1,39 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Header xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  </soap:Header>
+  <soapenv:Body>
+    <ser:listarRamosSolicitudesSol xmlns:ser="http://xmlns.mercantilseguros.com/osb/ServicioRamos" xmlns:obj="http://xmlns.mercantilseguros.com/osb/ObjetosComunes">
+      <ser:cabeceraSol>
+        <obj:fecha></obj:fecha>
+        <obj:hora></obj:hora>
+        <!--Optional:-->
+        <obj:idSolicitud/>
+        <!--Optional:-->
+        <obj:idCompensacion/>
+        <!--Optional:-->
+        <obj:canal/>
+        <!--Optional:-->
+        <obj:comunidad/>
+        <!--Optional:-->
+        <obj:grupo/>
+        <!--Optional:-->
+        <obj:funcionalidad/>
+        <obj:aplicacion/>
+        <obj:usuario/>
+        <obj:ip/>
+        <!--Optional:-->
+        <obj:nombreEquipo/>
+      </ser:cabeceraSol>
+      <!--Optional:-->
+      <ser:lineaNegocio/>
+      <!--Optional:-->
+      <ser:tpPoliza/>
+      <!--Optional:-->
+      <ser:cdFuncionalidad>GSS</ser:cdFuncionalidad>
+      <!--Optional:-->
+      <ser:cdAplicacion></ser:cdAplicacion>
+      <!--Optional:-->
+      <ser:cdUsuario></ser:cdUsuario>
+    </ser:listarRamosSolicitudesSol>
+  </soapenv:Body>
+</soapenv:Envelope>

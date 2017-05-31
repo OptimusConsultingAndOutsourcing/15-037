@@ -9,12 +9,12 @@ SOAPGateway.controller("Visor", function ($scope, Gateway, SOAPRequestMessage)
                 })
         , function (response)
         {
-            if ((response.Envelope.Body.consultarDocumentosRes.poSalida)
-            && (response.Envelope.Body.consultarDocumentosRes.poSalida.__text == "0")
-            && (response.Envelope.Body.consultarDocumentosRes.poListaConsulta.docoListaConsulta))
+            if ((response.poSalida)
+            && (response.poSalida.__text == "0")
+            && (response.poListaConsulta.docoListaConsulta))
             {
                 var id = 0;
-                $scope.fileList = response.Envelope.Body.consultarDocumentosRes.poListaConsulta.docoListaConsulta.map(function (file)
+                $scope.fileList = response.poListaConsulta.docoListaConsulta.map(function (file)
                 {
                     file.doecNmArchivoFs = encodeURIComponent(file.doecNmArchivoFs);
                     file.id = id;
@@ -23,11 +23,7 @@ SOAPGateway.controller("Visor", function ($scope, Gateway, SOAPRequestMessage)
                 });
                 $scope.builtree();
             }
-        }, function (response)
-            {
-                console.log(response.data);
-                window.location.replace("error.html");
-            });
+        });
     });
     $scope.builtree = function ()
     {
