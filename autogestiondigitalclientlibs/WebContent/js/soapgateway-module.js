@@ -10,16 +10,62 @@ function errorController(errorData)
 }
 
 var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml', 'angular-loading-bar'])
-	.factory('httpErrorInterceptor', function ($q)
+	.factory('Gateway', function ($resource)
+	{
+		return $resource(API_HOST + "rest/soap", {}, {
+			post: {
+				method: "POST"
+			}
+		});
+	}).factory('httpErrorInterceptor', function ($q, x2js)
 	{
 		return {
+			request: function (config)
+			{
+				if(config.method == "POST" && config.data.Envelope)
+				{
+					config.data = $.param({
+						UddiServiceRegistryName: config.data.UddiServiceRegistryName, 
+						SOAPRequestMessage: config.data.toXMLString()
+					})
+					return config;
+				}
+				else
+				{
+					return config;
+				}
+			},
 			response: function (response)
 			{
-				response.data = getRes(response.data.Envelope.Body);
-				if(response.data.cabeceraRes.estatusError && response.data.cabeceraRes.estatusError.codigo.__text == "1")
+				if(response.data.Envelope)
 				{
-					errorController(response.data.cabeceraRes.descripcion.__text);
-					$q.reject(response);
+					if(response.config.method == "POST")
+					{
+						response.data = getRes(response.data.Envelope.Body);
+						if(response.data.cabeceraRes.estatusError && response.data.cabeceraRes.estatusFinal.__text == "fallotecnico")
+						{
+							errorController(response.data.cabeceraRes.descripcion.__text);
+							$q.reject(response);
+						}
+						else
+						{
+							return response;
+						}
+					}
+					else
+					{
+						response.data.toXMLString = function ()
+						{
+							var temp = jQuery.extend({}, this);
+							delete temp.$promise;
+							delete temp.$resolved;
+							delete temp.UddiServiceRegistryName;
+							return x2js.json2xml_str(temp);
+						};
+						fillParameters(response.data);
+						response.data.UddiServiceRegistryName = response.config.params.UddiServiceRegistryName;
+						return response;
+					}
 				}
 				else
 				{
@@ -95,18 +141,6 @@ var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml',
 				return SOAPRequestMessage;
 			}
 		};
-	})
-	.factory('Gateway', function ($resource)
-	{
-		return $resource(API_HOST + "rest/soap/post", {}, {
-			post: {
-				method: "POST", 
-				params: {
-					SOAPRequestMessage: "@SOAPRequestMessage", 
-					UddiServiceRegistryName: "@UddiServiceRegistryName"
-				}
-			}
-		});
 	});
 
 function getServerVariable(name)
@@ -147,22 +181,28 @@ function getParameter(name, url)
 			return usuario ? usuario.datosUsuario.codigo : null;
 		case "aplicacion":
 		case "cdAplicacion":
+		case "piAplicacion":
 		case "piCdAplicacion":
 			return usuario ? usuario.codAplicacion : null;
 		default:
-			if (!url)
-			{
-				url = window.location.href;
-			}
-			name = name.replace(/[\[\]]/g, "\\$&");
-			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
-				, results = regex.exec(url);
-			if (!results)
-				return null;
-			if (!results[2])
-				return '';
-			return decodeURIComponent(results[2].replace(/\+/g, " "));
+			return getQueryString(name, url);
 	}
+}
+
+function getQueryString(name, url)
+{
+	if (!url)
+	{
+		url = window.location.href;
+	}
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
+		, results = regex.exec(url);
+	if (!results)
+		return null;
+	if (!results[2])
+		return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 function fillParameters(target)
@@ -189,10 +229,10 @@ function fillParameters(target)
 
 function getRes(Body)
 {
-	var firstProp;
 	for(var key in Body) {
 		if(Body.hasOwnProperty(key)) {
-			return firstProp = Body[key];
+			//delete Body[key].__prefix;
+			return Body[key];
 		}
 	}
 }

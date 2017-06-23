@@ -18,11 +18,13 @@ import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
+import com.mercantilseguros.commonsms.factory.ApplicationFactory;
 import com.mercantilseguros.uddi.UddiServiceLookup;
 
 public class DocServlet extends HttpServlet{
@@ -30,12 +32,24 @@ public class DocServlet extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws IOException
 	{
+		Logger logger;
+		
+		try
+		{
+			logger = ApplicationFactory.createInstanceLogger(request.getContextPath().substring(1) + ".log", "DEBUG");
+		} 
+		catch (Exception e)
+		{
+			logger = Logger.getLogger(this.getClass());
+		}
+
 		String DOC_NOT_FOUND = request.getRequestURL().toString() + "/../../autogestiondigitalclientlibs/images/Docs/DOC_NOT_FOUND.jpg";
 		String URL = DOC_NOT_FOUND;
 		try
 		{
 			String id = request.getParameter("id");
-			if(id != "" && id != null)
+			logger.debug(this.getClass().getName() + ": doc id: " + id);
+			if(!id.equals("") && id != null)
 			{
 				URL = getURL(id);
 			}
@@ -43,6 +57,7 @@ public class DocServlet extends HttpServlet{
 			{
 				URL = "file:" + request.getParameter("file"); // C:\\Users\\arein\\OneDrive\\Pictures\\villa-bora-bora-3.jpg
 			}
+			logger.debug(this.getClass().getName() + ": doc URL: " + URL);
 			String ext = URL.toLowerCase().substring(URL.lastIndexOf('.') + 1);
 			if (ext.equals("pdf"))
 			{
@@ -63,22 +78,26 @@ public class DocServlet extends HttpServlet{
 				}
 			}
 			response.setHeader("Content-Disposition", "filename=\"documento." + ext + "\"");
-	
+
+			logger.debug(this.getClass().getName() + ": opening File!");
 	        URL urlConn = new URL(URL);
 	        InputStream inputStream = urlConn.openStream();
 	        ServletOutputStream servletOutputStream = response.getOutputStream();
 	        
 	        int readBytes = 0;
-	        
+
+			logger.debug(this.getClass().getName() + ": readingBytes!");
 		    while ((readBytes = inputStream.read()) != -1) {
 		  		servletOutputStream.write(readBytes);
 		    }
-	
+
+			logger.debug(this.getClass().getName() + ": closing OutputStream!");
 		    servletOutputStream.close();
 	        inputStream.close();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			logger.error(this.getClass().getName() + ": ERROR: " + e.getMessage());
 			response.sendRedirect(DOC_NOT_FOUND);
 		}
 	}

@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="C:/Users/arein/Code/Java/Mercantil/autogestiondigital/documents/src/main/webapp/WEB-INF/lib/java-json.jar"/>
 	<classpathentry kind="lib" path="C:/Oracle/Middleware_WL6/user_projects/domains/base_domain/lib/ClientSideWebAppAccessFilter.jar"/>
 	<classpathentry kind="lib" path="C:/Oracle/Middleware_WL6/user_projects/domains/base_domain/lib/uddi.jar"/>
+	<classpathentry kind="lib" path="C:/Oracle/Middleware_WL6/user_projects/domains/base_domain/lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

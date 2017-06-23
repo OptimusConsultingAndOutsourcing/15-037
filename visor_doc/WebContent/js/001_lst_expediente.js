@@ -1,13 +1,12 @@
-SOAPGateway.controller("Visor", function ($scope, Gateway, SOAPRequestMessage)
+SOAPGateway.controller("Visor", function ($scope, Gateway)
 {
-    $.get("templates/ConsultarDocumentosSOAPRequestMessageTemplate.xml", function (template)
+    Gateway.get({ UddiServiceRegistryName: "ServicioRecaudos", OperationElementName: "consultarDocumentosSol" }, function (operation)
     {
-        $scope.soapRequestMessage = SOAPRequestMessage.fromTemplate(template);
-        Gateway.post($.param({
-                    SOAPRequestMessage: $scope.soapRequestMessage.toXMLString(),
-                    UddiServiceRegistryName: "ServicioRecaudos"
-                })
-        , function (response)
+        operation.Envelope.Body.consultarDocumentosSol.piFuncionalidad.__text = "VISOR_DOC";
+        operation.Envelope.Body.consultarDocumentosSol.piAplicacion.__text = "GEST_DOCU";
+        operation.Envelope.Body.consultarDocumentosSol.cabeceraSol.funcionalidad.__text = "VISOR_DOC";
+        //operation.Envelope.Body.consultarDocumentosSol.cabeceraSol.aplicacion.__text = "GEST_DOCU";
+        operation.$post(function(response)
         {
             if ((response.poSalida)
             && (response.poSalida.__text == "0")
@@ -16,7 +15,7 @@ SOAPGateway.controller("Visor", function ($scope, Gateway, SOAPRequestMessage)
                 var id = 0;
                 $scope.fileList = response.poListaConsulta.docoListaConsulta.map(function (file)
                 {
-                    file.doecNmArchivoFs = encodeURIComponent(file.doecNmArchivoFs);
+                    file.doecNmArchivoFs.__text = encodeURIComponent(file.doecNmArchivoFs.__text);
                     file.id = id;
                     id++;
                     return file;

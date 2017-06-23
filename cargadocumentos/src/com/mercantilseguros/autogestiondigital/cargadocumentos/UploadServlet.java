@@ -47,7 +47,7 @@ public class UploadServlet extends HttpServlet
 		
 		try
 		{
-			logger = ApplicationFactory.createInstanceLogger(UploadServlet.class.getName(), "DEBUG");
+			logger = ApplicationFactory.createInstanceLogger(request.getContextPath().substring(1) + ".log", "DEBUG");
 		} 
 		catch (Exception e)
 		{
@@ -76,10 +76,10 @@ public class UploadServlet extends HttpServlet
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		upload.setFileSizeMax(MAX_FILE_SIZE);
 		upload.setSizeMax(MAX_REQUEST_SIZE);
-		logger.debug(this.getClass().getName() + ": " +
+		logger.debug(this.getClass().getName() + ":" +
 				" MEMORY_THRESHOLD -> " + MEMORY_THRESHOLD + 
-				" MAX_FILE_SIZE -> " + MAX_FILE_SIZE + 
-				" MAX_REQUEST_SIZE -> " + MAX_REQUEST_SIZE );
+				" / MAX_FILE_SIZE -> " + MAX_FILE_SIZE + 
+				" / MAX_REQUEST_SIZE -> " + MAX_REQUEST_SIZE );
 
 		// constructs the directory path to store upload file
 		//String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;

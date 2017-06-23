@@ -5,15 +5,16 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceRoot}"
+            "port": 9222,
+            "url": "http://localhost:7001/gestionsolicitudessuscripcion/001_tra_registro_solicitud.html",
+            "webRoot": "${workspaceRoot}/gestionsolicitudessuscripcion/WebContent"
         },
         {
             "type": "chrome",
             "request": "attach",
             "name": "Attach to Chrome",
             "port": 9222,
-            "url": "http://localhost:7001/gestionsolicitudessuscripcion/*",
+            "url": "http://localhost:7001/gestionsolicitudessuscripcion/001_tra_registro_solicitud.html",
             "webRoot": "${workspaceRoot}/gestionsolicitudessuscripcion/WebContent"
         }
     ]
