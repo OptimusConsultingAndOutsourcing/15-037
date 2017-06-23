@@ -1648,13 +1648,15 @@ input {
     border-left: 1px solid #DDDDDC;
 }
 /* confirm Box */
+
 .jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box {
     text-align: center;
 	border-radius: 10px;
 	border: 1px solid #999;
+	padding: 0px;
 }
 .jconfirm .jconfirm-box div.jconfirm-title-c {
-    font-size: 14px;
+    font-size: 14px !important;
     color: white;
 	height: 30px;
 	padding-top: 5px;
@@ -1673,6 +1675,8 @@ input {
 }
 .jconfirm .jconfirm-box div.jconfirm-content-pane {
     margin-top: 35px;
+	margin-left: 15px;
+    padding-right: 35px;
 	padding-bottom: 30px;
 	background-repeat: no-repeat;
 	background-image: url(../images/ico/ico_info_verde.gif);
@@ -1683,13 +1687,12 @@ input {
 div#jconfirm-box14822 {
     color: #666;
 	text-align: left;
-    padding-left: 40px;
+    padding-left: 40px !important;
 }
 .jconfirm.jconfirm-white .jconfirm-box .jconfirm-buttons button.btn-default, .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button.btn-default {
     box-shadow: none;
-    color: #333;
     background-image: url(../images/btn_notificacion.gif);
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     font-size: 12px;
     font-style: normal;
     padding: 0 20px 0 0;
@@ -1699,12 +1702,43 @@ div#jconfirm-box14822 {
     cursor: pointer;
     width: 70px;	
 }
+.jconfirm.jconfirm-white .jconfirm-box .jconfirm-buttons, .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons {
+    float: none;
+}
+
+/* Loading Bar */
 #loadingScreen {
     position: fixed;
 	top:0;
 	left:0;
 	height: 100%;
 	width: 100%;
-	background-color: #a3a3a3;
+	background-color: #a3a3a3 !important;
 	opacity: 0.5;" 
+}
+#loading-bar, #loading-bar-spinner {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#loading-bar-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+#loading-bar-spinner span {
+    color:#004E9B;
+	font-weight:bold;
+    float: right;
+    padding-left: 20px;
+    line-height: 24px;
+}
+#loading-bar-spinner .spinner-icon {
+    width: 24px;
+    height: 24px;
+    border: 4px solid transparent;
+    border-top-color: #89b127;
+    border-left-color: #89b127;
+    float: left;
 }
