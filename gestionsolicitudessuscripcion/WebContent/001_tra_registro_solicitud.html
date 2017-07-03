@@ -65,467 +65,471 @@
 <body style="padding-top:35px; margin-bottom:35px;" ng-app="SOAPGateway" ng-controller="001_tra_registro_solicitud">
 
 
+  <form ng-submit="generarSolicitudFunction()">
+    <div id="contenido">
+      <div id="colPpalUnica">
 
-  <div id="contenido">
-    <div id="colPpalUnica">
+        <h1>Registro de solicitudes</h1>
 
-      <h1>Registro de solicitudes</h1>
+        <div class="modulo_app" id="fieldsetContent">
+          <div class="titulo_app txt_izq">
+            <label class="twhiteT">Datos de la Solicitud</label>
+          </div>
+          <div class="cuerpo_app">
+            <table width="100%" align="center">
+              <tbody>
+                <tr>
+                  <td>
 
-      <div class="modulo_app" id="fieldsetContent">
-        <div class="titulo_app txt_izq">
-          <label class="twhiteT">Datos de la Solicitud</label>
-        </div>
-        <div class="cuerpo_app">
-          <table width="100%" align="center">
-            <tbody>
-              <tr>
-                <td>
+                    <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
 
-                  <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1">
+                      <tr>
+                        <td>
+                          <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
 
-                    <tr>
-                      <td>
-                        <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
-
-                          <tr>
-                            <td width="242">
-                              <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
-                                <tr>
-                                  <td class="etiqueta_form" width="30%"><span class="asterisco">*</span> Línea de Negocios:</td>
-                                  <td width="30%" align="left">
-                                    <select name="lineaNegocio" id="lineaNegocio" style="width:30%;" class="combos" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdLineNegocio.__text" ng-options="option.rvLowValue.__text as option.rvMeaning.__text for option in lineas" required ng-change="listarRamos()">
+                            <tr>
+                              <td width="242">
+                                <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+                                  <tr>
+                                    <td class="etiqueta_form" width="30%"><span class="asterisco">*</span> Línea de Negocios:</td>
+                                    <td width="30%" align="left">
+                                      <select name="lineaNegocio" id="lineaNegocio" style="width:30%;" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdLineNegocio.__text" ng-options="option.value as option.label for option in lineas">
                                       <!-- -->
-                <option selected="selected" value="">Seleccione...</option>
-               </select>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form"><span class="asterisco">*</span> Tipo de Póliza:</td>
-                                  <td align="left">
-                                    <select name="poliza" id="poliza" style="width:30%;" class="combos" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpPoliza.__text" ng-options="option.rvLowValue.__text as option.rvMeaning.__text for option in tiposPoliza" required ng-change="listarRamos()">
-              <option selected="selected" value="">Seleccione...</option>
-              </select>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form"><span class="asterisco">*</span> Ramo:</td>
-                                  <td align="left">
-                                    <select name="ramo" id="ramo" style="width:30%;" class="combos" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCapuCarpCdRamo.__text" ng-options="option.stlrCarpCdRamo.__text as option.stlrDeRamo.__text for option in ramos" required>
-              <option selected="selected" value="">Seleccione...</option>
-              </select>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form"><span class="asterisco">*</span> Producto:</td>
-                                  <td align="left">
-                                    <select name="producto" id="producto" style="width:30%;" class="combos" required>
-              <option selected="selected" value="">Seleccione...</option>
-             </select>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form"><span class="asterisco">*</span> Tipo de Solicitud:</td>
-                                  <td align="left">
-                                    <select name="tipoSolicitud" id="tipoSolicitud" style="width:30%;" class="combos" required>
-              <option selected="selected" value="">Seleccione...</option>
-            </select>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form"><span class="asterisco">*</span> Movimiento:</td>
-                                  <td align="left">
-                                    <select name="movimiento" id="movimiento" style="width:30%;" class="combos" required>
-              <option selected="selected" value="">Seleccione...</option>
-            </select>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form"><span class="asterisco">*</span> Sucursal:</td>
-                                  <td align="left">
-                                    <select name="sucursal" id="sucursal" style="width:30%;" class="combos" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdSucursal.__text" ng-options="option.casuCdSucursal.__text as option.casuDeSucursal.__text for option in sucursales" required>
-              <option selected="selected" value="">Seleccione...</option>
-            </select>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form">Negocio Referido:</td>
-                                  <td align="left">
-                                    <input type="radio" name="negocioReferido" value="si" checked> Si&nbsp;
-                                    <input type="radio" name="negocioReferido" value="no"> No
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form">Número de Referimiento:</td>
-                                  <td align="left"><input type="number" id="referimiento" class="combos" tabindex="2" value=""></td>
-                                </tr>
+                                      <option selected="selected" value="">Seleccione...</option>
+                                    </select>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form"><span class="asterisco">*</span> Tipo de Póliza:</td>
+                                    <td align="left">
+                                      <select name="poliza" id="poliza" style="width:30%;" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpPoliza.__text" ng-options="option.value as option.label for option in tiposPoliza">
+                                      <option selected="selected" value="">Seleccione...</option>
+                                      </select>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form"><span class="asterisco">*</span> Ramo:</td>
+                                    <td align="left">
+                                      <select name="ramo" id="ramo" style="width:30%;" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCapuCarpCdRamo.__text" ng-options="option.value as option.label for option in ramos">
+                                      <option selected="selected" value="">Seleccione...</option>
+                                      </select>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form"><span class="asterisco">*</span> Producto:</td>
+                                    <td align="left">
+                                      <select name="producto" id="producto" style="width:30%;" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdProducto.__text" ng-options="option.value as option.label for option in productos">
+                                      <option selected="selected" value="">Seleccione...</option>
+                                    </select>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form"><span class="asterisco">*</span> Tipo de Solicitud:</td>
+                                    <td align="left">
+                                      <select name="tipoSolicitud" id="tipoSolicitud" style="width:30%;" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpSolicitud.__text" ng-options="option.value as option.label for option in tiposSolicitud">
+                                      <option selected="selected" value="">Seleccione...</option>
+                                    </select>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form"><span class="asterisco">*</span> Movimiento:</td>
+                                    <td align="left">
+                                      <select name="movimiento" id="movimiento" style="width:30%;" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpMovimiento.__text" ng-options="option.value as option.label for option in movimientos">
+                                      <option selected="selected" value="">Seleccione...</option>
+                                    </select>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form"><span class="asterisco">*</span> Sucursal:</td>
+                                    <td align="left">
+                                      <select name="sucursal" id="sucursal" style="width:30%;" class="combos" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdSucursal.__text" ng-options="option.value as option.label for option in sucursales" required>
+                                      <option selected="selected" value="">Seleccione...</option>
+                                    </select>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form">Negocio Referido:</td>
+                                    <td align="left">
+                                      <input type="radio" name="negocioReferido" value="si" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInReferidos.__text"> Si&nbsp;
+                                      <input type="radio" name="negocioReferido" value="no" checked ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInReferidos.__text"> No
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form">Número de Referimiento:</td>
+                                    <td align="left"><input type="text" id="referimiento" class="combos" tabindex="2" maxlength="20" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuReferimiento.__text"></td>
+                                  </tr>
 
-                              </table>
-                            </td>
-                          </tr>
+                                </table>
+                              </td>
+                            </tr>
 
-                        </table>
+                          </table>
 
-                      </td>
-                    </tr>
+                        </td>
+                      </tr>
 
-                    <!-- Datos Adicionales de Cotizacion -->
+                      <!-- Datos Adicionales de Cotizacion -->
 
-                    <tr>
-                      <td colspan="8" class="titulo_interno">
-                        <label class="twhiteT" style="text-align:left">Datos Adicionales Cotización</label></td>
-                    </tr>
-                    <tr>
-                      <td colspan="8">&nbsp;</td>
-                    </tr>
+                      <div ng-show="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdLineNegocio.__text">
 
-                    <tr>
-                      <td>
-                        <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
-                          <tr>
-                            <td width="242">
-                              <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+                        <tr>
+                          <td colspan="8" class="titulo_interno">
+                            <label class="twhiteT" style="text-align:left">Datos Adicionales Cotización</label></td>
+                        </tr>
+                        <tr>
+                          <td colspan="8">&nbsp;</td>
+                        </tr>
 
-                                <tr>
-                                  <td class="etiqueta_form">¿Es una licitación?:</td>
-                                  <td align="left">
-                                    <input type="radio" name="licitacion" value="si" checked> Si
-                                    <input type="radio" name="lIcitacion" value="no"> No
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td width="30%" class="etiqueta_form"> Índole:</td>
-                                  <td width="30%" align="left">
-                                    <select name="indole" id="indole" style="width:30%;" class="combos">
-              <option selected="selected" value="">Seleccione...</option>
-             </select>&nbsp;&nbsp;<img id="help" border="none" class="puntero" src="../autogestiondigitalclientlibs/images/ayuda.gif" title="Información">
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form">Cantidad de Asegurados:</td>
-                                  <td align="left"><input type="number" id="asegurados" value="" class="combos"></td>
-                                </tr>
-                                <tr>
-                                  <td colspan="2" class="etiqueta_form">&nbsp;</td>
-                                </tr>
+                        <tr>
+                          <td>
+                            <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+                              <tr>
+                                <td width="242">
+                                  <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
 
-                              </table>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
+                                    <tr>
+                                      <td class="etiqueta_form">¿Es una licitación?:</td>
+                                      <td align="left">
+                                        <input type="radio" name="licitacion" value="si" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInLicitacion.__text"> Si
+                                        <input type="radio" name="lIcitacion" value="no" checked required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInLicitacion.__text"> No
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td width="30%" class="etiqueta_form"> Índole:</td>
+                                      <td width="30%" align="left">
+                                        <select name="indole" id="indole" style="width:30%;" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnIndole.__text" ng-options="option.value as option.label for option in indoles">
+                                      <option selected="selected" value="">Seleccione...</option>
+                                    </select>&nbsp;&nbsp;<img id="help" border="none" class="puntero" src="../autogestiondigitalclientlibs/images/ayuda.gif" title="Información">
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="etiqueta_form">Cantidad de Asegurados:</td>
+                                      <td align="left"><input type="number" id="asegurados" maxlength="5" class="combos" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCantOperaciones.__text"></td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="2" class="etiqueta_form">&nbsp;</td>
+                                    </tr>
 
-                    <!-- Datos Adicionales del Solicitante -->
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
 
-                    <tr>
-                      <td colspan="8" class="titulo_interno">
-                        <label class="twhiteT" style="text-align:left">Datos del Solicitante</label></td>
-                    </tr>
+                      </div>
 
-                    <tr>
-                      <td colspan="8">&nbsp;</td>
-                    </tr>
+                      <!-- Datos Adicionales del Solicitante -->
 
-                    <tr>
-                      <td>
-                        <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
-                          <tr>
-                            <td width="242">
-                              <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+                      <tr>
+                        <td colspan="8" class="titulo_interno">
+                          <label class="twhiteT" style="text-align:left">Datos del Solicitante</label></td>
+                      </tr>
 
-                                <tr>
-                                  <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Cédula o Rif:</td>
-                                  <td width="30%" align="left">
-                                    <select name="id" id="id" class="combo-peq">
-                <option selected="selected" value="">Seleccione...</option>
-                </select>
-                                    <input id="id" value="" class="combo-med2" required></td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form"><span class="asterisco">*</span> Nombre:</td>
-                                  <td align="left"><input type="text" id="nombre" value="" class="combos" required></td>
-                                </tr>
-                                <tr>
+                      <tr>
+                        <td colspan="8">&nbsp;</td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+                            <tr>
+                              <td width="242">
+                                <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+
+                                  <tr>
+                                    <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Cédula o Rif:</td>
+                                    <td width="30%" align="left">
+                                      <select name="id" id="id" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdNacionalidadSol.__text" ng-options="option.value as option.label for option in nacionalidades">
+                                        <option selected="selected" value="">Seleccione...</option>
+                                        </select>
+                                      <input id="id" maxlength="9" class="combo-med2" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCedulaSol.__text"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form"><span class="asterisco">*</span> Nombre:</td>
+                                    <td align="left"><input type="text" id="nombre" maxlength="60" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNmSolicitante.__text"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form"><span class="asterisco">*</span> Correo Electrónico 1:</td>
+                                    <td align="left"><input type="email" id="correo1" maxlength="120" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdEmail1Sol.__text"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form">Correo Electrónico 2:</td>
+                                    <td align="left"><input type="mail" id="correo2" maxlength="120" class="combos" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdEmail2Sol.__text"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form">Teléfono Local:</td>
+                                    <td align="left">
+                                      <select name="telLocalCod" id="telLocalCod" tabindex="2" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdAreaHabSol.__text" ng-options="option.value as option.label for option in codigosArea">
+                                        <option selected="selected" value="">Seleccione...</option>
+                                      </select>
+                                      <input id="telLocal" maxlength="15" class="combo-med2" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuTelefonoHabSol.__text">
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form">Teléfono Celular:</td>
+                                    <td align="left">
+                                      <select name="telCelCod" id="telCelCod" tabindex="2" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdAreaHabSol.__text" ng-options="option.value as option.label for option in codigosCelular">
+                                        <option selected="selected" value="" >Seleccione...</option>
+                                      </select>
+                                      <input id="telCel2" maxlength="15" class="combo-med2" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCelularSol.__text"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form">¿Tomador diferente al cliente (Titular)?:</td>
+                                    <td align="left">
+                                      <input type="radio" name="titular" value="si" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text"> Si
+                                      <input type="radio" name="titular" value="no" checked required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text"> No
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <!-- Datos Adicionales de la Persona a Contactar -->
+
+                      <tr>
+                        <td colspan="8" class="titulo_interno">
+                          <label class="twhiteT" style="text-align:left">Datos de la Persona a Contactar</label></td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="8">&nbsp;</td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+                            <tr>
+                              <td width="242">
+                                <table width="90%" border="0" align="center" cellspacing="6" y cellpadding="1">
+
+                                  <tr>
+                                    <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Persona a Contactar:</td>
+                                    <td width="30%" align="left"><input type="text" id="nombreContacto" maxlength="60" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNmPersonaContacto.__text" class="combos" required></td>
+                                  </tr>
+                                  <tr>
+                                    <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Correo Electrónico 1:</td>
+                                    <td width="30%" align="left"><input type="email" id="correo1Contacto" maxlength="120" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdEmail1Contacto.__text" class="combos" required></td>
+                                  </tr>
+                                  <tr>
+                                    <td width="30%" class="etiqueta_form">Correo Electrónico 2:</td>
+                                    <td width="30%" align="left"><input type="email" id="correo2Contanto" maxlength="120" class="combos" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdEmail2Contacto.__text"></td>
+                                  </tr>
+                                  <tr>
+                                    <td width="30%" class="etiqueta_form">Teléfono Local:</td>
+                                    <td width="30%" align="left">
+                                      <select name="telLocal" id="telLocal" tabindex="2" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdAreaHabContacto.__text" ng-options="option.value as option.label for option in codigosArea">
+                                        <option selected="selected" value="">Seleccione...</option>
+                                      </select>
+                                      <input id="telLocal" maxlength="15" class="combo-med2" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuTelefHabContacto.__text">
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td width="30%" class="etiqueta_form">Teléfono Celular:</td>
+                                    <td width="30%" align="left">
+                                      <select name="telCel" id="telCel" tabindex="2" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdAreaCelContacto.__text" ng-options="option.value as option.label for option in codigosCelular">
+                                        <option selected="selected" value="" >Seleccione...</option>
+                                      </select>
+                                      <input id="telCel" maxlength="15" class="combo-med2" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCelularContacto.__text">
+                                    </td>
+                                  </tr>
+
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <!-- Datos Adicionales del Tomador -->
+
+                      <tr>
+                        <td colspan="8" class="titulo_interno"><label class="twhiteT" style="text-align:left">Datos del Tomador</label></td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="8">&nbsp;</td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
+                            <tr>
+                              <td width="242">
+                                <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
+
+                                  <tr>
+                                    <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Cédula o Rif:</td>
+                                    <td width="30%" align="left">
+                                      <select name="idTomador" id="idTomador" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdNacionalidadToma.__text" ng-options="option.value as option.label for option in nacionalidades">
+                                        <option selected="selected" value="">Seleccione...</option>
+                                        </select>
+                                      <input id="idTomador" maxlength="9" class="combo-med2" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCedulaToma.__text"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="etiqueta_form"><span class="asterisco">*</span> Nombre:</td>
+                                    <td align="left"><input type="text" id="nombreTomador" maxlength="60" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNmTomador.__text"></td>
+                                  </tr>
+                                  <!--<tr>
                                   <td class="etiqueta_form"><span class="asterisco">*</span> Correo Electrónico 1:</td>
-                                  <td align="left"><input type="email" id="correo1" value="" class="combos" required></td>
+                                  <td align="left"><input type="email" id="correo1Tomador" value="" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuReferimiento.__text"></td>
                                 </tr>
                                 <tr>
                                   <td class="etiqueta_form">Correo Electrónico 2:</td>
-                                  <td align="left"><input type="mail" id="correo2" value="" class="combos"></td>
+                                  <td align="left"><input type="email" id="correo2Tomador" value="" class="combos" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuReferimiento.__text"></td>
                                 </tr>
                                 <tr>
                                   <td class="etiqueta_form">Teléfono Local:</td>
                                   <td align="left">
-                                    <select name="telLocalCod" id="telLocalCod" tabindex="2" class="combo-peq">
-                <option selected="selected" value="">0212</option>
-              </select>
-                                    <input id="telLocal" value="" class="combo-med2">
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form">Teléfono Celular:</td>
-                                  <td align="left">
-                                    <select name="telCelCod" id="telCelCod" tabindex="2" class="combo-peq">
-                <option selected="selected" value="" >0412</option>
-              </select>
-                                    <input id="telCel2" value="" class="combo-med2"></td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form">¿Tomador diferente al cliente (Titular)?:</td>
-                                  <td align="left">
-                                    <input type="radio" name="titular" value="si" checked> Si
-                                    <input type="radio" name="titular" value="no"> No
-                                  </td>
-                                </tr>
-                              </table>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-
-                    <!-- Datos Adicionales de la Persona a Contactar -->
-
-                    <tr>
-                      <td colspan="8" class="titulo_interno">
-                        <label class="twhiteT" style="text-align:left">Datos de la Persona a Contactar</label></td>
-                    </tr>
-
-                    <tr>
-                      <td colspan="8">&nbsp;</td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
-                          <tr>
-                            <td width="242">
-                              <table width="90%" border="0" align="center" cellspacing="6" y cellpadding="1">
-
-                                <tr>
-                                  <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Persona a Contactar:</td>
-                                  <td width="30%" align="left"><input type="text" id="nombreContacto" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNmPersonaContacto.__text" class="combos" required></td>
-                                </tr>
-                                <tr>
-                                  <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Correo Electrónico 1:</td>
-                                  <td width="30%" align="left"><input type="email" id="correo1Contacto" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdEmail1Contacto.__text" class="combos" required></td>
-                                </tr>
-                                <tr>
-                                  <td width="30%" class="etiqueta_form">Correo Electrónico 2:</td>
-                                  <td width="30%" align="left"><input type="email" id="correo2Contanto" value="" class="combos"></td>
-                                </tr>
-                                <tr>
-                                  <td width="30%" class="etiqueta_form">Teléfono Local:</td>
-                                  <td width="30%" align="left">
-                                    <select name="telLocal" id="telLocal" tabindex="2" class="combo-peq">
-                <option selected="selected" value="">0212</option>
-              </select>
-                                    <input id="telLocal" value="" class="combo-med2">
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td width="30%" class="etiqueta_form">Teléfono Celular:</td>
-                                  <td width="30%" align="left">
-                                    <select name="telCel" id="telCel" tabindex="2" class="combo-peq">
-                <option selected="selected" value="" >0412</option>
-              </select>
-                                    <input id="telCel" value="" class="combo-med2">
-                                  </td>
-                                </tr>
-
-                              </table>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-
-                    <!-- Datos Adicionales del Solicitante -->
-
-                    <tr>
-                      <td colspan="8" class="titulo_interno"><label class="twhiteT" style="text-align:left">Datos del Tomador</label></td>
-                    </tr>
-
-                    <tr>
-                      <td colspan="8">&nbsp;</td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
-                          <tr>
-                            <td width="242">
-                              <table width="90%" border="0" align="center" cellspacing="6" cellpadding="1">
-
-                                <tr>
-                                  <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Cédula o Rif:</td>
-                                  <td width="30%" align="left">
-                                    <select name="idTomador" id="idTomador" class="combo-peq">
-                <option selected="selected" value="">Seleccione...</option>
-                </select>
-                                    <input id="idTomador" value="" class="combo-med2" required></td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form"><span class="asterisco">*</span> Nombre:</td>
-                                  <td align="left"><input type="text" id="nombreTomador" value="" class="combos" required></td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form"><span class="asterisco">*</span> Correo Electrónico 1:</td>
-                                  <td align="left"><input type="email" id="correo1Tomador" value="" class="combos" required></td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form">Correo Electrónico 2:</td>
-                                  <td align="left"><input type="email" id="correo2Tomador" value="" class="combos"></td>
-                                </tr>
-                                <tr>
-                                  <td class="etiqueta_form">Teléfono Local:</td>
-                                  <td align="left">
-                                    <select name="telLocalCod" id="telLocalCod" tabindex="2" class="combo-peq">
-                <option selected="selected" value="">0212</option>
-              </select>
+                                    <select name="telLocalCod" id="telLocalCod" tabindex="2" class="combo-peq" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdLineNegocio.__text" ng-options="option.value as option.label for option in codigosArea">
+                                        <option selected="selected" value="">0212</option>
+                                      </select>
                                     <input type="number" id="telLocal" value="" class="combo-med2">
                                   </td>
                                 </tr>
                                 <tr>
                                   <td class="etiqueta_form">Teléfono Celular:</td>
                                   <td align="left">
-                                    <select name="telCelCod" id="telCelCod" tabindex="2" class="combo-peq">
-                <option selected="selected" value="" >0412</option>
-              </select>
+                                    <select name="telCelCod" id="telCelCod" tabindex="2" class="combo-peq" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdLineNegocio.__text" ng-options="option.value as option.label for option in codigosCelular">
+                                        <option selected="selected" value="" >0412</option>
+                                      </select>
                                     <input type="number" id="telCel" value="" class="combo-med2">
                                   </td>
                                 </tr>
                                 <tr>
                                   <td class="etiqueta_form">¿Tomador diferente al cliente (Titular)?:</td>
                                   <td align="left">
-                                    <input type="radio" name="titular" value="si" checked> Si
-                                    <input type="radio" name="titular" value="no"> No
+                                    <input type="radio" name="titular" value="si" checked ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuReferimiento.__text"> Si
+                                    <input type="radio" name="titular" value="no" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuReferimiento.__text"> No
                                   </td>
-                                </tr>
-                              </table>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
+                                </tr>-->
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
 
 
-                  </table>
+                    </table>
 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="z_izq2">
+        <p class="info2">
+          <span class="etiqueta_form">(</span><span class="asterisco">* </span><span class="etiqueta_form"> )</span>
+          <span class="etiqueta_form"> Datos Obligatorios</span>
+        </p>
+      </div>
+    </div>
+
+
+
+    <div id="botones">
+      <table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
+        <tbody>
+          <tr>
+
+            <td width="120px" align="right">
+              <div class="btn_row">
+                <div class="btn_iz" align="center"></div>
+                <div class="btn_cent">
+                  <input type="submit" tabindex="14" value="Limpiar" id="btnLimpiar" class="puntero" onClick="return limpiarFormSiniestros();"></div>
+                <div class="btn_der"></div>
+              </div>
+            </td>
+            <td width="120px" align="center">
+              <div class="btn_row">
+                <div class="btn_iz" align="center"></div>
+                <div class="btn_cent"><input type="button" tabindex="14" value="Guardar" id="continuar" class="puntero" data-toggle="modal" data-target="#guardar"></div>
+                <div class="btn_der"></div>
+              </div>
+            </td>
+            <td width="120px" align="left">
+              <div class="btn_row">
+                <div class="btn_iz" align="center"></div>
+                <div class="btn_cent"><input type="submit" tabindex="14" value="Continuar" id="continuar" class="puntero"></div>
+                <div class="btn_der"></div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+  <!-- Modal Guardar -->
+  <div class="modal fade" id="guardar" tabindex="-1" role="dialog" aria-labelledby="guardar" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="titulo_app txt_izq">
+          <label class="twhiteT">Confirmación</label>
+        </div>
+        <div class="modal-body">
+          <div style="float:left; margin-right:10px; padding-bottom:30px;"><img src="../autogestiondigitalclientlibs/images/ico/ico_info_verde.gif" width="23" height="23" alt="Info"> </div>
+          <div>Estimado usuario la información cargada será guardada y podrá ser retomada en otra oportunidad. ¿Desea continuar con esta operación?</div>
+        </div>
+        <div class="modal-footer">
+          <table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
+            <tbody>
+              <tr>
+                <td width="120px" align="right">
+                  <div class="btn_row">
+                    <div class="btn_iz" align="center"></div>
+                    <div class="btn_cent">
+                      <input type="submit" tabindex="14" value="Cancelar" id="cancelar" class="puntero" data-dismiss="modal"></div>
+                    <div class="btn_der"></div>
+                  </div>
+                </td>
+                <td width="15px"></td>
+                <td width="120px" align="left">
+                  <div class="btn_row">
+                    <div class="btn_iz" align="center"></div>
+                    <div class="btn_cent"><input type="submit" tabindex="14" value="Aceptar" id="aceptar" class="puntero"></div>
+                    <div class="btn_der"></div>
+                  </div>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-
       </div>
-
-    </div>
-    <div class="z_izq2">
-      <p class="info2">
-        <span class="etiqueta_form">(</span><span class="asterisco">* </span><span class="etiqueta_form"> )</span>
-        <span class="etiqueta_form"> Datos Obligatorios</span>
-      </p>
     </div>
   </div>
 
+  <script>
+    $(document).ready(function ()        
+    {
+      $("#showID").click(function ()
+      {
+        $("#newID").show();
+      });
 
+      $("#showEdoCivil").click(function ()
+      {
+        $("#newEdoCivil").show();
+      });
+      $("#showSiniestro").click(function ()
+      {
+        $("#newSiniestro").show();
+      });
 
-  <div id="botones">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
-      <tbody>
-        <tr>
-
-          <td width="120px" align="right">
-            <div class="btn_row">
-              <div class="btn_iz" align="center"></div>
-              <div class="btn_cent">
-                <input type="submit" tabindex="14" value="Limpiar" id="btnLimpiar" class="puntero" onClick="return limpiarFormSiniestros();"></div>
-              <div class="btn_der"></div>
-            </div>
-          </td>
-          <td width="120px" align="center">
-            <div class="btn_row">
-              <div class="btn_iz" align="center"></div>
-              <div class="btn_cent"><input type="submit" tabindex="14" value="Guardar" id="continuar" class="puntero" data-toggle="modal" data-target="#guardar"></div>
-              <div class="btn_der"></div>
-            </div>
-          </td>
-          <td width="120px" align="left">
-            <div class="btn_row">
-              <div class="btn_iz" align="center"></div>
-              <div class="btn_cent"><input type="submit" tabindex="14" value="Continuar" id="continuar" class="puntero" onclick="location.href='Suscripcion-RecaudosSolicitud.html';"></div>
-              <div class="btn_der"></div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div>
-
-      <!-- Modal Guardar -->
-      <div class="modal fade" id="guardar" tabindex="-1" role="dialog" aria-labelledby="guardar" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="titulo_app txt_izq">
-              <label class="twhiteT">Confirmación</label>
-            </div>
-            <div class="modal-body">
-              <div style="float:left; margin-right:10px; padding-bottom:30px;"><img src="../autogestiondigitalclientlibs/images/ico/ico_info_verde.gif" width="23" height="23" alt="Info"> </div>
-              <div>Estimado usuario la información cargada será guardada y podrá ser retomada en otra oportunidad. ¿Desea continuar con esta operación?</div>
-            </div>
-            <div class="modal-footer">
-              <table cellspacing="0" cellpadding="0" border="0" align="center" width="360px">
-                <tbody>
-                  <tr>
-                    <td width="120px" align="right">
-                      <div class="btn_row">
-                        <div class="btn_iz" align="center"></div>
-                        <div class="btn_cent">
-                          <input type="submit" tabindex="14" value="Cancelar" id="cancelar" class="puntero" data-dismiss="modal"></div>
-                        <div class="btn_der"></div>
-                      </div>
-                    </td>
-                    <td width="15px"></td>
-                    <td width="120px" align="left">
-                      <div class="btn_row">
-                        <div class="btn_iz" align="center"></div>
-                        <div class="btn_cent"><input type="submit" tabindex="14" value="Aceptar" id="aceptar" class="puntero"></div>
-                        <div class="btn_der"></div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <script>
-        $(document).ready(function ()        
-        {
-          $("#showID").click(function ()
-          {
-            $("#newID").show();
-          });
-
-          $("#showEdoCivil").click(function ()
-          {
-            $("#newEdoCivil").show();
-          });
-          $("#showSiniestro").click(function ()
-          {
-            $("#newSiniestro").show();
-          });
-
-          $("#showInforme").click(function ()          
-          {
-            $("#newInforme").show();
-          });
-        });
-      </script>
-      <div id="loadingScreen" loading></div>
+      $("#showInforme").click(function ()          
+      {
+        $("#newInforme").show();
+      });
+    });
+  </script>
+  <div id="loadingScreen" loading></div>
 </body>
 
 </html>

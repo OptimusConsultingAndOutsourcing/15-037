@@ -1,12 +1,12 @@
 SOAPGateway.controller("Carga", function ($scope, Gateway)
 {
-    Gateway.get({ UddiServiceRegistryName: "ServicioRecaudos", OperationElementName: "validarUploadSol" }, function (operation)
+    Gateway.get({ UddiServiceRegistryName: "http://slopr03123.mercantilseguros.com:17011/underlying/oracledb/rector/serviciorecaudos/ServicioRecaudos", OperationElementName: "validarUploadSol" }, function (operation)
     {
         $scope.validarUploadRequestMessage = operation;
         $scope.validarUploadRequestMessage.Envelope.Body.validarUploadSol.piFuncionalidad.__text = "CARGA_DOC";
         $scope.validarUploadRequestMessage.Envelope.Body.validarUploadSol.piAplicacion.__text = "GEST_DOCU";
 
-        Gateway.get({ UddiServiceRegistryName: "ServicioRecaudos", OperationElementName: "actualizarRecaudoSol" }, function (operation)
+        Gateway.get({ UddiServiceRegistryName: "http://slopr03123.mercantilseguros.com:17011/underlying/oracledb/rector/serviciorecaudos/ServicioRecaudos", OperationElementName: "actualizarRecaudoSol" }, function (operation)
         {
             $scope.actualizarRecaudoRequestMessage = operation;
             $scope.actualizarRecaudoRequestMessage.Envelope.Body.actualizarRecaudoSol.piFuncionalidad.__text = "CARGA_DOC";
@@ -69,6 +69,20 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
             return {
                 documents: $scope.documents.filter(function (doc)
                 {
+                    doc.files.sort(function(a, b) 
+                    {
+                        return a.doecNuConsecutivo.__text - b.doecNuConsecutivo.__text;
+                    });
+
+                    if( doc.files.filter(function(file)
+                        { 
+                            return file.docdNuRepeticiones.__text == file.doecNuConsecutivo.__text;
+                        })
+                        .length <= 0)
+                    {
+                        doc.files[doc.files.length - 1].showDuplicateButton = true;
+                    }
+
                     return doc.files[0].docdCdSeccion.__text == docdCdSeccion;
                 })
             };
@@ -91,7 +105,7 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
         $scope.validarUploadRequestMessage.Envelope.Body.validarUploadSol.piCdExtension.__text = (file.name.match(/\./g) || []).length > 0 ? file.name.split('.')[(file.name.match(/\./g) || []).length] : "";
         $scope.validarUploadRequestMessage.Envelope.Body.validarUploadSol.piNuSize.__text = file.size;
 
-        $scope.validarUploadRequestMessage.$post(function (response)
+        Gateway.post($scope.validarUploadRequestMessage, function (response)
         {
             var validarUploadRes = response;
             if (validarUploadRes.cabeceraRes && !validarUploadRes.cabeceraRes.estatusError 
@@ -111,7 +125,7 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
                     xhr.open("POST", form.action, false);
                     xhr.onreadystatechange = function (oEvent)
                     {
-                        alert("turn off LOADING SCREEN");
+                        //alert("turn off LOADING SCREEN");
                         if (xhr.status >= 400)
                         {
                             alert("No se pudo cargar el archivo, por favor intente de nuevo");
@@ -128,7 +142,7 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
                     formData.append("fileDirectory", poDeRuta);
                     formData.append("fileName", doc.files[0].piDeFilesystem);
                     formData.append("thefile", file);
-                    alert("turn on LOADING SCREEN");
+                    //alert("turn on LOADING SCREEN");
                     xhr.send(formData);
                 }
                 else
@@ -169,9 +183,9 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
         actualizarRecaudoSol.piFeRegistro.__text = new Date().toISOString().split("T")[0];
         actualizarRecaudoSol.piTipoModi.__text = piTipoModi;
 
-        $scope.actualizarRecaudoRequestMessage.$post(function (response)
+        Gateway.post($scope.actualizarRecaudoRequestMessage, function (response)
         {
-            if(response.poCdSalida.__text == 0)
+            if(response.poCdSalida && response.poCdSalida.__text == 0)
             {
                 callback();
             }
@@ -186,6 +200,18 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
             alert("Servicio no disponible, por favor intente de nuevo.");
             console.log(response.data);
         });
+    }
+
+    $scope.duplicateFile = function(doc, file)
+    {
+        delete file.showDuplicateButton;
+        
+        var copy = jQuery.extend({}, file);
+        copy.loaded = false;
+        copy.doecNuConsecutivo.__text = parseInt(file.doecNuConsecutivo.__text) + 1;
+        copy.showDuplicateButton = copy.docdNuRepeticiones.__text != copy.doecNuConsecutivo.__text;
+
+        doc.files.push(copy);
     }
 
 });

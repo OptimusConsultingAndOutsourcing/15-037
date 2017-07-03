@@ -62,22 +62,23 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <table width="690" border="0" align="center" cellpadding="1" cellspacing="1">
+                                                <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" ng-repeat="doc in section.documents">
                                                     <!-- Recaudo1 Seccion 1 -->
-                                                    <tr ng-repeat="doc in section.documents">
+                                                    <tr ng-repeat="file in doc.files track by $index">
                                                         <td width="5">&nbsp;</td>
-                                                        <td width="243" align="right" class="etiqueta_form"><span ng-show="doc.files[0].docdInObligatorio.__text == 1">(<span class="asterisco">*</span>)</span> {{ doc.files[0].dotdDeDocumento.__text }}:</td>
+                                                        <td width="243" align="right" class="etiqueta_form"><span ng-show="file.docdInObligatorio.__text == 1">(<span class="asterisco">*</span>)</span> {{ file.dotdDeDocumento.__text }}:</td>
                                                         <td width="270" align="right">
-                                                            <form id="form{{ doc.files[0].docdCdSeccion.__text + $index }}" name="{{ doc.files[0].doecNuDocid.__text }}" action="upload" method="POST" enctype="multipart/form-data" ng-submit="upload('file' + doc.files[0].docdCdSeccion.__text + $index, doc)">
-                                                                <input id="file{{ doc.files[0].docdCdSeccion.__text + $index }}" type="file" required style="float: left;" >
+                                                            <form id="form{{ 'Section' + $parent.$parent.$index + 'Doc' + $parent.$index + 'File' + $index }}" name="{{ file.doecNuDocid.__text }}" action="upload" method="POST" enctype="multipart/form-data" ng-submit="upload('file' + 'Section' + $parent.$parent.$index + 'Doc' + $parent.$index + 'File' + $index, doc)">
+                                                                <input id="file{{ 'Section' + $parent.$parent.$index + 'Doc' + $parent.$index + 'File' + $index }}" type="file" required style="float: left;" >
                                                                 <input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn" style="float: left;">
                                                             </form>
                                                         </td>
-                                                        <td ng-show="doc.files[0].loaded" width="22" align="left"><input id="showID" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn"></td>
-                                                        <td ng-show="doc.files[0].loaded" width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn" ng-click="deleteFile('form' + doc.files[0].docdCdSeccion.__text + $index, doc)"></td>
-                                                        <td ng-show="doc.files[0].loaded" width="20"><a href="../visor_doc/Doc?file={{ doc.files[0].filePath }}&pms={{ pms }}&aux={{ aux }}"  target="_blank"><img src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
-                                                        <td ng-show="doc.files[0].loaded" width="17" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                        <td ng-show="doc.files[0].loaded" width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src="../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>
+                                                        <td ng-show="file.loaded && file.showDuplicateButton" width="22" align="left"><input id="showID" type="image" src="../autogestiondigitalclientlibs/images/ico/img_mas.png" class="icon_btn" ng-click="duplicateFile(doc, file)"></td>
+                                                        <td ng-show="file.loaded" width="20"><input type="image" src="../autogestiondigitalclientlibs/images/ico/eliminar.gif" class="icon_btn" ng-click="deleteFile('form' + 'Section' + $parent.$parent.$index + 'Doc' + $parent.$index + 'File' + $index, doc)"></td>
+                                                        <td ng-show="file.loaded" width="20"><a href="../visor_doc/Doc?file={{ file.filePath }}&pms={{ pms }}&aux={{ aux }}"  target="_blank"><img src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></td>
+                                                        <!--<td ng-show="file.loaded" width="17" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
+                                                        <td ng-show="file.loaded" width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src="../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>-->
+                                                        <td ng-show="file.loaded" width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src="../autogestiondigitalclientlibs/images/alerta_peq.gif" title="Información"><span>Esta es una información.</span></a></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="9">&nbsp;</td>

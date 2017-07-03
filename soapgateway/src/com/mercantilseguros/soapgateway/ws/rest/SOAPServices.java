@@ -53,7 +53,7 @@ import com.mercantilseguros.uddi.UddiServiceLookup;
 public class SOAPServices extends javax.ws.rs.core.Application
 {
 
-	// final static Logger logger = //
+	private static Logger logger;// = //
 	// Logger.getLogger(AutogestionDigitalServices.class);
 	
 	
@@ -102,14 +102,26 @@ public class SOAPServices extends javax.ws.rs.core.Application
 	//@Path("/operation")
 	@GET
 	@Produces({ MediaType.TEXT_XML })
-	public Response getOperationRequestMessage(@QueryParam("UddiServiceRegistryName") String UddiServiceRegistryName, @QueryParam("OperationElementName") String OperationElementName)
+	public Response getOperationRequestMessage(@QueryParam("UddiServiceRegistryName") String UddiServiceRegistryName, @QueryParam("OperationElementName") String OperationElementName, @QueryParam("LogName") String LogName)
 	{
+		try
+		{
+			logger = ApplicationFactory.createInstanceLogger(LogName + ".log", "DEBUG");
+//			logger.getRootLogger().getAppender("FA").ro
+		} 
+		catch (Exception e)
+		{
+			System.out.println("The logger is not working");
+			logger = Logger.getLogger(this.getClass());
+		}
+		
 		try
 		{
 			// GET UDDI
 			String endPointUrl = "";
 			if (UddiServiceRegistryName.indexOf("http://") <= -1)
 			{
+				logger.debug(this.getClass().getName() + ": UddiServiceLookup: " + UddiServiceRegistryName);
 				UddiServiceLookup uddi = new UddiServiceLookup(UddiServiceRegistryName);
 				endPointUrl = uddi.getEndpointUrl();
 			}
@@ -118,6 +130,7 @@ public class SOAPServices extends javax.ws.rs.core.Application
 				endPointUrl = UddiServiceRegistryName;
 				UddiServiceRegistryName = UddiServiceRegistryName.substring(UddiServiceRegistryName.lastIndexOf("/") + 1);
 			}
+			logger.debug(this.getClass().getName() + ": " + UddiServiceRegistryName + ": " + OperationElementName + ": endPointUrl: " + endPointUrl);
 
 			// SOAP Message
 			MessageFactory messageFactory = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
@@ -207,6 +220,8 @@ public class SOAPServices extends javax.ws.rs.core.Application
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			soapMessage.writeTo(out);
 			String strMsg = new String(out.toByteArray());
+			
+			logger.debug(this.getClass().getName() + ": " + UddiServiceRegistryName + ": " + OperationElementName + ": SOAP REQUEST MESSAGE TEMPLATE: " + strMsg);
 
 			return Response.ok(strMsg).build();
 		} 
@@ -247,8 +262,18 @@ public class SOAPServices extends javax.ws.rs.core.Application
 	//@Path("/post")
 	@POST
 	@Produces({ MediaType.TEXT_XML })
-	public Response post(@FormParam("UddiServiceRegistryName") String UddiServiceRegistryName, @FormParam("SOAPRequestMessage") String SOAPRequestMessage)
+	public Response post(@FormParam("UddiServiceRegistryName") String UddiServiceRegistryName, @FormParam("OperationElementName") String OperationElementName, @FormParam("SOAPRequestMessage") String SOAPRequestMessage, @FormParam("LogName") String LogName)
 	{
+		try
+		{
+			logger = ApplicationFactory.createInstanceLogger(LogName + ".log", "DEBUG");
+		} 
+		catch (Exception e)
+		{
+			System.out.println("The logger is not working");
+			logger = Logger.getLogger(this.getClass());
+		}
+		
 		try
 		{
 			// return
@@ -269,12 +294,16 @@ public class SOAPServices extends javax.ws.rs.core.Application
 			System.out.println("*** " + UddiServiceRegistryName + ": SOAP REQUEST MESSAGE ***");
 			soapRequestMessage.writeTo(System.out);
 			System.out.println();
+			ByteArrayOutputStream soapRequestMessageOut = new ByteArrayOutputStream();
+			soapRequestMessage.writeTo(soapRequestMessageOut);
+			logger.debug(this.getClass().getName() + ": " + UddiServiceRegistryName + ": " + OperationElementName + ": SOAP REQUEST MESSAGE: " + new String(soapRequestMessageOut.toByteArray(), "UTF-8"));
 
 			// SOAP Connection
 			// CommonsApplication.setContextoGlobal(ApplicationFactory.createInstanceGlobalContext("C:\\Users\\arein\\Temp\\Configuracion.properties_desarrollo"));
 			String endPointUrl = "";
 			if (UddiServiceRegistryName.indexOf("http://") <= -1)
 			{
+				logger.debug(this.getClass().getName() + ": UddiServiceLookup: " + UddiServiceRegistryName);
 				UddiServiceLookup uddi = new UddiServiceLookup(UddiServiceRegistryName);
 				endPointUrl = uddi.getEndpointUrl();
 			}
@@ -283,12 +312,14 @@ public class SOAPServices extends javax.ws.rs.core.Application
 				endPointUrl = UddiServiceRegistryName;
 				UddiServiceRegistryName = UddiServiceRegistryName.substring(UddiServiceRegistryName.lastIndexOf("/") + 1);
 			}
-			System.out.println("*** call: " + endPointUrl);
+			System.out.println("*** calling: " + endPointUrl);
+			logger.debug(this.getClass().getName() + ": " + UddiServiceRegistryName + ": " + OperationElementName + ": calling: " + endPointUrl);
 			SOAPMessage soapResponse = SOAPConnectionFactory.newInstance().createConnection().call(soapRequestMessage, endPointUrl);
 
 			// GET, Encoding & SEND Response
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			soapResponse.writeTo(out);
+			logger.debug(this.getClass().getName() + ": " + UddiServiceRegistryName + ": " + OperationElementName + ": SOAP RESPONSE MESSAGE: " + new String(out.toByteArray(), "UTF-8"));
 			return Response.ok(new String(out.toByteArray(), "UTF-8")).build();
 		} 
 		catch (Exception ex)

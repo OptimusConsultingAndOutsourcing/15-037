@@ -1,6 +1,6 @@
 //var API_HOST = "../soapgateway/";
-//var API_HOST = "http://slopr81.seguros.mercantilsf.com:8011/soapgateway/";
-var API_HOST = "../soapgateway/";
+var API_HOST = "http://slopr81.seguros.mercantilsf.com:8011/soapgateway/";
+//var API_HOST = "../soapgateway/";
 var usuario;
 
 function errorController(errorData)
@@ -17,7 +17,8 @@ var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml',
 				method: "POST"
 			}
 		});
-	}).factory('httpErrorInterceptor', function ($q, x2js)
+	})
+	.factory('httpErrorInterceptor', function ($q, x2js)
 	{
 		return {
 			request: function (config)
@@ -26,12 +27,18 @@ var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml',
 				{
 					config.data = $.param({
 						UddiServiceRegistryName: config.data.UddiServiceRegistryName, 
-						SOAPRequestMessage: config.data.toXMLString()
+						OperationElementName: config.data.OperationElementName, 
+						SOAPRequestMessage: config.data.toXMLString(), 
+						LogName: window.location.pathname.split( '/' )[1]
 					})
 					return config;
 				}
 				else
 				{
+					if(config.method == "GET")
+					{
+						config.params.LogName = window.location.pathname.split( '/' )[1];
+					}
 					return config;
 				}
 			},
@@ -60,10 +67,12 @@ var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml',
 							delete temp.$promise;
 							delete temp.$resolved;
 							delete temp.UddiServiceRegistryName;
+							delete temp.OperationElementName;
 							return x2js.json2xml_str(temp);
 						};
 						fillParameters(response.data);
 						response.data.UddiServiceRegistryName = response.config.params.UddiServiceRegistryName;
+						response.data.OperationElementName = response.config.params.OperationElementName;
 						return response;
 					}
 				}
@@ -229,13 +238,29 @@ function fillParameters(target)
 
 function getRes(Body)
 {
+	Body = cleanObj(Body);
 	for(var key in Body) {
 		if(Body.hasOwnProperty(key)) {
-			//delete Body[key].__prefix;
 			return Body[key];
 		}
 	}
 }
+
+function cleanObj(obj)
+{
+	if (obj instanceof Object)
+	{
+		for(var key in obj) 
+		{
+			obj[key] = cleanObj(obj[key]);
+		}
+		delete obj.__prefix;
+		obj = obj.__text || obj;
+	}
+	return obj;
+}
+
+//// asdasdas
 
 
 
