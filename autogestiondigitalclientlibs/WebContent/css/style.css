@@ -274,7 +274,7 @@ td, div {
 }
 
 #panelDocName{
-    width: 35%;
+    width: 25%;
     float:left;
     height: 400px;
     overflow-y: auto;
@@ -289,7 +289,7 @@ td, div {
 #panelDocDetail{
     margin-top: 15px;
     float:left;
-    width: 60%;
+    width: 70%;
 	max-height:400px;
 	overflow-y: auto;
     overflow-x: hidden;
@@ -326,6 +326,10 @@ td, div {
 }
 
 /* VISOR  Docs */
+div#visor {
+    width: 100%;
+}
+
 .tituloSeccion {
 	text-align:left;
 	font-weight:bold;
@@ -618,11 +622,15 @@ border-radius: 10px !important;
     color: #f5680b !important; 
 }
 /*Paginacion*/
+.paginacion {
+    padding-top: 4px;
+}
 #pagination-flickr{
 	margin:0 auto; 
-	width:300px; 
+	width:500px; 
 	margin-top:10px; 
 	height: 22px;
+    line-height: 35px;
 }
 #pagination-flickr li{
 	border:0;
@@ -640,6 +648,8 @@ border-radius: 10px !important;
 	float:left;
 	font-weight:bold;
 	padding:3px 4px;
+	line-height: 5px;
+    margin-left: 3px;
 }
 #pagination-flickr .previous-off a, #pagination-flickr .previous-off a:link, #pagination-flickr .previous-off a:visited, #pagination-flickr .previous-off a:hover,
 #pagination-flickr .next-off  a, #pagination-flickr .next-off  a:link, #pagination-flickr .next-off  a:visited, #pagination-flickr .next-off  a:hover  {
@@ -665,7 +675,7 @@ border-radius: 10px !important;
 	padding:3px 6px;
 }
 #pagination-flickr .inactive, #pagination-flickr .inactive:hover{
-	font-size:11px;
+	font-size:9px;
 	font-weight:bold;
 	display:block;
 	float:left;
@@ -677,10 +687,14 @@ border-radius: 10px !important;
 #pagination-flickr .inactive{
 	background-image:url(../images/filrk_active.gif);
 	background-repeat:no-repeat;
+	background-size: 15px 15px;
+	margin-left: 2px;
+	font-size: 9px;
 }
 #pagination-flickr .inactive:hover{
 	background-image:url(../images/filrk_hover.gif);
 	background-repeat:no-repeat;
+	background-size: 15px 15px;
 }
 #pagination-flickr a:link,
 #pagination-flickr a:visited {
