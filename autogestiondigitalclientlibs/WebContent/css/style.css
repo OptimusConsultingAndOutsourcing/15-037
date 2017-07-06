@@ -1733,13 +1733,13 @@ div#jconfirm-box14822 {
 #loading-bar, #loading-bar-spinner {
     background-color: white;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 3px;
 }
 
 #loading-bar-spinner {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50% !important;
+    left: 50% !important;
 }
 #loading-bar-spinner span {
     color:#004E9B;
@@ -1749,10 +1749,10 @@ div#jconfirm-box14822 {
     line-height: 24px;
 }
 #loading-bar-spinner .spinner-icon {
-    width: 24px;
-    height: 24px;
+    width: 24px !important;
+    height: 24px !important;
     border: 4px solid transparent;
-    border-top-color: #89b127;
-    border-left-color: #89b127;
+    border-top-color: #89b127 !important;
+    border-left-color: #89b127 !important;
     float: left;
 }
