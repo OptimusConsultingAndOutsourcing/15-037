@@ -80,6 +80,7 @@ public class DocServlet extends HttpServlet{
 			response.setHeader("Content-Disposition", "filename=\"documento." + ext + "\"");
 
 			logger.debug(this.getClass().getName() + ": opening File!");
+			System.out.println(this.getClass().getName() + ": opening File!");
 	        URL urlConn = new URL(URL);
 	        InputStream inputStream = urlConn.openStream();
 	        ServletOutputStream servletOutputStream = response.getOutputStream();
@@ -87,11 +88,13 @@ public class DocServlet extends HttpServlet{
 	        int readBytes = 0;
 
 			logger.debug(this.getClass().getName() + ": readingBytes!");
+			System.out.println(this.getClass().getName() + ": readingBytes!");
 		    while ((readBytes = inputStream.read()) != -1) {
 		  		servletOutputStream.write(readBytes);
 		    }
 
 			logger.debug(this.getClass().getName() + ": closing OutputStream!");
+			System.out.println(this.getClass().getName() + ": closing OutputStream!");
 		    servletOutputStream.close();
 	        inputStream.close();
 		}

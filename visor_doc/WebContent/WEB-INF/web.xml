@@ -26,7 +26,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>portalAccesoFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/001_lst_expediente.html</url-pattern>
 	</filter-mapping>
   <filter>
     <filter-name>clientSideWebAppAccessFilter</filter-name>

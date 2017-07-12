@@ -1,6 +1,6 @@
 SOAPGateway.controller("Visor", function ($scope, Gateway)
 {
-    Gateway.get({ UddiServiceRegistryName: "ServicioRecaudos", OperationElementName: "consultarDocumentosSol" }, function (operation)
+    Gateway.get({ UddiServiceRegistryName: "http://slopr03123.mercantilseguros.com:17011/underlying/oracledb/rector/serviciorecaudos/ServicioRecaudos", OperationElementName: "consultarDocumentosSol" }, function (operation)
     {
         operation.Envelope.Body.consultarDocumentosSol.piFuncionalidad.__text = "VISOR_DOC";
         operation.Envelope.Body.consultarDocumentosSol.piAplicacion.__text = "GEST_DOCU";
@@ -9,13 +9,13 @@ SOAPGateway.controller("Visor", function ($scope, Gateway)
         operation.$post(function(response)
         {
             if ((response.poSalida)
-            && (response.poSalida.__text == "0")
+            && (response.poSalida == "0")
             && (response.poListaConsulta.docoListaConsulta))
             {
                 var id = 0;
                 $scope.fileList = response.poListaConsulta.docoListaConsulta.map(function (file)
                 {
-                    file.doecNmArchivoFs.__text = encodeURIComponent(file.doecNmArchivoFs.__text);
+                    file.doecNmArchivoFs = encodeURIComponent(file.doecNmArchivoFs);
                     file.id = id;
                     id++;
                     return file;
@@ -29,9 +29,9 @@ SOAPGateway.controller("Visor", function ($scope, Gateway)
         $scope.documents = [];
         $.each($scope.fileList, function (index, doc)
         {
-            if ($.inArray(doc.docdDotdCdDocumento.__text, $scope.documents) === -1)
+            if ($.inArray(doc.docdDotdCdDocumento, $scope.documents) === -1)
             {
-                $scope.documents.push(doc.docdDotdCdDocumento.__text);
+                $scope.documents.push(doc.docdDotdCdDocumento);
             }
         });
         $scope.documents = $scope.documents.map(function (docdDotdCdDocumento)
@@ -39,16 +39,16 @@ SOAPGateway.controller("Visor", function ($scope, Gateway)
             return {
                 files: $scope.fileList.filter(function (doc)
                 {
-                    return doc.docdDotdCdDocumento.__text == docdDotdCdDocumento;
+                    return doc.docdDotdCdDocumento == docdDotdCdDocumento;
                 })
             };
         });
         $scope.sections = [];
         $.each($scope.fileList, function (index, doc)
         {
-            if ($.inArray(doc.docdCdSeccion.__text, $scope.sections) === -1)
+            if ($.inArray(doc.docdCdSeccion, $scope.sections) === -1)
             {
-                $scope.sections.push(doc.docdCdSeccion.__text);
+                $scope.sections.push(doc.docdCdSeccion);
             }
         });
         $scope.sections = $scope.sections.map(function (docdCdSeccion)
@@ -56,10 +56,14 @@ SOAPGateway.controller("Visor", function ($scope, Gateway)
             return {
                 documents: $scope.documents.filter(function (doc)
                 {
-                    return doc.files[0].docdCdSeccion.__text == docdCdSeccion;
+                    return doc.files[0].docdCdSeccion == docdCdSeccion;
                 })
             };
         });
+    }
+    $scope.isImage = function(file)
+    {
+        return ["jpg", "jepg", "png", "gif", "bmp", "png"].filter(function(ext){ return file.doecNmArchivoFs.substring(file.doecNmArchivoFs.lastIndexOf(".") + 1).toLowerCase() == ext; }).length > 0;
     }
 });
 

@@ -16,12 +16,12 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
                     operation.Envelope.Body.listarSucursalesSol.inFuncionalidad.__text = "GS";
                     operation.$post(function (response)
                     {
-                        $scope.sucursales = [].concat(response.valorRetorno.cartSucursal).map(function(element)
+                        $scope.sucursales = response.valorRetorno ? [].concat(response.valorRetorno.cartSucursal).map(function(element)
                         {
                                 element.value = element.casuCdSucursal;
                                 element.label = element.casuDeSucursal;
                                 return element;
-                        });
+                        }) : [];
 
                         if(usuario.codAplicacion == "PORTASESOR")
                         {
@@ -64,12 +64,12 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
             operation.Envelope.Body.listarRefCodesSol.dominio.__text = "CART_POLIZAS.CAPO_TP_POLIZA";
             operation.$post(function (response)
             {
-                $scope.tiposPoliza = [].concat(response.valorRetorno.cgRefCodes).map(function(element)
+                $scope.tiposPoliza = response.valorRetorno ? [].concat(response.valorRetorno.cgRefCodes).map(function(element)
                 {
                         element.value = element.rvLowValue;
                         element.label = element.rvMeaning;
                         return element;
-                });
+                }) : [];
             });
         });
 
@@ -77,12 +77,12 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
         {
             operation.$post(function (response)
             {
-                $scope.monedas = [].concat(response.poListaMonedas.poListaMonedasItem).map(function(element)
+                $scope.monedas = response.poListaMonedas ? [].concat(response.poListaMonedas.poListaMonedasItem).map(function(element)
                 {
                         element.value = element.stlmCamoCdMoneda;
                         element.label = element.stlmDeMoneda;
                         return element;
-                });
+                }) : [];
             });
         });
 
@@ -90,12 +90,12 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
         {
             operation.$post(function (response)
             {
-                $scope.indoles = [].concat(response.poListaIndoles.polistarIndolesItem).map(function(element)
+                $scope.indoles = response.poListaIndoles ? [].concat(response.poListaIndoles.polistarIndolesItem).map(function(element)
                 {
                         element.value = element.stliCdIndole;
                         element.label = element.stliDeIndole;
                         return element;
-                });
+                }) : [];
             });
         });
 
@@ -105,12 +105,12 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
             operation.Envelope.Body.listarRefCodesSol.lowValue.__text = "'V','E','J'";
             operation.$post(function (response)
             {
-                $scope.nacionalidades = [].concat(response.valorRetorno.cgRefCodes).map(function(element)
+                $scope.nacionalidades = response.valorRetorno ? [].concat(response.valorRetorno.cgRefCodes).map(function(element)
                 {
                         element.value = element.rvLowValue;
                         element.label = element.rvMeaning;
                         return element;
-                });
+                }) : [];
             });
         });
 
@@ -119,12 +119,12 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
             operation.Envelope.Body.listarCodigoAreaSol.cacgInCelular.__text = "N";
             operation.$post(function (response)
             {
-                $scope.codigosArea = [].concat(response.valorRetorno.cartCodigoArea).map(function(element)
+                $scope.codigosArea = response.valorRetorno ? [].concat(response.valorRetorno.cartCodigoArea).map(function(element)
                 {
                         element.value = element.cacgCdCodigoArea;
                         element.label = element.cacgCdCodigoArea;
                         return element;
-                });
+                }) : [];
             });
         });
 
@@ -133,12 +133,12 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
             operation.Envelope.Body.listarCodigoAreaSol.cacgInCelular.__text = "S";
             operation.$post(function (response)
             {
-                $scope.codigosCelular = [].concat(response.valorRetorno.cartCodigoArea).map(function(element)
+                $scope.codigosCelular = response.valorRetorno ? [].concat(response.valorRetorno.cartCodigoArea).map(function(element)
                 {
                         element.value = element.cacgCdCodigoArea;
                         element.label = element.cacgCdCodigoArea;
                         return element;
-                });
+                }) : [];
             });
         });
 
@@ -157,12 +157,12 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
 
                                 Gateway.post(operation, function (response)
                                 {
-                                        $scope.ramos = [].concat(response.poListaRamos.poListaRamosItem).map(function(element)
+                                        $scope.ramos = response.poListaRamos ? [].concat(response.poListaRamos.poListaRamosItem).map(function(element)
                                         {
                                                 element.value = element.stlrCarpCdRamo;
                                                 element.label = element.stlrDeRamo;
                                                 return element;
-                                        });
+                                        }) : [];
                                 });
                         });
                 }
@@ -191,12 +191,12 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
 
                                 Gateway.post(operation, function (response)
                                 {
-                                        $scope.productos = [].concat(response.poListaProductos.poListaProductosItem).map(function(element)
+                                        $scope.productos = response.poListaProductos ? [].concat(response.poListaProductos.poListaProductosItem).map(function(element)
                                         {
                                                 element.value = element.stlpCapuCdProducto;
                                                 element.label = element.stlpDeProducto;
                                                 return element;
-                                        });
+                                        }) : [];
                                 });
                         });
                 }
@@ -229,12 +229,12 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
 
                                 Gateway.post(operation, function (response)
                                 {
-                                        $scope.tiposSolicitud = [].concat(response.poListaTiposSolicitudes.poListaTiposSolicitudesItem).map(function(element)
+                                        $scope.tiposSolicitud = response.poListaTiposSolicitudes ? [].concat(response.poListaTiposSolicitudes.poListaTiposSolicitudesItem).map(function(element)
                                         {
                                                 element.value = element.sttsTpSolicitud;
                                                 element.label = element.sttsDeTpSolicitud;
                                                 return element;
-                                        });
+                                        }) : [];
                                 });
                         });
                 }

@@ -50,19 +50,19 @@
 							<!-- Menu de documentos -->
 							<ol class="tree nav">
 								<li ng-repeat="section in sections">
-									<label for="menu-{{ section.documents[0].files[0].docdCdSeccion.__text }}">
-											<strong>{{ section.documents[0].files[0].docoDeTituloSeccion.__text }}</strong>
+									<label for="menu-{{ section.documents[0].files[0].docdCdSeccion }}">
+											<strong>{{ section.documents[0].files[0].docoDeTituloSeccion }}</strong>
 										</label>
-									<input type="checkbox" ng-checked="{{ $index == 0 }}" id="menu-{{ section.documents[0].files[0].docdCdSeccion.__text }}" />
+									<input type="checkbox" ng-checked="{{ $index == 0 }}" id="menu-{{ section.documents[0].files[0].docdCdSeccion }}" />
 									<ol>
 										<li ng-class="{file: doc.files.length == 1}" ng-repeat="doc in section.documents">
-											<a ng-if="doc.files.length == 1" class="nombreDoc" title="{{ doc.files[0].docdToolTip.__text }}" id="carousel-selector-{{ doc.files[0].id }}">{{ doc.files[0].dotdDeDocumento.__text }}</a>
+											<a ng-if="doc.files.length == 1" class="nombreDoc" title="{{ doc.files[0].docdToolTip }}" id="carousel-selector-{{ doc.files[0].id }}">{{ doc.files[0].dotdDeDocumento }}</a>
 											<div ng-if="doc.files.length > 1">
-												<label title="{{ doc.files[0].docdToolTip.__text }}" for="menu-{{ doc.files[0].docdCdSeccion.__text + doc.files[0].docdDotdCdDocumento.__text }}">{{ doc.files[0].dotdDeDocumento.__text }}</label>
-												<input type="checkbox" id="menu-{{ doc.files[0].docdCdSeccion + doc.files[0].docdDotdCdDocumento.__text }}" />
+												<label title="{{ doc.files[0].docdToolTip }}" for="menu-{{ doc.files[0].docdCdSeccion + doc.files[0].docdDotdCdDocumento }}">{{ doc.files[0].dotdDeDocumento }}</label>
+												<input type="checkbox" id="menu-{{ doc.files[0].docdCdSeccion + doc.files[0].docdDotdCdDocumento }}" />
 												<ol>
 													<li class="file" ng-repeat="file in doc.files">
-														<a class="nombreDoc" title="{{ file.docdToolTip.__text }}" id="carousel-selector-{{ doc.id }}">{{ file.dotdDeDocumento.__text }} {{ file.doecNuConsecutivo.__text }}</a>
+														<a class="nombreDoc" title="{{ file.docdToolTip }}" id="carousel-selector-{{ file.id }}">{{ file.dotdDeDocumento }} {{ file.doecNuConsecutivo }}</a>
 													</li>
 												</ol>
 											</div>
@@ -80,10 +80,10 @@
 											<!-- Carrusel de Documentos -->
 											<div class="carousel-inner">
 												<div ng-repeat="file in fileList" class="item base-image" ng-class="{ 'active': $index == 0 }" data-slide-number="{{ $index }}">
-													<span>{{ file.dotdDeDocumento.__text }}</span>
+													<span>{{ file.dotdDeDocumento }}</span>
 													<br>
-													<embed ng-attr-src="{{ 'Doc?id=' + file.doecNuDocid.__text + '&file=' + file.doecNmArchivoFs.__text + '&pms=' + getParameter(pms) + '&aux=' + getParameter(aux) }}" width="100%" height="370px" />
-													<!-- img src="{{ file.url }}" -->
+													<embed ng-if="!isImage(file)" ng-attr-src="{{ 'Doc?id=' + file.doecNuDocid + '&file=' + file.doecNmArchivoFs + '&pms=' + getParameter(pms) + '&aux=' + getParameter(aux) }}" width="100%" height="370px" />
+													<img ng-if="isImage(file)" ng-attr-src="{{ 'Doc?id=' + file.doecNuDocid + '&file=' + file.doecNmArchivoFs + '&pms=' + getParameter(pms) + '&aux=' + getParameter(aux) }}" width="100%">
 												</div>
 											</div>
 										</div>
