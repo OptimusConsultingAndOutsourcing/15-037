@@ -469,7 +469,7 @@ div#visor {
 }
 
 ol.tree{ 
-    padding-left:30px;
+    padding-left:5px;
 }
 
 .tree li{
@@ -630,7 +630,6 @@ border-radius: 10px !important;
 	width:500px; 
 	margin-top:10px; 
 	height: 22px;
-    line-height: 35px;
 }
 #pagination-flickr li{
 	border:0;
@@ -648,7 +647,7 @@ border-radius: 10px !important;
 	float:left;
 	font-weight:bold;
 	padding:3px 4px;
-	line-height: 5px;
+	line-height: 9px;
     margin-left: 3px;
 }
 #pagination-flickr .previous-off a, #pagination-flickr .previous-off a:link, #pagination-flickr .previous-off a:visited, #pagination-flickr .previous-off a:hover,
@@ -672,10 +671,10 @@ border-radius: 10px !important;
 	font-weight:bold;
 	display:block;
 	float:left;
-	padding:3px 6px;
+	padding:0px 6px;
 }
 #pagination-flickr .inactive, #pagination-flickr .inactive:hover{
-	font-size:9px;
+	font-size:8px;
 	font-weight:bold;
 	display:block;
 	float:left;
@@ -689,7 +688,7 @@ border-radius: 10px !important;
 	background-repeat:no-repeat;
 	background-size: 15px 15px;
 	margin-left: 2px;
-	font-size: 9px;
+	font-size: 8px;
 }
 #pagination-flickr .inactive:hover{
 	background-image:url(../images/filrk_hover.gif);
