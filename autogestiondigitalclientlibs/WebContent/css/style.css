@@ -1756,3 +1756,8 @@ div#jconfirm-box14822 {
     border-left-color: #89b127 !important;
     float: left;
 }
+
+.grayscale
+{
+	filter: grayscale(100%);
+}

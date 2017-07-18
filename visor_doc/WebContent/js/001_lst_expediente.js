@@ -8,9 +8,7 @@ SOAPGateway.controller("Visor", function ($scope, Gateway)
         //operation.Envelope.Body.consultarDocumentosSol.cabeceraSol.aplicacion.__text = "GEST_DOCU";
         operation.$post(function(response)
         {
-            if ((response.poSalida)
-            && (response.poSalida == "0")
-            && (response.poListaConsulta.docoListaConsulta))
+            if ((response.poSalida == "0") && (response.poListaConsulta.docoListaConsulta))
             {
                 var id = 0;
                 $scope.fileList = response.poListaConsulta.docoListaConsulta.map(function (file)
