@@ -1760,4 +1760,5 @@ div#jconfirm-box14822 {
 .grayscale
 {
 	filter: grayscale(100%);
+	cursor: default;
 }

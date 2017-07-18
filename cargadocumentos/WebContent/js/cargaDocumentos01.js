@@ -118,8 +118,8 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
                 {
                     var poDeRuta = validarUploadRes.poDeRuta;
                     fileInfo.piNmArchivoOriginal = file.name;
-                    fileInfo.piDeFilesystem = validarUploadRes.poDeNameFs;
-                    fileInfo.filePath = poDeRuta + fileInfo.piDeFilesystem;
+                    fileInfo.piDeFilesystem = validarUploadRes.poDeNameFs + "." + fileInfo.piNmArchivoOriginal.split(".")[fileInfo.piNmArchivoOriginal.split(".").length - 1];
+                    fileInfo.filePath = encodeURIComponent(poDeRuta + fileInfo.piDeFilesystem);
 
                     xhr.open("POST", form.action, false);
                     xhr.onreadystatechange = function (oEvent)
@@ -172,7 +172,7 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
     {
         $scope.actualizarRecaudo(fileInfo, "ELIMINAR", function(){
             document.getElementById(formInputId).reset();
-            file.loaded = false;
+            fileInfo.loaded = false;
         });
     }
 
@@ -218,6 +218,11 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
         copy.showDuplicateButton = copy.docdNuRepeticiones != copy.doecNuConsecutivo;
 
         doc.files.push(copy);
+    }
+
+    $scope.unload = function(file)
+    {
+        file.loaded = false;
     }
 
 });
