@@ -1761,3 +1761,14 @@ div#jconfirm-box14822 {
 	filter: grayscale(100%);
 	cursor: default;
 }
+
+/* Visor */
+
+div#DocCarousel {
+    margin-right: 0;
+}
+@media (min-width: 992px) {
+.container {
+    width: 100%;
+}
+}
