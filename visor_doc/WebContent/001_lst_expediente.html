@@ -57,13 +57,13 @@
 									</label>
 										<input type="checkbox" ng-checked="{{ $index == 0 }}" id="menu-{{ section.documents[0].files[0].docdCdSeccion }}" />
 										<ol>
-											<li ng-class="{file: doc.files.length == 1}" ng-repeat="doc in section.documents" ng-attr-data-target="{{ doc.files.length == 1 ? '#myCarousel' : '' }}" ng-attr-data-slide-to="{{ doc.files.length == 1 ? doc.files[0].id : '' }}">
+											<li ng-class="{file: doc.files.length == 1}" ng-repeat="doc in section.documents" ng-attr-data-target="{{ doc.files.length == 1 ? '#myCarousel' : '' }}" ng-attr-data-slide-to="{{ doc.files.length == 1 ? doc.files[0].id : '' }}" ng-click="active(doc.files.length == 1 ? doc.files[0].id : -1);">
 												<a ng-if="doc.files.length == 1" class="nombreDoc" title="{{ doc.files[0].docdToolTip }}" id="carousel-selector-{{ doc.files[0].id }}">{{ doc.files[0].dotdDeDocumento }}</a>
 												<div ng-if="doc.files.length > 1">
 													<label title="{{ doc.files[0].docdToolTip }}" for="menu-{{ doc.files[0].docdCdSeccion + doc.files[0].docdDotdCdDocumento }}">{{ doc.files[0].dotdDeDocumento }}</label>
 													<input type="checkbox" id="menu-{{ doc.files[0].docdCdSeccion + doc.files[0].docdDotdCdDocumento }}" />
 													<ol>
-														<li class="file" ng-repeat="file in doc.files" data-target="#myCarousel" ng-attr-data-slide-to="{{ file.id }}">
+														<li class="file" ng-repeat="file in doc.files" data-target="#myCarousel" ng-attr-data-slide-to="{{ file.id }}" ng-click="active(file.id)">
 															<a class="nombreDoc" title="{{ file.docdToolTip }}" id="carousel-selector-{{ file.id }}">{{ file.dotdDeDocumento }} {{ file.doecNuConsecutivo }}</a>
 														</li>
 													</ol>
