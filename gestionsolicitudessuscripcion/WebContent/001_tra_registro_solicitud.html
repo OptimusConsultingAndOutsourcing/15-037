@@ -131,14 +131,14 @@
                                     </select>
                                     </td>
                                   </tr>
-                                  <tr>
+                                  <!-- <tr>
                                     <td class="etiqueta_form"><span class="asterisco">*</span> Movimiento:</td>
                                     <td align="left">
                                       <select name="movimiento" id="movimiento" style="width:30%;" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpMovimiento.__text" ng-options="option.value as option.label for option in movimientos">
                                       <option selected="selected" value="">Seleccione...</option>
                                     </select>
                                     </td>
-                                  </tr>
+                                  </tr> -->
                                   <tr>
                                     <td class="etiqueta_form"><span class="asterisco">*</span> Sucursal:</td>
                                     <td align="left">
@@ -151,7 +151,7 @@
                                     <td class="etiqueta_form">Negocio Referido:</td>
                                     <td align="left">
                                       <input type="radio" name="negocioReferido" value="si" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInReferidos.__text"> Si&nbsp;
-                                      <input type="radio" name="negocioReferido" value="no" checked ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInReferidos.__text"> No
+                                      <input type="radio" name="negocioReferido" value="no" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInReferidos.__text"> No
                                     </td>
                                   </tr>
                                   <tr>
@@ -190,8 +190,8 @@
                                     <tr>
                                       <td class="etiqueta_form">¿Es una licitación?:</td>
                                       <td align="left">
-                                        <input type="radio" name="licitacion" value="si" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInLicitacion.__text"> Si
-                                        <input type="radio" name="lIcitacion" value="no" checked required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInLicitacion.__text"> No
+                                        <input type="radio" name="licitacion" value="si" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInLicitacion.__text"> Si
+                                        <input type="radio" name="lIcitacion" value="no" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInLicitacion.__text"> No
                                       </td>
                                     </tr>
                                     <tr>
@@ -269,7 +269,7 @@
                                   <tr>
                                     <td class="etiqueta_form">Teléfono Celular:</td>
                                     <td align="left">
-                                      <select name="telCelCod" id="telCelCod" tabindex="2" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdAreaHabSol.__text" ng-options="option.value as option.label for option in codigosCelular">
+                                      <select name="telCelCod" id="telCelCod" tabindex="2" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdAreaCelSol.__text" ng-options="option.value as option.label for option in codigosCelular">
                                         <option selected="selected" value="" >Seleccione...</option>
                                       </select>
                                       <input id="telCel2" maxlength="15" class="combo-med2" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCelularSol.__text"></td>
@@ -277,8 +277,8 @@
                                   <tr>
                                     <td class="etiqueta_form">¿Tomador diferente al cliente (Titular)?:</td>
                                     <td align="left">
-                                      <input type="radio" name="titular" value="si" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text"> Si
-                                      <input type="radio" name="titular" value="no" checked required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text"> No
+                                      <input type="radio" name="titular" value="si" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text"> Si
+                                      <input type="radio" name="titular" value="no" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text"> No
                                     </td>
                                   </tr>
                                 </table>
@@ -324,7 +324,7 @@
                                       <select name="telLocal" id="telLocal" tabindex="2" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdAreaHabContacto.__text" ng-options="option.value as option.label for option in codigosArea">
                                         <option selected="selected" value="">Seleccione...</option>
                                       </select>
-                                      <input id="telLocal" maxlength="15" class="combo-med2" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuTelefHabContacto.__text">
+                                      <input id="telLocal" maxlength="15" class="combo-med2" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuTelefHabContacto.__text">
                                     </td>
                                   </tr>
                                   <tr>
@@ -333,7 +333,7 @@
                                       <select name="telCel" id="telCel" tabindex="2" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdAreaCelContacto.__text" ng-options="option.value as option.label for option in codigosCelular">
                                         <option selected="selected" value="" >Seleccione...</option>
                                       </select>
-                                      <input id="telCel" maxlength="15" class="combo-med2" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCelularContacto.__text">
+                                      <input id="telCel" maxlength="15" class="combo-med2" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCelularContacto.__text">
                                     </td>
                                   </tr>
 
@@ -346,15 +346,15 @@
 
                       <!-- Datos Adicionales del Tomador -->
 
-                      <tr>
+                      <tr ng-show="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text == 'no'">
                         <td colspan="8" class="titulo_interno"><label class="twhiteT" style="text-align:left">Datos del Tomador</label></td>
                       </tr>
 
-                      <tr>
+                      <tr ng-show="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text == 'no'">
                         <td colspan="8">&nbsp;</td>
                       </tr>
 
-                      <tr>
+                      <tr ng-show="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text == 'no'">
                         <td>
                           <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" style="margin-top:10px; margin-bottom:10px;">
                             <tr>
@@ -364,18 +364,18 @@
                                   <tr>
                                     <td width="30%" class="etiqueta_form"><span class="asterisco">*</span> Cédula o Rif:</td>
                                     <td width="30%" align="left">
-                                      <select name="idTomador" id="idTomador" class="combo-peq" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdNacionalidadToma.__text" ng-options="option.value as option.label for option in nacionalidades">
+                                      <select name="idTomador" id="idTomador" class="combo-peq" ng-required="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text == 'no'" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdNacionalidadToma.__text" ng-options="option.value as option.label for option in nacionalidades">
                                         <option selected="selected" value="">Seleccione...</option>
                                         </select>
-                                      <input id="idTomador" maxlength="9" class="combo-med2" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCedulaToma.__text"></td>
+                                      <input id="idTomador" maxlength="9" class="combo-med2" ng-required="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text == 'no'" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCedulaToma.__text"></td>
                                   </tr>
                                   <tr>
                                     <td class="etiqueta_form"><span class="asterisco">*</span> Nombre:</td>
-                                    <td align="left"><input type="text" id="nombreTomador" maxlength="60" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNmTomador.__text"></td>
+                                    <td align="left"><input type="text" id="nombreTomador" maxlength="60" class="combos" ng-required="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text == 'no'" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNmTomador.__text"></td>
                                   </tr>
                                   <!--<tr>
                                   <td class="etiqueta_form"><span class="asterisco">*</span> Correo Electrónico 1:</td>
-                                  <td align="left"><input type="email" id="correo1Tomador" value="" class="combos" required ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuReferimiento.__text"></td>
+                                  <td align="left"><input type="email" id="correo1Tomador" value="" class="combos" ng-required="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnInTomador.__text == 'no'" ng-model="generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuReferimiento.__text"></td>
                                 </tr>
                                 <tr>
                                   <td class="etiqueta_form">Correo Electrónico 2:</td>

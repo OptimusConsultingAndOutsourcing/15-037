@@ -49,9 +49,12 @@ var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml',
 					if(response.config.method == "POST")
 					{
 						response.data = getRes(response.data.Envelope.Body);
-						if(response.data.cabeceraRes.estatusError && response.data.cabeceraRes.estatusFinal.__text == "fallotecnico")
+						if(response.data.cabeceraRes.estatusError && response.data.cabeceraRes.estatusFinal == "fallotecnico")
 						{
-							errorController(response.data.cabeceraRes.descripcion.__text);
+							errorController(
+								response.data.cabeceraRes.estatusError.aplicacion + ": " +
+								response.data.cabeceraRes.estatusError.codigo + ": " +
+								response.data.cabeceraRes.estatusError.descripcion);
 							$q.reject(response);
 						}
 						else
