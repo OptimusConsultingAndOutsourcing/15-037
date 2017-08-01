@@ -290,7 +290,7 @@ td, div {
     margin-top: 15px;
     float:left;
     width: 70%;
-	max-height:400px;
+	max-height:100%;
 	overflow-y: auto;
     overflow-x: hidden;
     border-right: solid #ccc 1px;
@@ -1760,4 +1760,15 @@ div#jconfirm-box14822 {
 {
 	filter: grayscale(100%);
 	cursor: default;
+}
+
+/* Visor */
+
+div#DocCarousel {
+    margin-right: 0;
+}
+@media (min-width: 992px) {
+.container {
+    width: 100%;
+}
 }
