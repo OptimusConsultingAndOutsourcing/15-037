@@ -20,6 +20,9 @@
 			.row {
 				margin-right: 10px;
 			}
+			div#prueba {
+   				 margin-right: -20px;
+			}
 		</style>
 		<script src="../autogestiondigitalclientlibs/js/jquery.min.js"></script>
 		<script src="../autogestiondigitalclientlibs/js/bootstrap.min.js"></script>
@@ -43,7 +46,7 @@
 				<label class="twhiteT">Visor de Documentos</label>
 			</div>
 			<div class="cuerpo_app">
-				<div class="container">
+				<div id="visorDoc">
 					<div>
 						<div class="row" id="DocCarousel">
 							<div class="col-sm-6" id="panelDocName">
@@ -76,10 +79,10 @@
 
 							<!-- Visor de documentos -->
 
-							<div class="col-sm-6" id="panelDocDetail">
-								<div class="col-xs-12" id="slider">
-									<div class="row">
-										<div class="col-sm-12" id="carousel-bounding-box">
+							<div id="panelDocDetail">
+								<div id="slider">
+									<div>
+										<div id="carousel-bounding-box">
 											<div class="carousel slide" id="myCarousel">
 												<!-- Carrusel de Documentos -->
 												<div class="carousel-inner">
