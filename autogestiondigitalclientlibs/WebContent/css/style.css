@@ -574,6 +574,17 @@ a:hover.tooltips span {
 }
 input[type=file] {
     border: none;
+    float: left; 
+    width: 90px; 
+    color: white; 
+    background-color: white;
+}
+input::-ms-value {
+    border: none;
+    float: left; 
+    width: 90px; 
+    color: white; 
+    background-color: white;
 }
 .combos {
     width: 250px !important;
@@ -1768,6 +1779,13 @@ div#DocCarousel {
     margin-right: 0;
 }
 @media (min-width: 992px) {
+.container {
+    width: 100%;
+}
+}
+
+
+@media (min-width: 1920px){
 .container {
     width: 100%;
 }

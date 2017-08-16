@@ -7,11 +7,11 @@ SOAPGateway.controller("Visor", function($scope, Gateway) {
 		operation.Envelope.Body.consultarDocumentosSol.piFuncionalidad.__text = "VISOR_DOC";
 		operation.Envelope.Body.consultarDocumentosSol.piAplicacion.__text = "GEST_DOCU";
 		operation.Envelope.Body.consultarDocumentosSol.cabeceraSol.funcionalidad.__text = "VISOR_DOC";
-		//operation.Envelope.Body.consultarDocumentosSol.cabeceraSol.aplicacion.__text = "GEST_DOCU";
+// 		operation.Envelope.Body.consultarDocumentosSol.piNameFile.__text = "GEST_DOCU";
 		operation.$post(function(response) {
 			if ((response.poSalida == "0") && (response.poListaConsulta.docoListaConsulta)) {
 				var id = 0;
-				$scope.fileList = response.poListaConsulta.docoListaConsulta.map(function(file) {
+				$scope.fileList = [].concat(response.poListaConsulta.docoListaConsulta).map(function(file) {
 					file.doecNmArchivoFs = encodeURIComponent(file.doecNmArchivoFs);
 					file.id = id;
 					id++;
