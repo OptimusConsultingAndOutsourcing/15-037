@@ -1,4 +1,9 @@
-SOAPGateway.controller("Carga", function ($scope, Gateway)
+SOAPGateway.controller("Carga", function ($scope)
+{
+    $scope.template = window.location.href.replace(window.location.pathname.split("/")[2], "cargaDocumentosViewTemplate.html");
+});
+
+SOAPGateway.controller("CargaTemplateCtrl", function ($scope, Gateway)
 {
     $scope.listarRecaudos = function()
     {
@@ -184,6 +189,10 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
         $scope.actualizarRecaudo(fileInfo, "ELIMINAR", function(){
             document.getElementById(formInputId).reset();
             fileInfo.loaded = false;
+            if (fileInfo.doecNuConsecutivo > 1)
+            {
+                delete fileInfo;
+            }
         });
     };
 
@@ -208,13 +217,37 @@ SOAPGateway.controller("Carga", function ($scope, Gateway)
             }
             else
             {
-                alert("Servicio no disponible, por favor intente de nuevo.");
-                console.log(response.cabeceraRes.estatusFinal);
+                if(response.cabeceraRes && response.cabeceraRes.estatusError && response.cabeceraRes.estatusError.codigo == 2)
+                {
+                    if (fileInfo.doecNuConsecutivo > 1)
+                    {
+                        $.each($scope.sections, function (index, section)
+                        {
+                            $.each(section.documents, function (index, doc)
+                            {
+                                doc.files = doc.files.filter(function(file)
+                                {
+                                    return file.doecNmArchivoFs !== fileInfo.doecNmArchivoFs;
+                                });
+                            });
+                        });
+                    }
+                    
+                    //delete fileInfo;
+
+                    alert(response.cabeceraRes.estatusError.descripcion);
+                    console.log(response.cabeceraRes.estatusFinal);
+                }
+                else
+                {
+                    alert("Servicio no disponible, por favor intente mas tarde.");
+                    console.log(response.cabeceraRes.estatusFinal);
+                }
             }
         }
         , function (response) 
         {
-            alert("Servicio no disponible, por favor intente de nuevo.");
+            alert("Servicio no disponible, por favor intente mas tarde.");
             console.log(response.data);
         });
     };

@@ -15,21 +15,31 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
 
 					operation.$post(function (response)
 					{
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCapuCarpCdRamo.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCapuCarpCdRamo;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdProducto.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCapuCdProducto;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdSucursal.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCasuCdSucursal;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdAreaHabSol.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCdAreaHabSol;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdEmail1Sol.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCdEmail1Sol;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdLineNegocio.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCdLineaNegocio;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdNacionalidadSol.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCdNacionalidadSol;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpPoliza.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuTpPoliza;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpSolicitud.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuTpSolicitud;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNmPersonaContacto.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuNmPersonaContacto;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNmSolicitante.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuNmSolicitante;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCedulaSol.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuNuCedulaSol;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuTelefonoHabSol.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuNuTelefonoHabSol;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuSolicitud.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuSolsNuSolicitud;
-						$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpMovimiento.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuTpMovimiento;
+						if(response.cabeceraRes.estatusError && response.cabeceraRes.estatusFinal == "fallonegocio")
+						{
+							$.alert({
+								title: 'Alerta!',
+								content: response.cabeceraRes.estatusError.descripcion,
+							});
+						}
+						else
+						{
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCapuCarpCdRamo.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCapuCarpCdRamo;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdProducto.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCapuCdProducto;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdSucursal.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCasuCdSucursal;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdAreaHabSol.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCdAreaHabSol;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdEmail1Sol.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCdEmail1Sol;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdLineNegocio.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCdLineaNegocio;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnCdNacionalidadSol.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuCdNacionalidadSol;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpPoliza.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuTpPoliza;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpSolicitud.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuTpSolicitud;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNmPersonaContacto.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuNmPersonaContacto;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNmSolicitante.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuNmSolicitante;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuCedulaSol.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuNuCedulaSol;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuTelefonoHabSol.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuNuTelefonoHabSol;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnNuSolicitud.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuSolsNuSolicitud;
+							$scope.generarSolicitud.Envelope.Body.generarSolicitudSol.objetoSolicitud.solnTpMovimiento.__text = response.poListaSolicitudes.polistarSolicitudesItem.sosuTpMovimiento;
+						}
 					});
 				});
 			}
@@ -345,6 +355,7 @@ SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, 
 			{
 				Gateway.post($scope.generarSolicitud, function (response)
 				{
+					window.location.href = window.location.href.replace(window.location.pathname.split("/")[2], "002_cot_recaudos.html");
 				});
 			}
 		});

@@ -26,17 +26,17 @@ SOAPGateway.controller("BusquedaAsegurados", function ($scope, $http, Gateway, S
             }
         }
     });
-    $http.get("templates/listarRefCodes.xml").then(function (response)
+    //$http.get("templates/listarRefCodes.xml").then(
+    Gateway.get({
+		UddiServiceRegistryName: "http://slopr03123.mercantilseguros.com:17011/underlying/oracledb/rector/ServicioUtilities/ServicioUtilities",
+		OperationElementName: "listarRefCodesSol"
+	}, function (operation)
     {
-        var operation = SOAPRequestMessage.fromTemplate(response.data);
+        //var operation = SOAPRequestMessage.fromTemplate(response);
         operation.Envelope.Body.listarRefCodesSol.dominio.__text = "NACIONALIDAD";
-        Gateway.save($.param({
-            SOAPRequestMessage: operation.toXMLString(),
-            UddiServiceRegistryName: "ServicioUtilities"
-        }),
-            function (response)
-            {
-                $scope.nacionalidades = response.valorRetorno.cgRefCodes;
-            });
+        Gateway.post(operation, function (response)
+        {
+            $scope.nacionalidades = response.valorRetorno.cgRefCodes;
+        });
     });
 });

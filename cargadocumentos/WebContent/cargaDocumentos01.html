@@ -25,7 +25,7 @@
     <script src="../autogestiondigitalclientlibs/js/jquery-confirm.js"></script>
     <script src="../autogestiondigitalclientlibs/js/soapgateway-module.js"></script>
 
-    <script src="js/cargaDocumentos01.js"></script>
+    <script src="../cargadocumentos/js/cargaDocumentos01.js"></script>
 
     <style>
         .cuerpo_app {
@@ -41,61 +41,8 @@
 
             <h1>Carga de Documentos</h1>
 
-            <div class="modulo_app">
-                <div class="titulo_app txt_izq"><label class="twhiteT">Carga de Documentos</label></div>
-                <div class="cuerpo_app">
-                    <table width="100%" align="center">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <!--------------------- Recaudos Seccion 1 -->
-                                    <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" ng-repeat="section in sections">
-                                        <!-- Titulo Recaudos Seccion 1 -->
-                                        <tr>
-                                            <td colspan="8">&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="8" class="titulo_seccion">{{ section.documents[0].files[0].docoDeTituloSeccion }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="8">&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <table width="690" border="0" align="center" cellpadding="1" cellspacing="1" ng-repeat="doc in section.documents">
-                                                    <!-- Recaudo1 Seccion 1 -->
-                                                    <tr ng-repeat="file in doc.files track by $index">
-                                                        <td width="5">&nbsp;</td>
-                                                        <td width="30%" align="right" class="etiqueta_form"><span ng-show="file.docdInObligatorio == 1">(<span class="asterisco">*</span>)</span> {{ file.dotdDeDocumento }}:</td>
-                                                        <td width="330" align="right">
-                                                            <form id="form{{ 'Section' + $parent.$parent.$index + 'Doc' + $parent.$index + 'File' + $index }}" name="{{ file.doecNuDocid }}" action="upload" method="POST" enctype="multipart/form-data" ng-submit="upload($event, 'file' + 'Section' + $parent.$parent.$index + 'Doc' + $parent.$index + 'File' + $index, file)">
-                                                                <input id="file{{ 'Section' + $parent.$parent.$index + 'Doc' + $parent.$index + 'File' + $index }}" type="file" required ng-click="unload(file)" onchange="angular.element(this).scope().selectedFile(event, angular.element(this).scope().file)" >
-                                                                <input type="text" readonly ng-model="file.doecNmArchivoOriginal" style="float: left; width: 200px;">
-                                                                <input type="image" src="../autogestiondigitalclientlibs/images/ico/attach.png" class="icon_btn" style="float: left;">
-                                                            </form>
-                                                        </td>
-                                                        <td width="34" align="left"><input ng-disabled="!file.loaded || !file.showDuplicateButton" id="showID" type="image" ng-attr-src="{{ (!file.loaded || !file.showDuplicateButton) ? '../autogestiondigitalclientlibs/images/ico/img_mas_dis.png' : '../autogestiondigitalclientlibs/images/ico/img_mas.png' }}" class="icon_btn" ng-click="duplicateFile(doc, file)"></td>
-                                                        <td width="34"><input ng-disabled="!file.loaded" type="image" ng-attr-src="{{ !file.loaded ? '../autogestiondigitalclientlibs/images/ico/eliminar_dis.gif' : '../autogestiondigitalclientlibs/images/ico/eliminar.gif' }}" class="icon_btn" ng-click="deleteFile('form' + 'Section' + $parent.$parent.$index + 'Doc' + $parent.$index + 'File' + $index, file)"></td>
-                                                        <td width="34"><a ng-show="file.loaded" href="../visor_doc/001_lst_expediente.html?pms={{ pms }}&aux={{ aux }}&piTpExpediente={{ file.docdDoteCdTipExpediente }}&piCdExpediente={{ file.docdDoteCdExpediente }}&piNuSolicitud={{ file.doedNuSolicitud }}&piValorRaiz={{ file.doedDeValorRaiz }}&piNameFile={{ file.doecNmArchivoFs }}"  target="_blank"><img src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle.png" class="icon_btn"></a><img ng-show="!file.loaded" src="../autogestiondigitalclientlibs/images/ico/ico_ver_detalle_dis.png" class="icon_btn"></td>
-                                                        <!--<td ng-show="file.loaded" width="17" align="left"><input type="image" src="../autogestiondigitalclientlibs/images/ico/alerta_peq.png" class="icon_btn"></td>
-                                                        <td ng-show="file.loaded" width="70" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" src="../autogestiondigitalclientlibs/images/ayuda.gif" title="Información"><span>Esta es una información.</span></a></td>-->
-                                                        <td width="60" align="left"><a class="tooltips" href="#"><img id="help" border="none" class="puntero" ng-attr-src="{{ !file.errorMessage ? '../autogestiondigitalclientlibs/images/ico/alerta_peq_dis.png' : '../autogestiondigitalclientlibs/images/ico/alerta_peq.png' }}" ng-attr-title="{{ file.errorMessage }}"><span ng-show="file.errorMessage">{{ file.errorMessage }}</span></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="9">&nbsp;</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <div class="modulo_app" ng-include="template"></div>
+            
         </div>
         <div class="z_izq2">
             <p class="info2">

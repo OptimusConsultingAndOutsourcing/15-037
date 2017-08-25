@@ -35,7 +35,7 @@ var SOAPGateway = angular.module("SOAPGateway", ['ngRoute', 'ngResource', 'xml',
 				}
 				else
 				{
-					if(config.method == "GET")
+					if(config.method == "GET" && config.params)
 					{
 						config.params.LogName = window.location.pathname.split( '/' )[1];
 					}

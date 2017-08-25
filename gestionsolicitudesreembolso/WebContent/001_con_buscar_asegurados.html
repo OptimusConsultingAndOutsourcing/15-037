@@ -65,12 +65,12 @@
 
 																		</td>
 																		<td width="8%" align="left">
-																			<select name="nacionalidad" id="nacionalidad" style="width:40px" class="combo-tiny" ng-options="option.rvLowValue.__text as option.rvMeaning.__text for option in nacionalidades" ng-model="soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piCdNacionalidad.__text" required>
+																			<select name="nacionalidad" id="nacionalidad" style="width:40px" class="combo-tiny" ng-options="option.rvLowValue as option.rvMeaning for option in nacionalidades" ng-model="soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piCdNacionalidad.__text" required>
 																				<option selected="selected" value=""></option>
 																			</select>
 																		</td>
 																		<td width="53%" align="left">
-																			<input id="BuscarCedPas" class="combo-lg" value="" ng-model="soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piNuCedula.__text" required>
+																			<input id="BuscarCedPas" type="number" class="combo-lg" value="" ng-model="soapRequestMessage.Envelope.Body.listarBeneficiariosSolicitudSol.piNuCedula.__text" required>
 																		</td>
 																	</tr>
 																	<tr style="display:none;">
