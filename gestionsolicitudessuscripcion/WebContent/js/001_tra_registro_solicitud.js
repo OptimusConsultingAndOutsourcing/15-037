@@ -1,4 +1,4 @@
-SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway, SOAPRequestMessage)
+SOAPGateway.controller("001_tra_registro_solicitud", function ($scope, Gateway)
 {
 	Gateway.get({
 		UddiServiceRegistryName: "http://slopr03123.mercantilseguros.com:17011/underlying/oracledb/rector/serviciosolicitudessuscripcion/ServicioSolicitudesSuscripcion",
